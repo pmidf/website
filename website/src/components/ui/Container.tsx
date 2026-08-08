@@ -4,10 +4,8 @@ import { cn } from "@/lib/utils";
  * Faixa central do layout PMI-DF: largura máxima de 1280px e gutters que
  * crescem por breakpoint (mobile 20px · tablet 32px · desktop 40px).
  *
- * Convive com `@/components/layout/Container`, que é o container do scaffold
- * genérico (72rem) ainda usado pelas páginas placeholder. Quando essas páginas
- * forem migradas para o design do PMI-DF, o outro pode ser removido e este
- * vira o único.
+ * Todo bloco de conteúdo do site passa por aqui — é o que garante que Header,
+ * seções e Rodapé alinhem na mesma coluna.
  */
 export function Container({
   children,

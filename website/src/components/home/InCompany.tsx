@@ -9,9 +9,11 @@ export function InCompany() {
   return (
     <section className="bg-[#F8F5F0] py-8 lg:py-10">
       <Container>
-        <div className="relative isolate overflow-hidden rounded-[220px] px-6 py-14 md:px-14 lg:px-[135px] lg:py-[130px]">
+        {/* O raio acompanha a largura: 220px num card de 335px (mobile)
+            viraria um comprimido e comeria o texto nos cantos. */}
+        <div className="relative isolate overflow-hidden rounded-[60px] px-6 py-14 md:rounded-[140px] md:px-14 lg:rounded-[220px] lg:px-[135px] lg:py-[130px]">
           <Image
-            src={assets.incompanyGradient}
+            src={assets.formas.capsulaGradiente}
             alt=""
             aria-hidden
             fill

@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons";
+
 /**
  * Contratos de dados do site institucional PMI-DF.
  *
@@ -12,11 +14,32 @@ export type NavLink = {
   href: string;
 };
 
-/** Rede social exibida no rodapé. Sempre link externo. */
+/**
+ * Rede social exibida no rodapé. Sempre link externo.
+ *
+ * `Icone` é o componente vindo de `react-icons` — glifo em `currentColor`, e
+ * não um arquivo em `public/`. Herdar a cor do texto é o que permite o hover
+ * funcionar sem trocar de imagem.
+ */
 export type RedeSocial = {
   nome: string;
-  src: string;
   href: string;
+  Icone: IconType;
+};
+
+/**
+ * Arte decorativa posicionada em absoluto dentro de um card.
+ *
+ * `largura`/`altura` são as dimensões **intrínsecas** do arquivo (o `viewBox`
+ * do SVG). O navegador deriva a altura renderizada dessa proporção, então um
+ * número errado aqui espreme a forma — não são valores de layout.
+ */
+export type Deco = {
+  src: string;
+  largura: number;
+  altura: number;
+  /** Classes de posicionamento e tamanho responsivo dentro do card. */
+  classe: string;
 };
 
 /** Card da seção "Conheça mais das nossas iniciativas". */
@@ -26,10 +49,7 @@ export type Iniciativa = {
   href: string;
   /** Classe Tailwind do gradiente de fundo do card. */
   gradiente: string;
-  /** Caminho da imagem decorativa (ornamental, sem valor semântico). */
-  deco: string;
-  /** Classes de posicionamento/tamanho da decoração dentro do card. */
-  decoClasse: string;
+  deco: Deco;
 };
 
 /** Formato de realização de um evento. */

@@ -16,12 +16,12 @@ export function CardIniciativa({ item }: { item: Iniciativa }) {
       className={`relative flex h-full min-h-[422px] flex-col overflow-hidden rounded-[20px] p-5 pt-[190px] shadow-[0_4px_4px_rgba(0,0,0,0.25)] ${item.gradiente}`}
     >
       <Image
-        src={item.deco}
+        src={item.deco.src}
         alt=""
         aria-hidden
-        width={160}
-        height={160}
-        className={`pointer-events-none absolute h-auto ${item.decoClasse}`}
+        width={item.deco.largura}
+        height={item.deco.altura}
+        className={`pointer-events-none absolute h-auto ${item.deco.classe}`}
       />
       <h3 className="relative text-[24px] font-bold text-white">{item.titulo}</h3>
       <p className="relative mt-3 flex-1 text-[15px] leading-relaxed text-white/95">

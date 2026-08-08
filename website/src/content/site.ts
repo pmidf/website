@@ -1,64 +1,20 @@
 /**
- * Fonte única de verdade para dados institucionais e navegação.
- * Alterar o menu = alterar este arquivo (Header, Footer e sitemap leem daqui).
+ * Dados institucionais do capítulo — alimentam metadata, robots e sitemap.
+ * A navegação (menu e redes sociais) fica em `src/content/navegacao.ts`.
  */
 
 export const site = {
-  name: "Nome da Empresa",
-  shortName: "Empresa",
+  name: "PMI Distrito Federal",
+  shortName: "PMI-DF",
   description:
-    "Descrição institucional da empresa em uma frase, usada como meta description padrão.",
-  url: "https://www.exemplo.com.br",
+    "Capítulo oficial do Project Management Institute no Distrito Federal. Conectamos profissionais, empresas e instituições às melhores práticas globais de gerenciamento de projetos.",
+  // TODO: confirmar o domínio de produção — usado em metadataBase, robots e sitemap.
+  url: "https://pmidf.org.br",
   locale: "pt-BR",
   contact: {
-    email: "contato@exemplo.com.br",
-    phone: "+55 11 0000-0000",
-    address: "Rua Exemplo, 123 — São Paulo, SP",
-  },
-  social: {
-    linkedin: "https://linkedin.com/company/exemplo",
-    instagram: "https://instagram.com/exemplo",
+    email: "contato@pmidf.org.br",
+    phone: "+55 61 0000-0000",
+    address:
+      "Impact Hub Brasília - SGAN 601 Edifício Íon. Lote H - Asa Norte, Brasília - DF, 70830-019",
   },
 } as const;
-
-export type NavItem = {
-  label: string;
-  href: string;
-};
-
-/** Menu principal do Header. */
-export const mainNav: NavItem[] = [
-  { label: "Sobre", href: "/sobre" },
-  { label: "Serviços", href: "/servicos" },
-  { label: "Soluções", href: "/solucoes" },
-  { label: "Cases", href: "/cases" },
-  { label: "Blog", href: "/blog" },
-  { label: "Carreiras", href: "/carreiras" },
-];
-
-/** Colunas do Footer. */
-export const footerNav: { title: string; items: NavItem[] }[] = [
-  {
-    title: "Empresa",
-    items: [
-      { label: "Sobre", href: "/sobre" },
-      { label: "Cases", href: "/cases" },
-      { label: "Carreiras", href: "/carreiras" },
-    ],
-  },
-  {
-    title: "O que fazemos",
-    items: [
-      { label: "Serviços", href: "/servicos" },
-      { label: "Soluções", href: "/solucoes" },
-      { label: "Blog", href: "/blog" },
-    ],
-  },
-  {
-    title: "Legal",
-    items: [
-      { label: "Política de Privacidade", href: "/politica-de-privacidade" },
-      { label: "Termos de Uso", href: "/termos-de-uso" },
-    ],
-  },
-];

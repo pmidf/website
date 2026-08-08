@@ -15,7 +15,7 @@ export function Hero() {
     <section className="relative isolate overflow-hidden bg-[#1F0942]">
       {/* Fundo */}
       <Image
-        src={assets.heroBg}
+        src={assets.home.heroFundo}
         alt=""
         fill
         loading="eager"
@@ -29,7 +29,7 @@ export function Hero() {
         <div className="mx-auto w-full max-w-[300px] lg:mx-0 lg:max-w-none lg:self-start">
           <div className="relative aspect-[471/450] w-full overflow-hidden rounded-b-[200px] lg:rounded-b-[400px]">
             <Image
-              src={assets.fotoBrasilia}
+              src={assets.home.heroBrasilia}
               alt="Vista aérea de Brasília ao entardecer"
               fill
               loading="eager"
@@ -42,15 +42,13 @@ export function Hero() {
 
         {/* Texto */}
         <div className="text-center lg:text-left">
-          <h1 className="sr-only">PMI Distrito Federal</h1>
-          <Image
-            src={assets.wordmark}
-            alt="PMI Distrito Federal"
-            width={448}
-            height={37}
-            loading="eager"
-            className="mx-auto h-[26px] w-auto md:h-[32px] lg:mx-0 lg:h-[37px]"
-          />
+          {/* O lockup entregue é azul-escuro e sumiria neste fundo. Até chegar
+              a versão branca, o título é texto de verdade — o que aliás é
+              melhor para busca e leitor de tela do que uma imagem. Trocar por
+              <Image> quando `marca/logo-pmidf-branco.webp` existir. */}
+          <h1 className="text-[32px] font-bold leading-tight text-white md:text-[40px] lg:text-[48px]">
+            PMI Distrito Federal
+          </h1>
           <p className="mx-auto mt-6 max-w-[556px] text-[16px] leading-relaxed text-white md:text-[18px] lg:mx-0 lg:text-[20px]">
             O Capítulo oficial do Project Management Institute no DF. Conectamos profissionais,
             empresas e instituições às melhores práticas globais de gerenciamento de projetos.

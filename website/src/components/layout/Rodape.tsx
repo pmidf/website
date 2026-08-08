@@ -11,10 +11,10 @@ export function Rodape() {
     <footer className="border-t-[11px] border-[#371075] bg-[#F5F5F5]">
       <Container className="grid gap-8 py-10 md:grid-cols-3 md:items-start lg:py-12">
         <Image
-          src={assets.logo}
+          src={assets.marca.logo}
           alt="PMI Distrito Federal"
-          width={220}
-          height={61}
+          width={193}
+          height={75}
           className="h-[52px] w-auto lg:h-[61px]"
         />
 
@@ -42,9 +42,11 @@ export function Rodape() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={rede.nome}
-                  className="block transition hover:opacity-70"
+                  className="block text-[#200F3B] transition hover:text-[#FF610F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#371075]"
                 >
-                  <Image src={rede.src} alt="" width={24} height={24} className="h-6 w-6" />
+                  {/* O nome acessível vem do aria-label do link; o glifo é
+                      decorativo e herda a cor via currentColor. */}
+                  <rede.Icone aria-hidden className="h-6 w-6" />
                 </a>
               </li>
             ))}

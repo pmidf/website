@@ -5,28 +5,50 @@
  * Renomear um arquivo exportado do Figma vira uma edição em um só lugar, e o
  * TypeScript aponta imediatamente quem usava a chave removida.
  *
- * Os arquivos devem ser exportados do Figma para `public/assets/`.
+ * Organização de `public/assets/` (ver README de lá):
+ *   marca/        identidade — vale para o site inteiro
+ *   formas/       geometria decorativa do design system, reaproveitável
+ *   mantenedores/ logos de parceiros
+ *   paginas/<rota>/ fotos e artes exclusivas de uma página só
+ *
+ * Todos os bitmaps são .webp: o export estático não tem otimizador em runtime,
+ * então a compressão é feita uma vez, na entrada do repositório.
  */
 export const assets = {
-  logo: "/assets/logo-pmidf.svg",
-  wordmark: "/assets/pmi-distrito-federal.svg",
-  heroBg: "/assets/hero-bg.png",
-  fotoBrasilia: "/assets/foto-brasilia.png",
-  bannerDeco: "/assets/deco-banner.svg",
-  incompanyGradient: "/assets/incompany-gradient.svg",
-  decoFiliacao: "/assets/deco-filiacao.png",
-  decoStudentClub: "/assets/deco-student-club.png",
-  decoVoluntariado: "/assets/deco-voluntariado.png",
-  mantenedores: {
-    brbLab: "/assets/mantenedores/brb-lab.png",
-    brisk: "/assets/mantenedores/brisk.png",
-    smartkanvas: "/assets/mantenedores/smartkanvas.png",
+  marca: {
+    /**
+     * Lockup padrão (193 × 75), texto azul-escuro — só funciona sobre fundo
+     * claro. Falta a versão branca para uso sobre o roxo do Hero.
+     */
+    logo: "/assets/marca/logo-pmidf.webp",
   },
-  social: {
-    instagram: "/assets/icons/instagram.svg",
-    linkedin: "/assets/icons/linkedin.svg",
-    facebook: "/assets/icons/facebook.svg",
-    youtube: "/assets/icons/youtube.svg",
-    whatsapp: "/assets/icons/whatsapp.svg",
+
+  /**
+   * Formas geométricas da identidade. Ficam fora de `paginas/` de propósito:
+   * as mesmas peças reaparecem em Sobre, Eventos e InCompany.
+   */
+  formas: {
+    losangosLaranja: "/assets/formas/losangos-laranja.webp",
+    pentagonoAzul: "/assets/formas/pentagono-azul.webp",
+    trianguloRoxo: "/assets/formas/triangulo-roxo.webp",
+    circuloLaranja: "/assets/formas/circulo-laranja.webp",
+    capsulaGradiente: "/assets/formas/capsula-gradiente.webp",
+  },
+
+  mantenedores: {
+    brbLab: "/assets/mantenedores/brb-lab.webp",
+    brisk: "/assets/mantenedores/brisk.webp",
+    smartkanvas: "/assets/mantenedores/smartkanvas.webp",
+  },
+
+  /**
+   * Ícones de redes sociais não moram aqui: vêm de `react-icons` (Font Awesome
+   * 6 Brands), declarados em `src/content/navegacao.ts`.
+   */
+
+  /** Artes exclusivas da home. Outras páginas ganham a própria chave aqui. */
+  home: {
+    heroFundo: "/assets/paginas/home/hero-fundo.webp",
+    heroBrasilia: "/assets/paginas/home/hero-brasilia.webp",
   },
 } as const;
