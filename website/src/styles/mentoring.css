@@ -1,0 +1,721 @@
+/* ---------------------------------------------------------------------------
+ * Página Mentoring — tradução direta do protótipo Figma.
+ *
+ * Grid do protótipo: página de 1280, conteúdo de 1140, margem lateral de 70.
+ * Todas as medidas abaixo são as do arquivo original — não arredonde ao editar.
+ *
+ * Prefixo `mtr-` em todas as classes: este arquivo é global (importado pela
+ * página) e o prefixo evita colisão com o resto do site, que é Tailwind.
+ * ------------------------------------------------------------------------- */
+
+/* ===========================================================================
+ * TOKENS
+ * ======================================================================== */
+
+:root {
+  /* --- Paleta ----------------------------------------------------------- */
+  --roxo-escuro: #1f0942;
+  --roxo-titulo: #200f3b;
+  --roxo-primario: #4f17a8;
+  --laranja: #ff610f;
+  --ciano: #05bfe0;
+  --creme: #f8f5f0;
+  --texto-corpo: #5c546e;
+  --branco-off: #f8f8f8;
+  --branco: #ffffff;
+
+  /* --- Derivados: transparências sobre fundo claro ----------------------- */
+  --borda-clara: rgba(32, 15, 59, 0.1);
+  --texto-escuro-85: rgba(32, 15, 59, 0.85);
+
+  /* --- Derivados: transparências sobre fundo escuro ---------------------- */
+  --branco-90: rgba(255, 255, 255, 0.9);
+  --branco-88: rgba(255, 255, 255, 0.88);
+  --branco-85: rgba(255, 255, 255, 0.85);
+  --branco-78: rgba(255, 255, 255, 0.78);
+  --branco-72: rgba(255, 255, 255, 0.72);
+  --branco-40: rgba(255, 255, 255, 0.4);
+  --branco-25: rgba(255, 255, 255, 0.25);
+  --branco-20: rgba(255, 255, 255, 0.2);
+  --branco-16: rgba(255, 255, 255, 0.16);
+  --branco-14: rgba(255, 255, 255, 0.14);
+  --branco-06: rgba(255, 255, 255, 0.06);
+
+  /* --- Sombras ----------------------------------------------------------- */
+  --sombra-botao: 0 4px 2px rgba(0, 0, 0, 0.25);
+  --sombra-card: 0 2px 10px rgba(32, 15, 59, 0.08);
+  --sombra-caminho: 0 4px 14px rgba(32, 15, 59, 0.12);
+  --sombra-banner: 0 6px 20px rgba(32, 15, 59, 0.22);
+
+  /* --- Gradientes -------------------------------------------------------- */
+  --gradiente-texto: linear-gradient(
+    90deg,
+    #200f3b 0%,
+    #ff610f 50%,
+    #1ac7ff 100%
+  );
+  --gradiente-mentorado: linear-gradient(180deg, #1f0942 0%, #4f17a8 100%);
+  --gradiente-banner: linear-gradient(
+    90deg,
+    #023041 0%,
+    #4f17a8 50%,
+    #ff610f 100%
+  );
+}
+
+/* ===========================================================================
+ * RAIZ DA PÁGINA
+ * As famílias ficam aqui (e não em :root) porque `--font-archivo` e
+ * `--font-inter` são injetadas por `next/font` na className deste elemento —
+ * em :root elas ainda não existiriam e a substituição resultaria em inválido.
+ * ======================================================================== */
+
+.mtr-pagina {
+  --fonte-titulo: var(--font-archivo), "Archivo", system-ui, sans-serif;
+  --fonte-corpo: var(--font-inter), "Inter", system-ui, sans-serif;
+  /* Aeonik é licenciada e self-hosted; sem o arquivo, cai em Inter. */
+  --fonte-botao: "Aeonik", var(--font-inter), "Inter", system-ui, sans-serif;
+  /* Agrandir idem; sem o arquivo, cai em Archivo ExtraBold. */
+  --fonte-hero: "Agrandir", var(--font-archivo), "Archivo", system-ui,
+    sans-serif;
+
+  font-family: var(--fonte-corpo);
+  background: var(--creme);
+}
+
+/* Faixa de conteúdo: 1140 dentro de 1280 (70 de margem de cada lado). */
+.mtr-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 70px;
+}
+
+/* ===========================================================================
+ * ELEMENTOS COMPARTILHADOS
+ * ======================================================================== */
+
+/* --- Rótulo (eyebrow) ----------------------------------------------------- */
+.mtr-rotulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--laranja);
+}
+
+/* Sobre fundo escuro o laranja perde contraste — o protótipo troca por ciano. */
+.mtr-rotulo--ciano {
+  color: var(--ciano);
+}
+
+.mtr-rotulo--claro {
+  color: var(--branco-85);
+}
+
+/* --- Título de seção ------------------------------------------------------ */
+.mtr-titulo-secao {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.18;
+  color: var(--roxo-titulo);
+}
+
+.mtr-titulo-secao--claro {
+  color: var(--branco);
+}
+
+/* --- Cabeçalho de seção --------------------------------------------------- */
+.mtr-cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mtr-cabecalho--centro {
+  align-items: center;
+  text-align: center;
+}
+
+/* Empilha cabeçalho + grade de cards. O espaçamento é `gap` (nunca margin nos
+ * cards) — o Figma não cota essa distância; 36 é o valor lido no protótipo. */
+.mtr-secao__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* --- Botões --------------------------------------------------------------- */
+.mtr-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 30px;
+  font-family: var(--fonte-botao);
+  font-size: 16px;
+  line-height: 1.25; /* 20px de conteúdo: 8 + 20 + 8 = 36 de altura */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Botão claro do hero — 186 × 36 no Figma. */
+.mtr-botao--claro {
+  padding: 8px 32px;
+  background: var(--branco-off);
+  box-shadow: var(--sombra-botao);
+}
+
+/* O gradiente é recortado nas letras; o fundo do botão continua sólido. */
+.mtr-botao__gradiente {
+  background: var(--gradiente-texto);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.mtr-botao--escuro {
+  padding: 9px 28px;
+  background: var(--roxo-escuro);
+  color: var(--branco);
+}
+
+/* --- Lista com marcadores circulares -------------------------------------- */
+.mtr-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.mtr-lista li {
+  position: relative;
+  padding-left: 20px;
+}
+
+.mtr-lista li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* ===========================================================================
+ * SEÇÃO 1 — HERO
+ * ======================================================================== */
+
+.mtr-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  min-height: 313px;
+  /* O padding inferior maior reserva espaço para a curva da seção seguinte. */
+  padding: 49px 70px 100px;
+  background: var(--roxo-escuro);
+  text-align: center;
+}
+
+.mtr-hero__titulo {
+  font-family: var(--fonte-hero);
+  /* Agrandir tem só o corte Bold; o 800 vale para o fallback Archivo. */
+  font-weight: 800;
+  font-size: 40px;
+  line-height: 1.15;
+  color: var(--branco-off);
+}
+
+.mtr-hero__subtitulo {
+  max-width: 933px;
+  font-size: 24px;
+  /* O Figma não cota este line-height; 1.3 é o que aproxima os 313 de altura. */
+  line-height: 1.3;
+  color: var(--branco-off);
+}
+
+/* ===========================================================================
+ * SEÇÃO 2 — O QUE É
+ * ======================================================================== */
+
+.mtr-oquee {
+  /* A curva sobe sobre o hero: o z-index é o que a mantém visível. */
+  position: relative;
+  z-index: 2;
+  margin-top: -73px;
+  min-height: 450px;
+  padding-block: 80px 90px;
+  background: var(--creme);
+  border-radius: 40px 40px 0 0;
+}
+
+.mtr-oquee__conteudo {
+  display: flex;
+  align-items: flex-start;
+  gap: 60px;
+}
+
+/* 680 + 60 + 400 = 1140 */
+.mtr-oquee__texto {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 680px;
+  min-width: 0;
+}
+
+.mtr-oquee__paragrafo {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--texto-corpo);
+}
+
+.mtr-oquee__numeros {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 20px;
+  width: 400px;
+  min-width: 0;
+}
+
+/* Card 400 × 130 */
+.mtr-numero {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 130px;
+  padding: 26px 28px;
+  background: var(--branco);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+}
+
+/* A cor vem do conteúdo (var() inline), não do markup. */
+.mtr-numero__valor {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 44px;
+  line-height: 1.1;
+}
+
+.mtr-numero__legenda {
+  font-size: 16px;
+  color: var(--texto-corpo);
+}
+
+/* ===========================================================================
+ * SEÇÃO 3 — DOIS CAMINHOS
+ * ======================================================================== */
+
+.mtr-caminhos {
+  padding-block: 80px;
+  background: var(--creme);
+}
+
+.mtr-caminhos__cards {
+  display: flex;
+  /* stretch é obrigatório: iguala a altura dos dois cards. */
+  align-items: stretch;
+  gap: 28px;
+}
+
+.mtr-caminho {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+  padding: 36px;
+  border-radius: 20px;
+  box-shadow: var(--sombra-caminho);
+}
+
+.mtr-caminho--mentorado {
+  background: var(--gradiente-mentorado);
+}
+
+.mtr-caminho--mentor {
+  background: var(--branco);
+  border: 1px solid var(--borda-clara);
+}
+
+.mtr-caminho__titulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 26px;
+  letter-spacing: normal;
+}
+
+.mtr-caminho--mentorado .mtr-caminho__titulo {
+  color: var(--branco);
+}
+
+.mtr-caminho--mentor .mtr-caminho__titulo {
+  color: var(--roxo-titulo);
+}
+
+.mtr-caminho__citacao {
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+.mtr-caminho--mentorado .mtr-caminho__citacao {
+  color: var(--branco-90);
+}
+
+.mtr-caminho--mentor .mtr-caminho__citacao {
+  color: var(--texto-escuro-85);
+}
+
+.mtr-caminho__divisor {
+  height: 1px;
+}
+
+.mtr-caminho--mentorado .mtr-caminho__divisor {
+  background: var(--branco-20);
+}
+
+.mtr-caminho--mentor .mtr-caminho__divisor {
+  background: var(--borda-clara);
+}
+
+.mtr-caminho--mentorado .mtr-lista {
+  color: var(--branco-78);
+}
+
+.mtr-caminho--mentor .mtr-lista {
+  color: var(--texto-corpo);
+}
+
+/* `auto` no topo empurra o botão para a base: com os cards esticados, os dois
+ * CTAs terminam alinhados mesmo com listas de alturas diferentes. */
+.mtr-caminho .mtr-botao {
+  align-self: flex-start;
+  margin-top: auto;
+}
+
+/* ===========================================================================
+ * SEÇÃO 4 — ESTRUTURA DO CICLO
+ * ======================================================================== */
+
+.mtr-ciclo {
+  padding-block: 80px;
+  background: var(--creme);
+}
+
+.mtr-ciclo__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 24px;
+}
+
+/* 3 por linha: 3 × (33,333% − 16) + 2 × 24 = 100% */
+.mtr-etapa {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: calc(33.333% - 16px);
+  padding: 24px 26px;
+  background: var(--branco);
+  border-radius: 16px;
+  box-shadow: var(--sombra-card);
+}
+
+.mtr-etapa__numero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--roxo-primario);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--branco);
+}
+
+.mtr-etapa__titulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.3;
+  letter-spacing: normal;
+  color: var(--roxo-titulo);
+}
+
+.mtr-etapa__descricao {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--texto-corpo);
+}
+
+/* ===========================================================================
+ * SEÇÃO 5 — O QUE A MENTORIA ENTREGA
+ * ======================================================================== */
+
+.mtr-entregas {
+  padding-block: 84px 96px;
+  background: var(--roxo-escuro);
+}
+
+/* São 5 cards: `center` distribui 3 na primeira linha e 2 centralizados na
+ * segunda, sem precisar de containers separados. */
+.mtr-entregas__cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 27px;
+}
+
+/* 3 × (33,333% − 18) + 2 × 27 = 100% */
+.mtr-entrega {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: calc(33.333% - 18px);
+  padding: 26px;
+  background: var(--branco-06);
+  border: 1px solid var(--branco-14);
+  border-radius: 16px;
+}
+
+/* A cor de fundo varia por card e vem do conteúdo (var() inline). */
+.mtr-entrega__icone {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.mtr-entrega__titulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: normal;
+  color: var(--branco);
+}
+
+.mtr-entrega__texto {
+  font-size: 15px;
+  color: var(--branco-72);
+}
+
+/* ===========================================================================
+ * SEÇÃO 6 — BANNER "PRÓXIMO CICLO"
+ * ======================================================================== */
+
+.mtr-inscricoes {
+  padding-block: 72px 96px;
+  background: var(--creme);
+}
+
+.mtr-banner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 56px 72px;
+  background: var(--gradiente-banner);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--sombra-banner);
+  text-align: center;
+}
+
+/* Círculo decorativo do canto direito. */
+.mtr-banner::after {
+  content: "";
+  position: absolute;
+  width: 560px;
+  height: 560px;
+  right: -120px;
+  top: -180px;
+  border: 1px solid var(--branco-25);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* O conteúdo precisa ficar acima do círculo. */
+.mtr-banner > * {
+  position: relative;
+  z-index: 1;
+}
+
+.mtr-banner__texto {
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.58;
+  color: var(--branco-88);
+}
+
+.mtr-banner__chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  background: var(--branco-16);
+  border: 1px solid var(--branco-40);
+  border-radius: 500px;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--branco);
+}
+
+/* ===========================================================================
+ * TABLET — até 1024px
+ * ======================================================================== */
+
+@media (max-width: 1024px) {
+  .mtr-container {
+    padding-inline: 24px;
+  }
+
+  /* --- Hero --- */
+  .mtr-hero {
+    padding: 60px 24px 90px;
+  }
+
+  .mtr-hero__titulo {
+    font-size: 32px;
+  }
+
+  .mtr-hero__subtitulo {
+    font-size: 20px;
+  }
+
+  /* --- O que é --- */
+  .mtr-oquee__conteudo {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .mtr-oquee__texto {
+    width: 100%;
+  }
+
+  /* Cards lado a lado enquanto ainda há largura para isso. */
+  .mtr-oquee__numeros {
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .mtr-numero {
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* --- Dois caminhos --- */
+  .mtr-caminhos__cards {
+    gap: 20px;
+  }
+
+  .mtr-caminho {
+    padding: 28px;
+  }
+
+  /* --- Estrutura do ciclo --- */
+  .mtr-etapa {
+    width: calc(50% - 12px);
+  }
+
+  /* --- Entregas --- */
+  .mtr-entrega {
+    width: calc(50% - 14px);
+  }
+
+  /* --- Banner --- */
+  .mtr-banner {
+    padding: 48px 60px;
+  }
+}
+
+/* ===========================================================================
+ * MOBILE — até 767px
+ * ======================================================================== */
+
+@media (max-width: 767px) {
+  .mtr-container {
+    padding-inline: 20px;
+  }
+
+  /* --- Hero --- */
+  .mtr-hero {
+    padding: 48px 20px 72px;
+  }
+
+  .mtr-hero__titulo {
+    font-size: 26px;
+  }
+
+  .mtr-hero__subtitulo {
+    max-width: 100%;
+    font-size: 17px;
+  }
+
+  /* --- O que é --- */
+  .mtr-oquee {
+    padding-block: 56px;
+  }
+
+  .mtr-oquee__numeros {
+    flex-direction: column;
+  }
+
+  .mtr-numero__valor {
+    font-size: 36px;
+  }
+
+  /* --- Dois caminhos --- */
+  .mtr-caminhos__cards {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .mtr-caminho {
+    padding: 24px;
+  }
+
+  .mtr-caminho__titulo {
+    font-size: 22px;
+  }
+
+  .mtr-caminho .mtr-botao {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  /* --- Estrutura do ciclo --- */
+  .mtr-etapa {
+    width: 100%;
+  }
+
+  /* --- Entregas --- */
+  .mtr-entrega {
+    width: 100%;
+  }
+
+  /* --- Banner --- */
+  .mtr-banner {
+    padding: 40px 24px;
+  }
+
+  .mtr-banner::after {
+    display: none;
+  }
+}

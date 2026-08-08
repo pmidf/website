@@ -38,6 +38,17 @@
   font-display: swap;
 }
 
+/* --- Agrandir — título de hero (página Mentoring) ------------------------
+ * Sem o arquivo, o stack cai em Archivo ExtraBold (ver `mentoring.css`).
+ * ---------------------------------------------------------------------- */
+@font-face {
+  font-family: "Agrandir";
+  src: url("/fonts/Agrandir-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* --- Aptos — texto corrido / UI ------------------------------------------ */
 @font-face {
   font-family: "Aptos";

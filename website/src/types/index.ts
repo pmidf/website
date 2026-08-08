@@ -75,3 +75,35 @@ export type Mantenedor = {
   w: number;
   h: number;
 };
+
+/* --- Página Mentoring ----------------------------------------------------- */
+
+/** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */
+export type EstatisticaMentoring = {
+  numero: string;
+  legenda: string;
+  cor: string;
+};
+
+/** Um dos dois cards de "Você pode entrar como mentor ou mentorado". */
+export type CaminhoMentoring = {
+  /** Define a variante visual do card (gradiente roxo vs. branco). */
+  perfil: "mentorado" | "mentor";
+  titulo: string;
+  citacao: string;
+  itens: string[];
+  ctaLabel: string;
+};
+
+/** Etapa numerada da seção "Estrutura do ciclo". */
+export type EtapaCiclo = {
+  titulo: string;
+  descricao: string;
+};
+
+/** Card de "O que a mentoria entrega". `cor` é um `var()` de `mentoring.css`. */
+export type EntregaMentoring = {
+  titulo: string;
+  descricao: string;
+  cor: string;
+};
