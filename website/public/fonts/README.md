@@ -6,6 +6,7 @@ Nenhuma delas é distribuível livremente:
 | Família      | Fundição / origem          | Situação                                                        |
 | ------------ | -------------------------- | --------------------------------------------------------------- |
 | Aeonik       | CoType Foundry             | Comercial — precisa de licença webfont                           |
+| Agrandir     | Pangram Pangram            | Comercial — precisa de licença webfont                           |
 | Teodor       | Newglyph                   | Comercial — precisa de licença webfont                           |
 | Aptos (+ Narrow, Serif, Mono) | Microsoft | Distribuída com o Office; a licença **não** cobre redistribuição web por padrão |
 
@@ -19,6 +20,8 @@ Aeonik-Regular.woff2
 Aeonik-Medium.woff2
 Aeonik-Bold.woff2
 Aeonik-RegularItalic.woff2
+
+Agrandir-Bold.woff2
 
 Aptos-Regular.woff2
 Aptos-SemiBold.woff2
