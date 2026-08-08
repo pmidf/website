@@ -1,0 +1,126 @@
+/* ---------------------------------------------------------------------------
+ * Fontes self-hosted.
+ *
+ * Coloque os arquivos .woff2 em `public/fonts/` seguindo exatamente os nomes
+ * abaixo. Enquanto os arquivos não existirem, o navegador simplesmente ignora
+ * o @font-face e cai no fallback declarado em `--font-*` (o build NÃO quebra).
+ *
+ * Ver `public/fonts/README.md` para a lista completa de arquivos esperados.
+ * ------------------------------------------------------------------------- */
+
+/* --- Aeonik — display / marca -------------------------------------------- */
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/Aeonik-RegularItalic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Aptos — texto corrido / UI ------------------------------------------ */
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* --- Aptos Narrow -------------------------------------------------------- */
+@font-face {
+  font-family: "Aptos Narrow";
+  src: url("/fonts/AptosNarrow-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos Narrow";
+  src: url("/fonts/AptosNarrow-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Aptos Serif --------------------------------------------------------- */
+@font-face {
+  font-family: "Aptos Serif";
+  src: url("/fonts/AptosSerif-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos Serif";
+  src: url("/fonts/AptosSerif-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Aptos Mono ---------------------------------------------------------- */
+@font-face {
+  font-family: "Aptos Mono";
+  src: url("/fonts/AptosMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Teodor — editorial / destaque --------------------------------------- */
+@font-face {
+  font-family: "Teodor";
+  src: url("/fonts/Teodor-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Teodor";
+  src: url("/fonts/Teodor-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}

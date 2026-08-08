@@ -1,0 +1,112 @@
+@import "tailwindcss";
+@import "../styles/fonts.css";
+
+/* ===========================================================================
+ * DESIGN TOKENS
+ * Extraídos da paleta oficial fornecida. Não invente valores aqui — qualquer
+ * cor nova precisa vir do design system.
+ * ======================================================================== */
+
+@theme {
+  /* --- Reset das escalas nativas do Tailwind ----------------------------
+   * `violet` existe por padrão no Tailwind v4. Zeramos a escala inteira para
+   * que só os tons do nosso design system fiquem disponíveis — assim um
+   * `bg-violet-400` inexistente falha de forma visível em vez de aplicar
+   * silenciosamente um roxo genérico do framework.
+   * ------------------------------------------------------------------- */
+  --color-violet-*: initial;
+
+  /* --- Violet (primária) ------------------------------------------------ */
+  --color-violet-50: #efedf3; /* rgba(239, 237, 243, 1) */
+  --color-violet-300: #b465ff; /* rgba(180, 101, 255, 1) */
+  --color-violet-500: #4f17a8; /* rgba(79, 23, 168, 1)   */
+  --color-violet-600: #371075; /* rgba(55, 16, 117, 1)   */
+  --color-violet-800: #200f3b; /* rgba(32, 15, 59, 1) — Off-Black */
+  --color-violet-950: #100522; /* rgba(16, 5, 34, 1)     */
+
+  /* --- Aqua (secundária) ------------------------------------------------ */
+  --color-aqua-50: #eefafa; /* rgba(238, 250, 250, 1) */
+  --color-aqua-300: #05bfe0; /* rgba(5, 191, 224, 1)   */
+  --color-aqua-500: #00339e; /* rgba(0, 51, 158, 1)    */
+  --color-aqua-600: #005c77; /* rgba(0, 92, 119, 1)    */
+  --color-aqua-800: #023041; /* rgba(2, 48, 65, 1)     */
+  --color-aqua-950: #030d19; /* rgba(3, 13, 25, 1)     */
+
+  /* --- Tokens semânticos ------------------------------------------------
+   * Componentes devem consumir ESTES, não os tons crus. Trocar a marca vira
+   * uma edição de seis linhas em vez de um find-and-replace no projeto todo.
+   * ------------------------------------------------------------------- */
+  --color-background: #ffffff;
+  --color-surface: var(--color-violet-50);
+  --color-surface-alt: var(--color-aqua-50);
+  --color-foreground: var(--color-violet-800);
+  --color-muted: color-mix(in oklab, var(--color-violet-800) 65%, white);
+  --color-border: color-mix(in oklab, var(--color-violet-800) 12%, white);
+
+  --color-primary: var(--color-violet-500);
+  --color-primary-hover: var(--color-violet-600);
+  --color-primary-foreground: #ffffff;
+  --color-accent: var(--color-violet-300);
+
+  --color-secondary: var(--color-aqua-600);
+  --color-secondary-hover: var(--color-aqua-800);
+  --color-secondary-foreground: #ffffff;
+  --color-highlight: var(--color-aqua-300);
+
+  --color-inverse: var(--color-violet-950);
+  --color-inverse-foreground: var(--color-violet-50);
+
+  /* --- Tipografia -------------------------------------------------------
+   * Fallbacks reais em cada stack: enquanto os .woff2 não estiverem em
+   * `public/fonts/`, o site renderiza com métrica próxima em vez de quebrar.
+   * ------------------------------------------------------------------- */
+  --font-display: "Aeonik", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Aptos", "Segoe UI", system-ui, sans-serif;
+  --font-narrow: "Aptos Narrow", "Aptos", "Segoe UI Semibold", sans-serif;
+  --font-serif: "Teodor", "Aptos Serif", Georgia, serif;
+  --font-mono: "Aptos Mono", ui-monospace, "Cascadia Mono", monospace;
+
+  /* --- Layout ----------------------------------------------------------- */
+  --spacing-section: 6rem;
+  --container-content: 72rem;
+}
+
+/* ===========================================================================
+ * BASE
+ * ======================================================================== */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-violet-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}
