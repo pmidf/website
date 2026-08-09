@@ -52,8 +52,6 @@ export function Hero() {
           <p className="mx-auto mt-6 max-w-[556px] text-[16px] leading-relaxed text-white md:text-[18px] lg:mx-0 lg:text-[20px]">
             O Capítulo oficial do Project Management Institute no DF. Conectamos profissionais,
             empresas e instituições às melhores práticas globais de gerenciamento de projetos.
-            <br className="hidden lg:block" /> Há mais de duas décadas transformando carreiras em
-            Brasília.
           </p>
           <Botao href="/sobre" className="mt-7">
             Saiba mais

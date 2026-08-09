@@ -33,6 +33,10 @@ export const assets = {
     trianguloRoxo: "/assets/formas/triangulo-roxo.webp",
     circuloLaranja: "/assets/formas/circulo-laranja.webp",
     capsulaGradiente: "/assets/formas/capsula-gradiente.webp",
+    /* Versões grandes, usadas na composição de "Por que se filiar". */
+    circuloCiano: "/assets/formas/circulo-ciano.webp",
+    trianguloLaranja: "/assets/formas/triangulo-laranja.webp",
+    pentagonoRoxo: "/assets/formas/pentagono-roxo.webp",
   },
 
   mantenedores: {
@@ -52,6 +56,7 @@ export const assets = {
     heroBrasilia: "/assets/paginas/home/hero-brasilia.webp",
   },
 
+<<<<<<< HEAD
   /**
    * Artes exclusivas da página Quem Somos. Exportadas do Figma via MCP
    * (`get_design_context`/`download_assets`) e convertidas para .webp no
@@ -66,5 +71,19 @@ export const assets = {
     depoimentoAna: "/assets/paginas/quem-somos/depoimento-ana.webp",
     depoimentoLucas: "/assets/paginas/quem-somos/depoimento-lucas.webp",
     depoimentoCamila: "/assets/paginas/quem-somos/depoimento-camila.webp",
+=======
+  eventos: {
+    /**
+     * Fundo do banner "Evento em destaque" (1115 × 396). O gradiente e os
+     * círculos decorativos já vêm embutidos na arte — não há gradiente CSS
+     * nem SVGs de ornamento nessa seção.
+     */
+    banner: "/assets/paginas/eventos/banner.webp",
+  },
+
+  filiacao: {
+    /** Foto quadrada (572 × 572) recortada em círculo, repetida em 3 seções. */
+    fotoEvento: "/assets/paginas/filiacao/foto-evento.webp",
+>>>>>>> origin/main
   },
 } as const;

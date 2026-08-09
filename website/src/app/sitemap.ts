@@ -6,11 +6,11 @@ import { site } from "@/content/site";
 export const dynamic = "force-static";
 
 /**
- * Hoje o site tem uma rota só. Conforme as páginas do menu forem entrando
- * (`/sobre`, `/eventos`, `/certificacao`…), acrescente aqui — ou derive de
- * `NAV_LINKS` em `src/content/navegacao.ts`, quando todas existirem.
+ * Conforme as páginas do menu forem entrando (`/sobre`, `/certificacao`…),
+ * acrescente aqui — ou derive de `NAV_LINKS` em `src/content/navegacao.ts`,
+ * quando todas existirem.
  */
-const staticRoutes = ["/"];
+const staticRoutes = ["/", "/eventos", "/filiacao", "/mentoring"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return staticRoutes.map((route) => ({ url: `${site.url}${route}` }));
