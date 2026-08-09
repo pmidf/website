@@ -76,6 +76,43 @@ export type Mantenedor = {
   h: number;
 };
 
+/* --- Página Eventos ------------------------------------------------------- */
+
+/**
+ * Evento da agenda. Mais rico que o `Evento` da home, que é um resumo de três
+ * cards: aqui entram `id`, `categoria` e `local`, usados pelos filtros.
+ *
+ * O visual sai do `formato` (ver `ESTILO_FORMATO` em `content/eventos.ts`);
+ * `gradiente` existe só para os casos em que o protótipo foge dessa regra.
+ */
+export type EventoAgenda = {
+  id: string;
+  data: string;
+  formato: FormatoEvento;
+  categoria: string;
+  titulo: string;
+  local: string;
+  descricao: string;
+  href: string;
+  /** Sobrescreve o gradiente derivado do formato. */
+  gradiente?: string;
+};
+
+/** Passo da seção "Como se inscrever". O número é gerado pela ordem da lista. */
+export type PassoInscricao = {
+  titulo: string;
+  descricao: string;
+};
+
+/** Card da seção "Faça parte da programação". */
+export type ConviteParticipacao = {
+  titulo: string;
+  descricao: string;
+  ctaLabel: string;
+  ctaHref: string;
+  ctaVariante: "escuro" | "contorno-escuro";
+};
+
 /* --- Página Mentoring ----------------------------------------------------- */
 
 /** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */
