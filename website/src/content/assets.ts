@@ -69,4 +69,9 @@ export const assets = {
     /** Foto quadrada (572 × 572) recortada em círculo, repetida em 3 seções. */
     fotoEvento: "/assets/paginas/filiacao/foto-evento.webp",
   },
+
+  voluntariado: {
+    /** Estrela decorativa de "O que é ser voluntário" (517 × 501). */
+    estrela: "/assets/paginas/voluntariado/estrela.webp",
+  },
 } as const;
