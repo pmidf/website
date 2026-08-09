@@ -26,9 +26,11 @@ public/assets/
 │   ├── brisk.webp              236 × 80
 │   └── smartkanvas.webp        314 × 89
 └── paginas/            artes exclusivas de uma rota
-    └── home/
-        ├── hero-fundo.webp    1280 × 567 · fundo full-bleed do Hero
-        └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
+    ├── home/
+    │   ├── hero-fundo.webp    1280 × 567 · fundo full-bleed do Hero
+    │   └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
+    └── eventos/
+        └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
 ```
 
 Entre parênteses, o nome original do export do Figma. Atenção: `Polygon 1` é o **triângulo**

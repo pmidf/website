@@ -47,19 +47,32 @@ src/
     sitemap.ts       lista de rotas estáticas
   components/
     layout/          Header, Rodape
-    ui/              Container, Botao, TituloSecao
-    home/            seções da home — uma por arquivo, orquestradas por (site)/page.tsx
+    ui/              Container, Botao, TituloSecao, Eyebrow
+    home/            seções da home     — orquestradas por (site)/page.tsx
+    eventos/         seções de Eventos  — orquestradas por (site)/eventos/page.tsx
   content/           navegação, assets, conteúdo das seções — fonte única de verdade
-  types/             contratos do conteúdo (Iniciativa, Evento, Mantenedor…)
+  types/             contratos do conteúdo (Iniciativa, EventoAgenda, Mantenedor…)
   lib/               helpers
-  styles/            @font-face
+  styles/            @font-face, mentoring.css
 ```
 
-**O site tem uma página só: a home.** As demais rotas do menu (`/sobre`, `/eventos`,
-`/certificacao`, `/incompany`, `/blog`, `/contato`) ainda não existem — os links já apontam
-para elas e caem no 404 até serem criadas. Cada página nova entra como
-`src/app/(site)/<rota>/page.tsx`, ganha uma linha em `staticRoutes` no `sitemap.ts` e, se tiver
-arte própria, uma pasta em `public/assets/paginas/<rota>/`.
+**Rotas prontas:** `/`, `/eventos` e `/mentoring`. As demais do menu (`/sobre`, `/certificacao`,
+`/incompany`, `/blog`, `/contato`) ainda não existem — os links já apontam para elas e caem no 404
+até serem criadas. Cada página nova entra como `src/app/(site)/<rota>/page.tsx`, ganha uma linha em
+`staticRoutes` no `sitemap.ts` e, se tiver arte própria, uma pasta em
+`public/assets/paginas/<rota>/`.
+
+### Duas convenções de estilo convivem
+
+Home e Eventos são Tailwind com componentes em `src/components/<pagina>/`; Mentoring é CSS
+global com prefixo `mtr-` em `src/styles/mentoring.css`, num `page.tsx` único. Vale escolher uma
+antes da próxima página — hoje as duas funcionam, mas dobram o custo de manter o design system.
+
+Os primitivos de `components/ui/` são o ponto de reuso entre páginas. Quando duas páginas pedem
+tratamentos diferentes do mesmo elemento (a margem lateral do `Container`, o estilo do `Botao`),
+a diferença entra como **variante nomeada** — nunca como utilitário Tailwind extra por
+`className`, porque duas classes da mesma propriedade são resolvidas pela ordem da folha de
+estilo gerada, não pela ordem em que foram escritas.
 
 Adicionar um item ao menu = editar [`src/content/navegacao.ts`](src/content/navegacao.ts).
 Header e Rodapé leem daí; o sitemap e a metadata leem de

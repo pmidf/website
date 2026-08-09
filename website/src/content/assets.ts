@@ -51,4 +51,13 @@ export const assets = {
     heroFundo: "/assets/paginas/home/hero-fundo.webp",
     heroBrasilia: "/assets/paginas/home/hero-brasilia.webp",
   },
+
+  eventos: {
+    /**
+     * Fundo do banner "Evento em destaque" (1115 × 396). O gradiente e os
+     * círculos decorativos já vêm embutidos na arte — não há gradiente CSS
+     * nem SVGs de ornamento nessa seção.
+     */
+    banner: "/assets/paginas/eventos/banner.webp",
+  },
 } as const;
