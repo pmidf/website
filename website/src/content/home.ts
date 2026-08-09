@@ -9,6 +9,14 @@ import type { Evento, Iniciativa, Mantenedor } from "@/types";
  * em nenhum arquivo .tsx.
  */
 
+/**
+ * Cada iniciativa recebe a forma da própria família cromática: triângulo roxo
+ * para Filiação, pentágono azul para o Student Club, círculo laranja para o
+ * Voluntariado — a mesma lógica de cor dos gradientes.
+ *
+ * As formas são centralizadas na área reservada pelo `pt-[190px]` do card e
+ * encolhem no mobile, onde o card é mais estreito.
+ */
 export const INICIATIVAS: Iniciativa[] = [
   {
     titulo: "Filiação",
@@ -16,8 +24,12 @@ export const INICIATIVAS: Iniciativa[] = [
       "Acesso global, local e benefícios. Conecte-se a mais de 500 mil profissionais. Receba publicações, ferramentas e descontos exclusivos.",
     href: "/filiacao",
     gradiente: "bg-[linear-gradient(180deg,#000000_0%,#1F0942_60%)]",
-    deco: assets.decoFiliacao,
-    decoClasse: "-top-6 left-[20%] w-[143px]",
+    deco: {
+      src: assets.formas.trianguloRoxo,
+      largura: 143,
+      altura: 124,
+      classe: "left-1/2 top-6 w-[128px] -translate-x-1/2 md:w-[143px]",
+    },
   },
   {
     titulo: "Student Club",
@@ -25,8 +37,12 @@ export const INICIATIVAS: Iniciativa[] = [
       "Para estudantes que pensam grande. Networking, mentoria e eventos voltados ao início de carreira. O primeiro passo no mundo dos projetos.",
     href: "/student-club",
     gradiente: "bg-[linear-gradient(180deg,#000000_0%,#023041_40%)]",
-    deco: assets.decoStudentClub,
-    decoClasse: "top-7 left-[32%] w-[147px]",
+    deco: {
+      src: assets.formas.pentagonoAzul,
+      largura: 147,
+      altura: 143,
+      classe: "left-1/2 top-8 w-[132px] -translate-x-1/2 md:w-[147px]",
+    },
   },
   {
     titulo: "Voluntariado",
@@ -34,8 +50,12 @@ export const INICIATIVAS: Iniciativa[] = [
       "Construa o PMI-DF com a gente. Ocupe um cargo, lidere iniciativas e desenvolva habilidades reais de liderança. Doe tempo, colha experiência e networking.",
     href: "/voluntariado",
     gradiente: "bg-[linear-gradient(180deg,#000000_0%,#E35308_100%)]",
-    deco: assets.decoVoluntariado,
-    decoClasse: "top-0 left-[24%] w-[137px]",
+    deco: {
+      src: assets.formas.circuloLaranja,
+      largura: 138,
+      altura: 138,
+      classe: "left-1/2 top-8 w-[124px] -translate-x-1/2 md:w-[138px]",
+    },
   },
 ];
 

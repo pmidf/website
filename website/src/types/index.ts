@@ -1,3 +1,5 @@
+import type { IconType } from "react-icons";
+
 /**
  * Contratos de dados do site institucional PMI-DF.
  *
@@ -12,11 +14,32 @@ export type NavLink = {
   href: string;
 };
 
-/** Rede social exibida no rodapé. Sempre link externo. */
+/**
+ * Rede social exibida no rodapé. Sempre link externo.
+ *
+ * `Icone` é o componente vindo de `react-icons` — glifo em `currentColor`, e
+ * não um arquivo em `public/`. Herdar a cor do texto é o que permite o hover
+ * funcionar sem trocar de imagem.
+ */
 export type RedeSocial = {
   nome: string;
-  src: string;
   href: string;
+  Icone: IconType;
+};
+
+/**
+ * Arte decorativa posicionada em absoluto dentro de um card.
+ *
+ * `largura`/`altura` são as dimensões **intrínsecas** do arquivo (o `viewBox`
+ * do SVG). O navegador deriva a altura renderizada dessa proporção, então um
+ * número errado aqui espreme a forma — não são valores de layout.
+ */
+export type Deco = {
+  src: string;
+  largura: number;
+  altura: number;
+  /** Classes de posicionamento e tamanho responsivo dentro do card. */
+  classe: string;
 };
 
 /** Card da seção "Conheça mais das nossas iniciativas". */
@@ -26,10 +49,7 @@ export type Iniciativa = {
   href: string;
   /** Classe Tailwind do gradiente de fundo do card. */
   gradiente: string;
-  /** Caminho da imagem decorativa (ornamental, sem valor semântico). */
-  deco: string;
-  /** Classes de posicionamento/tamanho da decoração dentro do card. */
-  decoClasse: string;
+  deco: Deco;
 };
 
 /** Formato de realização de um evento. */
@@ -86,4 +106,49 @@ export type EntregaMentoring = {
   titulo: string;
   descricao: string;
   cor: string;
+};
+
+/* --- Página Quem Somos ----------------------------------------------------- */
+
+/** Um trecho de texto corrido; `forte` marca o pedaço que vai em `<strong>`. */
+export type Segmento = {
+  texto: string;
+  forte?: boolean;
+};
+
+/** Um dos dois blocos de texto da Seção 2 ("O que é o PMI e o PMI-DF"). */
+/** Cada item de `paragrafos` é um `<p>` próprio, sem margem entre eles —
+ * é assim que o Figma estrutura o texto (2 parágrafos no Bloco 1, 3 no
+ * Bloco 2), não como um único bloco corrido. */
+export type BlocoInstitucional = {
+  titulo: string;
+  paragrafos: Segmento[][];
+};
+
+/** Item da linha do tempo (Seção 3). `cor` é uma cor/gradiente CSS literal — o
+ * Figma usa um valor diferente por marco, não um enum reaproveitável. */
+export type MarcoTrajetoria = {
+  ano: string;
+  texto: string;
+  cor: string;
+};
+
+/** Card de presidente (Seção 5). */
+export type Presidente = {
+  foto: string;
+  nome: string;
+  periodo: string;
+};
+
+/** Depoimento (Seção 6). `lado` decide de que lado a foto fica; `cardGradiente`
+ * e `chipGradiente` são valores CSS literais, um por pessoa. */
+export type Depoimento = {
+  foto: string;
+  nome: string;
+  papel: string;
+  chipGradiente: string;
+  citacao: string;
+  legenda: string;
+  cardGradiente: string;
+  lado: "esquerda" | "direita";
 };

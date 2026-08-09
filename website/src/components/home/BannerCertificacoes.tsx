@@ -15,17 +15,20 @@ export function BannerCertificacoes() {
     <section className="relative z-10 -mt-12 rounded-t-[32px] bg-[#F8F5F0] pb-14 pt-14 lg:-mt-16 lg:rounded-t-[50px] lg:pb-16 lg:pt-16">
       <Container>
         <div className="relative overflow-hidden rounded-[6px] bg-[#5B2205] shadow-[0_4px_4px_rgba(0,0,0,0.25)]">
-          {/* Decoração — só desktop, é ornamental */}
+          {/* Losangos — ornamentais e só a partir de lg, onde sobra espaço à
+              direita do texto (que trava em 640px). Abaixo disso invadiriam a
+              coluna de leitura. `object-contain` porque a arte é vertical: com
+              `cover` ela seria ampliada e cortada nas pontas. */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[420px] lg:block"
+            className="pointer-events-none absolute inset-y-0 right-0 hidden w-[300px] lg:block xl:w-[380px]"
           >
             <Image
-              src={assets.bannerDeco}
+              src={assets.formas.losangosLaranja}
               alt=""
               fill
-              sizes="420px"
-              className="object-cover object-left"
+              sizes="(max-width: 1280px) 300px, 380px"
+              className="object-contain object-right"
             />
           </div>
 

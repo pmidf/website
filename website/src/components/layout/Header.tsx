@@ -22,10 +22,10 @@ export function Header() {
       <Container className="flex h-[72px] items-center justify-between lg:h-[95px]">
         <Link href="/" aria-label="PMI Distrito Federal — página inicial">
           <Image
-            src={assets.logo}
+            src={assets.marca.logo}
             alt="PMI Distrito Federal"
             width={193}
-            height={53}
+            height={75}
             loading="eager"
             className="h-[42px] w-auto lg:h-[53px]"
           />

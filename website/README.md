@@ -41,29 +41,49 @@ declarados em `--font-*`.
 ```
 src/
   app/
-    (site)/          rotas institucionais (Header + Footer)
+    (site)/          rotas com chrome (Header + Rodapé) — hoje só a home
     layout.tsx       <html>/<body>, metadata base
-    sitemap.ts       derivado de src/content/
+    not-found.tsx    404
+    sitemap.ts       lista de rotas estáticas
   components/
-    layout/          Header, Footer, Container
-    ui/              Button, Card, Section
-    sections/        blocos de página reutilizáveis
-  content/           navegação, serviços, posts — fonte única de verdade
+    layout/          Header, Rodape
+    ui/              Container, Botao, TituloSecao
+    home/            seções da home — uma por arquivo, orquestradas por (site)/page.tsx
+  content/           navegação, assets, conteúdo das seções — fonte única de verdade
+  types/             contratos do conteúdo (Iniciativa, Evento, Mantenedor…)
   lib/               helpers
   styles/            @font-face
 ```
 
-Adicionar um item ao menu = editar [`src/content/site.ts`](src/content/site.ts).
-Header, Footer e sitemap leem daí.
+**O site tem uma página só: a home.** As demais rotas do menu (`/sobre`, `/eventos`,
+`/certificacao`, `/incompany`, `/blog`, `/contato`) ainda não existem — os links já apontam
+para elas e caem no 404 até serem criadas. Cada página nova entra como
+`src/app/(site)/<rota>/page.tsx`, ganha uma linha em `staticRoutes` no `sitemap.ts` e, se tiver
+arte própria, uma pasta em `public/assets/paginas/<rota>/`.
+
+Adicionar um item ao menu = editar [`src/content/navegacao.ts`](src/content/navegacao.ts).
+Header e Rodapé leem daí; o sitemap e a metadata leem de
+[`src/content/site.ts`](src/content/site.ts).
+
+Nenhum componente escreve texto de seção ou caminho de imagem inline: publicar um evento é
+editar `src/content/home.ts`, trocar uma arte é editar `src/content/assets.ts`.
+
+## Imagens e assets
+
+Vão em [`public/assets/`](public/assets/README.md), sempre referenciados via
+`src/content/assets.ts`. O export estático desliga o otimizador de imagem do Next
+(`images.unoptimized`), então o arquivo chega ao navegador como está — comprima antes de
+commitar e prefira SVG. A lista do que exportar do Figma, com tamanhos, está no
+[README de `public/assets`](public/assets/README.md).
 
 ## Rotas dinâmicas
 
-`/servicos/[slug]` e `/blog/[slug]` são geradas em build a partir de
-`src/content/servicos.ts` e `src/content/posts.ts` via `generateStaticParams` —
-obrigatório com `output: "export"`.
+Quando o blog entrar, `/blog/[slug]` precisa de `generateStaticParams` lendo de
+`src/content/` — obrigatório com `output: "export"`, que não tem servidor para
+resolver slug em runtime.
 
 ## Formulário de contato
 
 O site é estático: não há Server Actions nem route handlers para receber POST.
-A página de contato precisa apontar para um serviço externo (Formspree, Basin,
-API própria) ou embutir o widget do CRM.
+A futura página de contato precisa apontar para um serviço externo (Formspree,
+Basin, API própria) ou embutir o widget do CRM.
