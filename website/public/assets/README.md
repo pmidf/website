@@ -34,8 +34,10 @@ public/assets/
     │   └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
     ├── eventos/
     │   └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
-    └── filiacao/
-        └── foto-evento.webp    572 × 572 · foto recortada em círculo, repetida em 3 seções
+    ├── filiacao/
+    │   └── foto-evento.webp    572 × 572 · foto recortada em círculo, repetida em 3 seções
+    └── voluntariado/
+        └── estrela.webp        517 × 501 · decorativa em "O que é ser voluntário" ("Star 1")
 ```
 
 Entre parênteses, o nome original do export do Figma. Atenção: `Polygon 1` e `Polygon 16` são
@@ -48,6 +50,8 @@ Figma não descrevem as formas finais, por isso o repositório usa nomes pelo qu
   da home. Enquanto não chega, o Hero renderiza o título como texto branco (ver `home/Hero.tsx`).
 - `paginas/filiacao/cta-ondas.webp` — arte de ondas sobre o roxo do CTA final da Filiação. Sem
   ela a seção usa fundo sólido; ver o comentário em `filiacao/CtaFinal.tsx` para reativar.
+
+Nenhuma outra imagem referenciada pelo código está faltando: o site não tem mais 404 de asset.
 
 ## Ícones não moram aqui
 

@@ -10,7 +10,7 @@ export const dynamic = "force-static";
  * acrescente aqui — ou derive de `NAV_LINKS` em `src/content/navegacao.ts`,
  * quando todas existirem.
  */
-const staticRoutes = ["/", "/eventos", "/filiacao", "/mentoring"];
+const staticRoutes = ["/", "/eventos", "/filiacao", "/mentoring", "/voluntariado"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return staticRoutes.map((route) => ({ url: `${site.url}${route}` }));

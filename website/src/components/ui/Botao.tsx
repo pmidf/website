@@ -49,6 +49,11 @@ const VARIANTES = {
     "px-[26px] py-[11px] text-[15px] font-medium border-[1.5px] border-white/70 text-white " +
     "hover:bg-white/10 focus-visible:outline-current",
 
+  /** Sólido teal — CTA sobre os cards claros da seção "Como começar". */
+  teal:
+    "px-[26px] py-[9px] text-[16px] bg-[#023041] text-[#F8F5F0] " +
+    "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-[#03445C] focus-visible:outline-current",
+
   /** Sólido escuro sobre fundo claro. */
   escuro:
     "px-[26px] py-[11px] text-[15px] font-medium bg-[#1F0942] text-white " +
