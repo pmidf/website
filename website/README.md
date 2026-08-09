@@ -50,15 +50,16 @@ src/
     ui/              Container, Botao, TituloSecao, Eyebrow
     home/            seções da home     — orquestradas por (site)/page.tsx
     eventos/         seções de Eventos  — orquestradas por (site)/eventos/page.tsx
+    filiacao/        seções de Filiação — orquestradas por (site)/filiacao/page.tsx
   content/           navegação, assets, conteúdo das seções — fonte única de verdade
   types/             contratos do conteúdo (Iniciativa, EventoAgenda, Mantenedor…)
   lib/               helpers
   styles/            @font-face, mentoring.css
 ```
 
-**Rotas prontas:** `/`, `/eventos` e `/mentoring`. As demais do menu (`/sobre`, `/certificacao`,
-`/incompany`, `/blog`, `/contato`) ainda não existem — os links já apontam para elas e caem no 404
-até serem criadas. Cada página nova entra como `src/app/(site)/<rota>/page.tsx`, ganha uma linha em
+**Rotas prontas:** `/`, `/eventos`, `/filiacao` e `/mentoring`. As demais do menu (`/sobre`,
+`/certificacao`, `/incompany`, `/blog`, `/contato`) ainda não existem — os links já apontam para
+elas e caem no 404 até serem criadas. Cada página nova entra como `src/app/(site)/<rota>/page.tsx`, ganha uma linha em
 `staticRoutes` no `sitemap.ts` e, se tiver arte própria, uma pasta em
 `public/assets/paginas/<rota>/`.
 

@@ -17,10 +17,13 @@ public/assets/
 │   └── logo-pmidf.webp         193 × 75 · lockup padrão (texto escuro), fundo claro
 ├── formas/             geometria do design system, reaproveitável entre páginas
 │   ├── losangos-laranja.webp   379 × 713 · banner de certificações  ("Group 11")
-│   ├── triangulo-roxo.webp     143 × 124 · card Filiação            ("Polygon 1")
+│   ├── triangulo-roxo.webp     143 × 124 · card Filiação (home)     ("Polygon 1")
 │   ├── pentagono-azul.webp     147 × 143 · card Student Club        ("Rectangle 43")
 │   ├── circulo-laranja.webp    138 × 138 · card Voluntariado        ("Ellipse 1")
-│   └── capsula-gradiente.webp 1190 × 470 · fundo do bloco InCompany ("Dark Gradient 8")
+│   ├── capsula-gradiente.webp 1190 × 470 · fundo do bloco InCompany ("Dark Gradient 8")
+│   ├── circulo-ciano.webp      361 × 361 · "Por que se filiar"      ("Ellipse 21845")
+│   ├── triangulo-laranja.webp  385 × 437 · "Por que se filiar"      ("Polygon 16")
+│   └── pentagono-roxo.webp     440 × 428 · "Por que se filiar"      ("Rectangle 44")
 ├── mantenedores/       logos de parceiros
 │   ├── brb-lab.webp            186 × 161
 │   ├── brisk.webp              236 × 80
@@ -29,18 +32,22 @@ public/assets/
     ├── home/
     │   ├── hero-fundo.webp    1280 × 567 · fundo full-bleed do Hero
     │   └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
-    └── eventos/
-        └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
+    ├── eventos/
+    │   └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
+    └── filiacao/
+        └── foto-evento.webp    572 × 572 · foto recortada em círculo, repetida em 3 seções
 ```
 
-Entre parênteses, o nome original do export do Figma. Atenção: `Polygon 1` é o **triângulo**
-e `Rectangle 43` é o **pentágono** — os nomes das ferramentas do Figma não descrevem as formas
-finais, por isso o repositório usa nomes pelo que a arte é.
+Entre parênteses, o nome original do export do Figma. Atenção: `Polygon 1` e `Polygon 16` são
+**triângulos**, `Rectangle 43` e `Rectangle 44` são **pentágonos** — os nomes das ferramentas do
+Figma não descrevem as formas finais, por isso o repositório usa nomes pelo que a arte é.
 
 ## O que ainda falta
 
-- `marca/logo-pmidf-branco.webp` — o lockup entregue é azul-escuro e some no fundo roxo do Hero.
-  Enquanto não chega, o Hero renderiza o título como texto branco (ver `Hero.tsx`).
+- `marca/logo-pmidf-branco.webp` — o lockup entregue é azul-escuro e some no fundo roxo do Hero
+  da home. Enquanto não chega, o Hero renderiza o título como texto branco (ver `home/Hero.tsx`).
+- `paginas/filiacao/cta-ondas.webp` — arte de ondas sobre o roxo do CTA final da Filiação. Sem
+  ela a seção usa fundo sólido; ver o comentário em `filiacao/CtaFinal.tsx` para reativar.
 
 ## Ícones não moram aqui
 

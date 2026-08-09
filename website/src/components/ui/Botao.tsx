@@ -27,6 +27,18 @@ const VARIANTES = {
     "bg-[linear-gradient(90deg,rgba(31,9,66,0.6)_0%,rgba(255,97,15,0.6)_50%,rgba(26,199,255,0.6)_100%)] " +
     "shadow-[0_4px_4px_rgba(0,0,0,0.25)] hover:brightness-110 focus-visible:outline-current",
 
+  /**
+   * Pílula clara com o texto recortado em gradiente — CTA sobre fundo escuro.
+   *
+   * O gradiente precisa do `<span>` interno: um mesmo elemento não pode ter
+   * fundo branco e um `background-image` recortado nas letras ao mesmo tempo.
+   */
+  claro:
+    "px-[26px] py-[9px] text-[16px] bg-[#F8F8F8] shadow-[0_4px_2px_rgba(0,0,0,0.25)] " +
+    "hover:brightness-95 focus-visible:outline-[#200F3B] " +
+    "[&>span]:bg-[linear-gradient(90deg,#200F3B_0%,#FF610F_50%,#1AC7FF_100%)] " +
+    "[&>span]:bg-clip-text [&>span]:text-transparent",
+
   /** Sólido claro sobre fundo escuro. */
   branco:
     "px-[26px] py-[11px] text-[15px] font-medium bg-white text-[#1F0942] " +
@@ -70,17 +82,21 @@ export function Botao({
     className,
   );
 
+  /* O <span> é sempre renderizado, e não só na variante `claro`: uma estrutura
+   * estável evita que trocar de variante mude a árvore do DOM. */
+  const conteudo = <span>{children}</span>;
+
   if (external) {
     return (
       <a href={href} target="_blank" rel="noopener noreferrer" className={estilo}>
-        {children}
+        {conteudo}
       </a>
     );
   }
 
   return (
     <Link href={href} className={estilo}>
-      {children}
+      {conteudo}
     </Link>
   );
 }

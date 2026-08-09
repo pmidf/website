@@ -113,6 +113,50 @@ export type ConviteParticipacao = {
   ctaVariante: "escuro" | "contorno-escuro";
 };
 
+/* --- Página Filiação ------------------------------------------------------ */
+
+/**
+ * Um dos três motivos para se filiar.
+ *
+ * Tem duas apresentações: no mobile é um card colorido (`cor`); no desktop, o
+ * texto sobreposto a uma forma geométrica posicionada em absoluto. Os dois
+ * tratamentos leem o mesmo `texto` — a duplicação está no estilo, não no
+ * conteúdo.
+ */
+export type MotivoFiliacao = {
+  texto: string;
+  /** Classe de fundo do card no mobile, na cor da forma correspondente. */
+  cor: string;
+  forma: Deco;
+  /** Posicionamento do texto sobre a composição do desktop. */
+  textoClasse: string;
+};
+
+/** Item das listas de benefícios (PMI Global e PMI-DF). */
+export type Beneficio = {
+  titulo: string;
+  descricao: string;
+  /**
+   * Ícone do clube de benefícios local. Opcional porque o protótipo desenha
+   * ícone só em parte dos itens.
+   */
+  Icone?: IconType;
+};
+
+/** Categoria de anuidade exibida na seção "Investimento". */
+export type CategoriaFiliacao = {
+  titulo: string;
+  descricao: string;
+  /** Classe da barrinha colorida no topo do card. */
+  barra: string;
+};
+
+/** Par pergunta/resposta do acordeão de dúvidas. */
+export type PerguntaFrequente = {
+  pergunta: string;
+  resposta: string;
+};
+
 /* --- Página Mentoring ----------------------------------------------------- */
 
 /** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */

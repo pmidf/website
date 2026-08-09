@@ -33,6 +33,10 @@ export const assets = {
     trianguloRoxo: "/assets/formas/triangulo-roxo.webp",
     circuloLaranja: "/assets/formas/circulo-laranja.webp",
     capsulaGradiente: "/assets/formas/capsula-gradiente.webp",
+    /* Versões grandes, usadas na composição de "Por que se filiar". */
+    circuloCiano: "/assets/formas/circulo-ciano.webp",
+    trianguloLaranja: "/assets/formas/triangulo-laranja.webp",
+    pentagonoRoxo: "/assets/formas/pentagono-roxo.webp",
   },
 
   mantenedores: {
@@ -59,5 +63,10 @@ export const assets = {
      * nem SVGs de ornamento nessa seção.
      */
     banner: "/assets/paginas/eventos/banner.webp",
+  },
+
+  filiacao: {
+    /** Foto quadrada (572 × 572) recortada em círculo, repetida em 3 seções. */
+    fotoEvento: "/assets/paginas/filiacao/foto-evento.webp",
   },
 } as const;
