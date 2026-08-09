@@ -18,7 +18,7 @@ import type { NavLink, RedeSocial } from "@/types";
 
 /** Menu principal — desktop e mobile leem a mesma lista. */
 export const NAV_LINKS: NavLink[] = [
-  { label: "Sobre", href: "/sobre" },
+  { label: "Sobre", href: "/quem-somos" },
   { label: "Eventos e Programas", href: "/eventos" },
   { label: "Certificação", href: "/certificacao" },
   { label: "InCompany", href: "/incompany" },

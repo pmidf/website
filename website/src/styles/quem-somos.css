@@ -1,0 +1,800 @@
+/* ---------------------------------------------------------------------------
+ * Página Quem Somos — tradução direta do nó "Sobre" do arquivo Figma
+ * (puxado via MCP: get_metadata + get_design_context + download_assets).
+ *
+ * Grid do protótipo: página de 1280, conteúdo de 1140, margem lateral de 70 —
+ * exceto na Seção 2, que é full-bleed de propósito (a foto encosta na borda).
+ *
+ * Prefixo `qs-` em todas as classes: este arquivo é global (importado pela
+ * página) e o prefixo evita colisão com o resto do site, que é Tailwind.
+ *
+ * As 8 cores nomeadas (--roxo-escuro, --laranja etc.) vêm de `tokens.css`,
+ * compartilhado com `mentoring.css` — não redeclaradas aqui.
+ * ------------------------------------------------------------------------- */
+
+@import "./tokens.css";
+
+/* ===========================================================================
+ * RAIZ DA PÁGINA E TOKENS PRÓPRIOS
+ * `--font-archivo`/`--font-inter` são injetadas por `next/font` na className
+ * deste elemento. O Figma usa Agrandir Bold nos títulos e Aeonik no corpo em
+ * TODA a página (não só no Hero/botões, diferente da Mentoring) — como as
+ * duas são licenciadas e ainda não estão em `public/fonts/`, ficam como
+ * primeira opção com Archivo/Inter (já carregadas) como fallback real.
+ * ======================================================================== */
+
+.qs-pagina {
+  --fonte-titulo: "Agrandir", var(--font-archivo), "Archivo", system-ui,
+    sans-serif;
+  --fonte-corpo: "Aeonik", var(--font-inter), "Inter", system-ui, sans-serif;
+
+  /* --- Cores fora das 8 compartilhadas: existem no design mas não fazem
+   * parte do conjunto pedido para reaproveitar. Ficam só aqui. --- */
+  --azul-petroleo: #023041; /* fundo da Seção 5 e ponta de gradientes */
+  --roxo-claro: #8a38f5;
+  --laranja-escuro: #841e04;
+  --laranja-vivo: #e35308; /* só a elipse decorativa da Seção 3 usa este tom */
+  --ciano-vivo: #1ac7ff; /* distinto do --ciano (#05bfe0) do resto do site */
+  --azul-petroleo-claro: #057ba7;
+  --branco: #ffffff;
+
+  --gradiente-cta: linear-gradient(
+    90deg,
+    var(--roxo-escuro) 0%,
+    var(--ciano-vivo) 50%,
+    var(--laranja) 100%
+  );
+
+  /* Fundo do Hero: gradiente, não cor sólida — valor real do Figma
+   * (`get_design_context` do nó do Hero), diferente do que o prompt em texto
+   * descrevia ("Fundo --roxo-escuro"). */
+  --gradiente-hero: linear-gradient(
+    90deg,
+    var(--roxo-escuro) 12.981%,
+    var(--laranja) 50%,
+    var(--ciano-vivo) 89.423%
+  );
+
+  --sombra-botao: 0 4px 2px rgba(0, 0, 0, 0.25);
+  --sombra-foto: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --sombra-card: 0 2px 10px rgba(32, 15, 59, 0.08);
+
+  font-family: var(--fonte-corpo);
+}
+
+/* Faixa de conteúdo: 1140 dentro de 1280 (70 de margem de cada lado). */
+.qs-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 70px;
+}
+
+/* Empilha cabeçalho + conteúdo de uma seção com o mesmo ritmo vertical. */
+.qs-secao__conteudo {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.qs-cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.qs-cabecalho--centro {
+  align-items: center;
+  text-align: center;
+}
+
+.qs-titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: normal;
+  letter-spacing: 0;
+  color: var(--roxo-titulo);
+}
+
+.qs-titulo--claro {
+  color: var(--branco-off);
+}
+
+.qs-subtitulo {
+  font-size: 24px;
+  line-height: 1.45;
+  color: var(--roxo-titulo);
+}
+
+.qs-subtitulo--claro {
+  color: var(--branco-off);
+}
+
+/* === Botões =============================================================
+ * O Figma usa a mesma peça de "Button" em 3 variantes de cor neste conjunto
+ * de telas: sólido escuro, branco com texto em gradiente e branco com texto
+ * sólido. Não são componentes diferentes — só a cor muda por instância.
+ * ======================================================================== */
+
+.qs-botao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 30px;
+  font-family: var(--fonte-corpo);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
+  letter-spacing: 0;
+  padding: 9px 28px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: var(--sombra-botao);
+  white-space: nowrap;
+}
+
+.qs-botao--escuro {
+  background: var(--roxo-escuro);
+  /* Branco puro (#FFFFFF), não --branco-off (#F8F8F8) — o Figma usa a cor
+   * pura só no texto deste botão, diferente do resto da página. */
+  color: var(--branco);
+}
+
+.qs-botao--claro-gradiente {
+  background: var(--branco-off);
+}
+
+.qs-botao--claro-gradiente span {
+  background: var(--gradiente-cta);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.qs-botao--claro-solido {
+  background: var(--branco-off);
+}
+
+.qs-botao--grande {
+  font-size: 24px;
+}
+
+/* 190x36 exatos no Figma (não padding-based como os outros botões da
+ * página) — por isso zera o padding herdado e fixa a caixa. */
+.qs-botao--fixo {
+  width: 190px;
+  height: 36px;
+  padding: 0;
+}
+
+/* ===========================================================================
+ * SEÇÃO 1 — HERO
+ * ======================================================================== */
+
+.qs-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 319px;
+  padding-inline: 70px;
+  background: var(--gradiente-hero);
+  text-align: center;
+}
+
+.qs-hero__titulo {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 40px;
+  line-height: normal;
+  letter-spacing: 0;
+  color: var(--branco-off);
+}
+
+.qs-hero__subtitulo {
+  /* `width: 100%` é necessário porque o pai é flex com `align-items: center`
+   * — sem isso o parágrafo não é esticado e tenta caber numa linha só,
+   * estourando a viewport em telas estreitas em vez de quebrar dentro do
+   * padding. `max-width` continua limitando o tamanho em telas largas. */
+  width: 100%;
+  max-width: 767px;
+  font-family: var(--fonte-corpo);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: normal;
+  letter-spacing: 0;
+  color: var(--branco-off);
+}
+
+.qs-hero__subtitulo strong {
+  font-weight: 700;
+}
+
+/* ===========================================================================
+ * CURVA CREME
+ * Elemento próprio (não é o topo da Seção 2): uma faixa de 1280x72 que
+ * começa 72px antes do fim do Hero e sobrepõe essa faixa, com os dois cantos
+ * superiores arredondados a 40px. Fica junto da Seção 2 no HTML, mas não é a
+ * mesma caixa — se fosse, o filho posicionado em `top` negativo (a foto)
+ * mediria a partir do canto errado.
+ * ======================================================================== */
+
+.qs-curva {
+  width: 100%;
+  height: 72px;
+  margin-top: -72px;
+  border-radius: 40px 40px 0 0;
+  background: var(--creme);
+}
+
+/* ===========================================================================
+ * SEÇÃO 2 — O QUE É O PMI E O PMI-DF
+ * Posicionamento absoluto para os 4 blocos de texto e a foto: o Figma dá
+ * coordenadas exatas e um desalinhamento entre título e parágrafo do Bloco 2
+ * que é intencional, não reproduzível com `gap` de flexbox.
+ * ======================================================================== */
+
+.qs-oquee {
+  position: relative;
+  height: 640px;
+  background: var(--creme);
+}
+
+.qs-oquee__texto {
+  /* Em desktop os filhos são absolutos e este wrapper não participa do
+   * layout; em telas menores vira o container em coluna (ver responsivo). */
+  display: contents;
+}
+
+.qs-oquee__titulo-1 {
+  position: absolute;
+  left: 91px;
+  top: 34px;
+  width: 295px;
+}
+
+/* Bloco 1: alinhado à esquerda. Container dos 2 parágrafos (ver
+ * `.qs-oquee__paragrafo` para o `margin: 0` que os mantém colados) e do
+ * botão. Altura automática (não os 156px fixos do Figma) — com
+ * `line-height` maior que o medido, uma altura fixa cortaria/sobreporia o
+ * botão em vez de acompanhar o texto. */
+.qs-oquee__texto-1 {
+  position: absolute;
+  left: 91px;
+  /* Pedido explícito: 71px (valor do Figma) ficava colado no título — o
+   * texto começava antes da própria caixa do título terminar. */
+  top: 90px;
+  width: 635px;
+}
+
+/* Último elemento do Bloco 1, no fluxo (não em posição fixa) para sempre
+ * ficar 14px abaixo do parágrafo, mesmo se o texto crescer. 4px mais à
+ * esquerda que o texto (margin-left negativa) — é assim no Figma. */
+.qs-oquee__botao {
+  display: inline-flex;
+  margin-top: 14px;
+  margin-left: -4px;
+}
+
+/* Bloco 2: alinhado à DIREITA — a borda direita (não a esquerda) é o
+ * ponto fixo, por isso usa `right` em vez de `left`. Desalinhado do
+ * Bloco 1 de propósito (ver Figma). */
+.qs-oquee__titulo-2 {
+  position: absolute;
+  right: 460px;
+  top: 374px;
+  width: 423px;
+  text-align: right;
+}
+
+.qs-oquee__texto-2 {
+  position: absolute;
+  right: 444px;
+  /* Mesmo ajuste do Bloco 1: mais respiro entre título e texto. */
+  top: 430px;
+  width: 699px;
+  text-align: right;
+}
+
+.qs-oquee__paragrafo {
+  margin: 0;
+  font-family: var(--fonte-corpo);
+  font-weight: 400;
+  /* Pedido explícito: 24px (o valor medido do Figma) ficava grande demais
+   * ao lado do line-height maior. */
+  font-size: 20px;
+  /* Pedido explícito: `normal` (o valor medido do Figma) ficava comprimido
+   * demais na leitura. 1.5 é a mesma escala usada na página Mentoring. */
+  line-height: 1.5;
+  letter-spacing: 0;
+  /* Mesma cor dos títulos (#200F3B) — o Figma aplica a cor do título ao
+   * bloco inteiro aqui, não a --texto-corpo (#5C546E) usada na Mentoring. */
+  color: var(--roxo-titulo);
+  /* `globals.css` aplica `text-wrap: pretty` a todo `<p>` do site — sem isso
+   * aqui, o navegador reflui a última linha para evitar "órfãs", o que o
+   * Figma não faz (quebra natural, linha a linha). */
+  text-wrap: auto;
+}
+
+.qs-oquee__paragrafo strong {
+  font-weight: 700;
+}
+
+/* A foto entra 26px acima do topo da Seção 2 (não do topo da curva) — por
+ * isso é filha de `.qs-oquee`, e não da curva. Encosta na borda direita, sem
+ * margem lateral. Sem sombra/overlay: o Figma não aplica nenhum efeito. */
+.qs-oquee__foto-wrap {
+  position: absolute;
+  top: -26px;
+  right: 0;
+  width: 426px;
+  height: 639px;
+  /* Só os dois cantos esquerdos — a foto encosta na borda direita da tela,
+   * então não há canto direito para arredondar. */
+  border-radius: 400px 0 0 400px;
+  overflow: hidden;
+}
+
+.qs-oquee__foto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ===========================================================================
+ * SEÇÃO 3 — LINHA DO TEMPO ("Nossa trajetória")
+ * Fundo roxo-escuro com 3 elipses decorativas — no Figma são imagens SVG,
+ * reproduzidas aqui como círculos de cor sólida (mesma cor e opacidade),
+ * mais simples e sem pedir um asset extra.
+ * ======================================================================== */
+
+.qs-trajetoria {
+  position: relative;
+  overflow: hidden;
+  padding-block: 80px;
+  background: var(--roxo-escuro);
+}
+
+.qs-trajetoria__blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.qs-trajetoria__blob--1 {
+  left: 530px;
+  top: -229px;
+  width: 1799px;
+  height: 1752px;
+  background: var(--laranja-vivo);
+}
+
+.qs-trajetoria__blob--2 {
+  left: 526px;
+  top: 801px;
+  width: 1460px;
+  height: 1579px;
+  background: var(--ciano-vivo);
+}
+
+.qs-trajetoria__blob--3 {
+  left: 446px;
+  top: 679px;
+  width: 1188px;
+  height: 1173px;
+  background: var(--roxo-claro);
+}
+
+.qs-trajetoria__conteudo {
+  position: relative;
+}
+
+/* O indent de 263px é o valor real do Figma para esta lista — bem maior que
+ * a margem padrão de 70 do container, deliberado no design. */
+.qs-trajetoria__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-top: 36px;
+  padding-left: 193px;
+  list-style: none;
+}
+
+.qs-trajetoria__item {
+  display: flex;
+  align-items: center;
+  gap: 27px;
+}
+
+.qs-trajetoria__chip {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 35px;
+  border-radius: 500px;
+  background: var(--branco);
+}
+
+.qs-trajetoria__ano {
+  font-size: 16px;
+  font-weight: 400;
+  background: var(--cor-item, var(--roxo-titulo));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.qs-trajetoria__texto {
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--branco);
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* ===========================================================================
+ * SEÇÃO 4 — DIRETORIA ("Organograma")
+ * ======================================================================== */
+
+.qs-diretoria {
+  padding-block: 80px;
+  background: var(--branco);
+}
+
+.qs-diretoria__imagem {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Organograma é ilegível no celular: em vez de espremer, deixa rolar. */
+.qs-diretoria__imagem-wrap {
+  overflow-x: auto;
+}
+
+.qs-diretoria__rodape {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.qs-diretoria__rodape-texto {
+  font-size: 24px;
+  color: var(--roxo-titulo);
+}
+
+/* ===========================================================================
+ * SEÇÃO 5 — PRESIDENTES
+ * Fundo azul-petróleo no Figma (não o creme do resto da página).
+ * ======================================================================== */
+
+.qs-presidentes {
+  padding-block: 80px;
+  background: var(--azul-petroleo);
+}
+
+.qs-presidentes__grade {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 36px;
+}
+
+.qs-presidente {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 250px;
+}
+
+.qs-presidente__foto {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--sombra-foto);
+}
+
+.qs-presidente__legenda {
+  text-align: center;
+  color: var(--branco);
+}
+
+.qs-presidente__nome {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.qs-presidente__periodo {
+  font-size: 24px;
+  line-height: 1.3;
+}
+
+.qs-presidentes__botao {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+/* ===========================================================================
+ * SEÇÃO 6 — DEPOIMENTOS ("Vozes da comunidade")
+ * Foto e card de texto se sobrepõem — layout alterna de lado a cada item.
+ * ======================================================================== */
+
+.qs-depoimentos {
+  padding-block: 80px;
+  background: var(--creme);
+}
+
+.qs-depoimentos__lista {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  margin-top: 36px;
+}
+
+.qs-depoimento {
+  display: flex;
+  align-items: center;
+}
+
+.qs-depoimento--direita {
+  flex-direction: row-reverse;
+}
+
+.qs-depoimento__foto-wrap {
+  position: relative;
+  flex: none;
+  width: 263px;
+  height: 263px;
+}
+
+.qs-depoimento__foto-eco {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  object-fit: cover;
+  opacity: 0.2;
+}
+
+.qs-depoimento__foto {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: var(--sombra-foto);
+}
+
+.qs-depoimento__card {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 200px;
+  justify-content: center;
+  /* O lado que fica por baixo da foto (ver overlap abaixo) precisa de mais
+   * respiro para o texto não ficar coberto pelo círculo. */
+  padding: 28px 40px 28px 150px;
+  border-radius: 5px;
+  background: var(--gradiente, var(--roxo-escuro));
+  box-shadow: var(--sombra-foto);
+}
+
+.qs-depoimento--direita .qs-depoimento__card {
+  padding: 28px 150px 28px 40px;
+}
+
+/* Puxa o card por baixo da foto — valor único (não replica os offsets
+ * ligeiramente diferentes de cada instância no Figma, que variam por
+ * imprecisão de composição, não por intenção de design). A foto pinta por
+ * cima do card automaticamente: `position: relative` cria um contexto de
+ * empilhamento que sempre fica acima de um irmão estático, mesmo antes dele
+ * no DOM. */
+.qs-depoimento__foto-wrap {
+  margin-right: -100px;
+}
+
+.qs-depoimento--direita .qs-depoimento__foto-wrap {
+  margin-right: 0;
+  margin-left: -100px;
+}
+
+.qs-depoimento__chip {
+  align-self: flex-start;
+  display: inline-flex;
+  padding: 6px 20px;
+  border-radius: 500px;
+  background: var(--branco);
+}
+
+.qs-depoimento--direita .qs-depoimento__chip {
+  align-self: flex-end;
+}
+
+.qs-depoimento__papel {
+  font-size: 16px;
+  background: var(--gradiente-chip);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.qs-depoimento__citacao {
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--branco);
+}
+
+.qs-depoimento--direita .qs-depoimento__citacao {
+  text-align: right;
+}
+
+.qs-depoimento__nome {
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--branco);
+}
+
+.qs-depoimento--direita .qs-depoimento__nome {
+  text-align: right;
+}
+
+.qs-depoimento__legenda {
+  font-size: 12px;
+  color: #d4d4d4;
+}
+
+.qs-depoimento--direita .qs-depoimento__legenda {
+  text-align: right;
+}
+
+/* ===========================================================================
+ * TABLET — até 1024px
+ * ======================================================================== */
+
+@media (max-width: 1024px) {
+  .qs-container {
+    padding-inline: 24px;
+  }
+
+  .qs-hero {
+    padding-inline: 24px;
+  }
+
+  /* Sai do posicionamento absoluto: os 4 blocos voltam ao fluxo normal,
+   * empilhados na ordem do documento, alinhados à esquerda com padding 24px
+   * (perdem o escalonamento do Bloco 2, que só existe no desktop). */
+  .qs-oquee {
+    height: auto;
+    padding-block: 32px;
+  }
+
+  .qs-oquee__texto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-inline: 24px;
+  }
+
+  .qs-oquee__titulo-1,
+  .qs-oquee__texto-1,
+  .qs-oquee__titulo-2,
+  .qs-oquee__texto-2 {
+    position: static;
+    width: auto;
+    height: auto;
+    text-align: left;
+  }
+
+  .qs-oquee__foto-wrap {
+    position: static;
+    width: 100%;
+    height: auto;
+    max-width: 426px;
+    aspect-ratio: 426 / 639;
+    margin: 20px auto 0;
+  }
+
+  .qs-trajetoria__lista {
+    padding-left: 24px;
+  }
+
+  .qs-presidente {
+    width: calc(50% - 20px);
+  }
+
+  .qs-depoimento,
+  .qs-depoimento--direita {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .qs-depoimento__foto-wrap,
+  .qs-depoimento--direita .qs-depoimento__foto-wrap {
+    margin: 0 0 -40px 0;
+  }
+
+  .qs-depoimento__card,
+  .qs-depoimento--direita .qs-depoimento__card {
+    width: 100%;
+    padding: 56px 24px 24px;
+  }
+
+  .qs-depoimento__chip,
+  .qs-depoimento--direita .qs-depoimento__chip {
+    align-self: center;
+  }
+
+  .qs-depoimento__citacao,
+  .qs-depoimento__nome,
+  .qs-depoimento--direita .qs-depoimento__citacao,
+  .qs-depoimento--direita .qs-depoimento__nome {
+    text-align: center;
+  }
+}
+
+/* ===========================================================================
+ * MOBILE — até 767px
+ * ======================================================================== */
+
+@media (max-width: 767px) {
+  .qs-container {
+    padding-inline: 20px;
+  }
+
+  .qs-hero {
+    padding-inline: 20px;
+  }
+
+  .qs-hero__titulo,
+  .qs-titulo {
+    font-size: 28px;
+  }
+
+  .qs-hero__subtitulo,
+  .qs-subtitulo,
+  .qs-oquee__paragrafo {
+    font-size: 18px;
+  }
+
+  .qs-trajetoria__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .qs-trajetoria__lista {
+    padding-left: 0;
+  }
+
+  .qs-presidente {
+    width: 100%;
+  }
+
+  .qs-presidentes__grade {
+    gap: 32px;
+  }
+
+  .qs-depoimento__card {
+    padding: 56px 20px 24px;
+  }
+}
