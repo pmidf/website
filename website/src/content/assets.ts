@@ -84,4 +84,9 @@ export const assets = {
     depoimentoLucas: "/assets/paginas/quem-somos/depoimento-lucas.webp",
     depoimentoCamila: "/assets/paginas/quem-somos/depoimento-camila.webp",
   },
+
+  voluntariado: {
+    /** Estrela decorativa de "O que é ser voluntário" (517 × 501). */
+    estrela: "/assets/paginas/voluntariado/estrela.webp",
+  },
 } as const;

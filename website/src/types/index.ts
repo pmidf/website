@@ -157,6 +157,28 @@ export type PerguntaFrequente = {
   resposta: string;
 };
 
+/* --- Página Voluntariado -------------------------------------------------- */
+
+/**
+ * Card de título + descrição identificado por uma cor.
+ *
+ * Serve a duas seções de Voluntariado com formatos visuais distintos — nos
+ * benefícios a cor pinta o card inteiro, no Student Club pinta só o quadrado
+ * do topo. O que elas compartilham é o dado, não o layout.
+ */
+export type CardColorido = {
+  titulo: string;
+  descricao: string;
+  /** Classe Tailwind de fundo. */
+  cor: string;
+};
+
+/** Passo de "Como começar". O número vem da ordem da lista. */
+export type PassoVoluntariado = {
+  titulo: string;
+  descricao: string;
+};
+
 /* --- Página Mentoring ----------------------------------------------------- */
 
 /** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */
