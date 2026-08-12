@@ -210,3 +210,48 @@ export type EntregaMentoring = {
   descricao: string;
   cor: string;
 };
+
+/* --- Página Quem Somos ----------------------------------------------------- */
+
+/** Um trecho de texto corrido; `forte` marca o pedaço que vai em `<strong>`. */
+export type Segmento = {
+  texto: string;
+  forte?: boolean;
+};
+
+/** Um dos dois blocos de texto da Seção 2 ("O que é o PMI e o PMI-DF"). */
+/** Cada item de `paragrafos` é um `<p>` próprio, sem margem entre eles —
+ * é assim que o Figma estrutura o texto (2 parágrafos no Bloco 1, 3 no
+ * Bloco 2), não como um único bloco corrido. */
+export type BlocoInstitucional = {
+  titulo: string;
+  paragrafos: Segmento[][];
+};
+
+/** Item da linha do tempo (Seção 3). `cor` é uma cor/gradiente CSS literal — o
+ * Figma usa um valor diferente por marco, não um enum reaproveitável. */
+export type MarcoTrajetoria = {
+  ano: string;
+  texto: string;
+  cor: string;
+};
+
+/** Card de presidente (Seção 5). */
+export type Presidente = {
+  foto: string;
+  nome: string;
+  periodo: string;
+};
+
+/** Depoimento (Seção 6). `lado` decide de que lado a foto fica; `cardGradiente`
+ * e `chipGradiente` são valores CSS literais, um por pessoa. */
+export type Depoimento = {
+  foto: string;
+  nome: string;
+  papel: string;
+  chipGradiente: string;
+  citacao: string;
+  legenda: string;
+  cardGradiente: string;
+  lado: "esquerda" | "direita";
+};

@@ -70,6 +70,21 @@ export const assets = {
     fotoEvento: "/assets/paginas/filiacao/foto-evento.webp",
   },
 
+  /**
+   * Artes exclusivas da página Quem Somos. Exportadas do Figma via MCP
+   * e convertidas para .webp no tamanho de exibição.
+   */
+  quemSomos: {
+    heroBrasilia: "/assets/paginas/quem-somos/hero-brasilia.webp",
+    organograma: "/assets/paginas/quem-somos/organograma.webp",
+    presidenteMatheus: "/assets/paginas/quem-somos/presidente-matheus.webp",
+    presidenteCristina: "/assets/paginas/quem-somos/presidente-cristina.webp",
+    presidenteGino: "/assets/paginas/quem-somos/presidente-gino.webp",
+    depoimentoAna: "/assets/paginas/quem-somos/depoimento-ana.webp",
+    depoimentoLucas: "/assets/paginas/quem-somos/depoimento-lucas.webp",
+    depoimentoCamila: "/assets/paginas/quem-somos/depoimento-camila.webp",
+  },
+
   voluntariado: {
     /** Estrela decorativa de "O que é ser voluntário" (517 × 501). */
     estrela: "/assets/paginas/voluntariado/estrela.webp",

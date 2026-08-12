@@ -1,0 +1,19 @@
+/* ---------------------------------------------------------------------------
+ * Tokens de cor compartilhados entre páginas em CSS puro (fora do Tailwind).
+ *
+ * Extraído de `mentoring.css` para que uma segunda página (Quem Somos) possa
+ * reusar exatamente os mesmos nomes/valores sem duplicar hex em dois `:root`.
+ * Qualquer página nova nesse estilo importa este arquivo antes dos próprios
+ * estilos. Não redeclare estas 8 variáveis em outro lugar.
+ * ------------------------------------------------------------------------- */
+
+:root {
+  --roxo-escuro: #1f0942;
+  --roxo-titulo: #200f3b;
+  --roxo-primario: #4f17a8;
+  --laranja: #ff610f;
+  --ciano: #05bfe0;
+  --creme: #f8f5f0;
+  --texto-corpo: #5c546e;
+  --branco-off: #f8f8f8;
+}
