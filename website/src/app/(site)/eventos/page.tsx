@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
+import { getEventosSympla } from "@/lib/sympla";
 
 import {
   Agenda,
@@ -47,14 +48,16 @@ export const metadata: Metadata = {
  * markup em `src/components/eventos/`. Header e Rodapé vêm do layout do route
  * group `(site)`.
  */
-export default function EventosPage() {
+export default async function EventosPage() {
+  const eventos = await getEventosSympla();
+
   return (
     <div
       className={`${archivo.variable} ${inter.variable} min-h-screen bg-[#F8F5F0] font-[family-name:var(--font-corpo)]`}
     >
       <Hero />
       <EventoDestaque />
-      <Agenda />
+      <Agenda eventos={eventos} />
       <ComoSeInscrever />
       <FacaParte />
     </div>
