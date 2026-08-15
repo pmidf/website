@@ -16,7 +16,7 @@ export function EventoDestaque() {
   return (
     <section className="relative z-10 -mt-12 rounded-t-[32px] bg-[#F8F5F0] pt-10 lg:-mt-16 lg:rounded-t-[50px] lg:pt-[33px]">
       <Container gutter="amplo">
-        <div className="relative isolate overflow-hidden rounded-[24px] px-6 py-10 shadow-[0_6px_20px_rgba(32,15,59,0.22)] md:px-10 md:py-12 lg:px-14 lg:py-12">
+        <div className="relative isolate overflow-hidden rounded-[24px] px-6 py-10 md:px-10 md:py-12 lg:px-14 lg:py-12">
           <Image
             src={assets.eventos.banner}
             alt=""

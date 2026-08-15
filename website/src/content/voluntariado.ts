@@ -6,7 +6,7 @@ import type { CardColorido, PassoVoluntariado } from "@/types";
  * As vagas moram no VEP (Volunteer Engagement Portal) do PMI Global, não no
  * site — por isso todos os CTAs apontam para a mesma URL, declarada uma vez.
  */
-export const URL_VEP = "https://www.pmi.org/volunteer-opportunities";
+export const URL_VEP = "https://www.pmi.org/chapters/northern-italy/volunteer-opportunities";
 
 export const PERFIS: string[] = [
   "Pessoas movidas por propósito que querem impactar a comunidade do Distrito Federal e deixar sua marca pessoal",

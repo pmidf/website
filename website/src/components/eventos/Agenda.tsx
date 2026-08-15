@@ -7,12 +7,11 @@ import { FiltrosAgenda } from "@/components/eventos/FiltrosAgenda";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TituloSecao } from "@/components/ui/TituloSecao";
-import {
-  EVENTOS,
+import {    
   EVENTOS_POR_PAGINA,
   TODAS_CATEGORIAS,
 } from "@/content/eventos";
-import type { FormatoEvento } from "@/types";
+import type { EventoAgenda,   FormatoEvento } from "@/types";
 
 /**
  * Agenda filtrável — a única parte interativa da página, e por isso o único
@@ -21,31 +20,42 @@ import type { FormatoEvento } from "@/types";
  * Filtrar volta a paginação ao início: manter "carregar mais" acumulado entre
  * buscas mostraria uma contagem que não corresponde ao resultado atual.
  */
-export function Agenda() {
+type AgendaProps = {
+  eventos: EventoAgenda[];
+};
+
+export function Agenda({ eventos }: AgendaProps) {
   const [busca, setBusca] = useState("");
   const [formato, setFormato] = useState<FormatoEvento | "Todos">("Todos");
   const [categoria, setCategoria] = useState(TODAS_CATEGORIAS);
   const [visiveis, setVisiveis] = useState(EVENTOS_POR_PAGINA);
 
-  /** As categorias saem da própria lista: publicar um evento novo já popula o filtro. */
   const categorias = useMemo(
-    () => [TODAS_CATEGORIAS, ...Array.from(new Set(EVENTOS.map((e) => e.categoria)))],
-    [],
+    () => [
+      TODAS_CATEGORIAS,
+      ...Array.from(new Set(eventos.map((e) => e.categoria))),
+    ],
+    [eventos],
   );
 
   const filtrados = useMemo(() => {
     const termo = busca.trim().toLowerCase();
-    return EVENTOS.filter((evento) => {
+
+    return eventos.filter((evento) => {
       const casaBusca =
         termo === "" ||
         evento.titulo.toLowerCase().includes(termo) ||
         evento.descricao.toLowerCase().includes(termo) ||
-        evento.categoria.toLowerCase().includes(termo);
+        evento.categoria.toLowerCase().includes(termo) ||
+        evento.local.toLowerCase().includes(termo);
+
       const casaFormato = formato === "Todos" || evento.formato === formato;
-      const casaCategoria = categoria === TODAS_CATEGORIAS || evento.categoria === categoria;
+      const casaCategoria =
+        categoria === TODAS_CATEGORIAS || evento.categoria === categoria;
+
       return casaBusca && casaFormato && casaCategoria;
     });
-  }, [busca, formato, categoria]);
+  }, [eventos, busca, formato, categoria]);
 
   const listaVisivel = filtrados.slice(0, visiveis);
   const temMais = visiveis < filtrados.length;
