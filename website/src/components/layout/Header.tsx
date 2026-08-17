@@ -38,7 +38,7 @@ const MENU_ITEMS: MenuItem[] = [
   },
   {
     label: "Certificação",
-    href: "/certificacao",
+    href: "/certificacoes",
   },
   {
     label: "InCompany",

@@ -1,0 +1,9 @@
+export { Hero } from "@/components/certificacoes/Hero";
+export { TabsNav } from "@/components/certificacoes/TabsNav";
+export { CertificacoesPrincipais } from "@/components/certificacoes/CertificacoesPrincipais";
+export { Comparativo } from "@/components/certificacoes/Comparativo";
+export { FiliadosDesconto } from "@/components/certificacoes/FiliadosDesconto";
+export { ParceirosATP } from "@/components/certificacoes/ParceirosATP";
+export { PDUs } from "@/components/certificacoes/PDUs";
+export { Faq } from "@/components/certificacoes/Faq";
+export { CtaFinal } from "@/components/certificacoes/CtaFinal";
