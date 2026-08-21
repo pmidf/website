@@ -2,13 +2,17 @@ import { CardEvento } from "@/components/eventos/CardEvento";
 import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 import { TituloSecao } from "@/components/ui/TituloSecao";
-import { getEventosSympla } from "@/lib/sympla";
+import { getPaginaEventos } from "@/lib/sympla";
 
-/** Seção "Eventos" — próximos encontros com inscrição externa. */
+/**
+ * Seção "Eventos" — os três próximos encontros, com inscrição externa.
+ *
+ * Pede só os três à camada de dados em vez de fatiar a agenda inteira. Se a
+ * home e a página de eventos aparecerem no mesmo render, `lib/sympla` memoiza
+ * e a Sympla é consultada uma vez só.
+ */
 export async function Eventos() {
-  const eventos = await getEventosSympla();
-
-  const eventosHome = eventos.slice(0, 3);
+  const { eventos: eventosHome } = await getPaginaEventos(0, 3);
 
   return (
     <section className="bg-[#F8F5F0] py-14 lg:py-16">

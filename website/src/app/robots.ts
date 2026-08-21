@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { site } from "@/content/site";
 
-/** Exigido por `output: "export"` — rotas de metadata precisam ser estáticas. */
+/** O conteúdo é fixo; não há motivo para gerar o robots.txt por request. */
 export const dynamic = "force-static";
 
 export default function robots(): MetadataRoute.Robots {

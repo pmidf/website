@@ -1,18 +1,46 @@
 # Website institucional
 
-Next.js 16 (App Router) + TypeScript + Tailwind CSS 4, exportado como site estático
-(`output: "export"`) para hospedagem em Apache/HostGator.
+Next.js 16 (App Router) + TypeScript + Tailwind CSS 4, hospedado na Vercel com
+runtime Node.
 
 ## Comandos
 
 ```bash
 npm run dev     # desenvolvimento em http://localhost:3000
-npm run build   # gera o site estático em ./out
+npm run build
 npm run lint
 ```
 
-O deploy é o conteúdo de `out/` enviado para o `public_html`. `trailingSlash: true`
-faz cada rota virar `pasta/index.html`, que é o que o Apache espera.
+O site já foi um export estático (`output: "export"`) para o Apache da HostGator.
+A integração com o Sympla exigiu runtime — export estático não tem ISR nem Route
+Handlers, então a agenda só mudaria a cada deploy e o token teria de ser resolvido
+no build. `trailingSlash: true` continua ligado para não mexer nas URLs indexadas.
+
+## Agenda de eventos (Sympla)
+
+Os eventos das páginas `/` e `/eventos` vêm da API pública do Sympla, não de
+arquivos em `src/content/`. Publicar um evento é publicá-lo no Sympla.
+
+Configure `SYMPLA_TOKEN` (veja [`.env.example`](.env.example)) — em
+`.env.local` no desenvolvimento e em Settings → Environment Variables na Vercel.
+Sem o token a agenda renderiza um estado vazio com link para o Sympla; ela nunca
+cai em conteúdo de exemplo.
+
+A camada de dados é [`src/lib/sympla.ts`](src/lib/sympla.ts), que documenta a
+estratégia de cache em detalhe. Em resumo: a Sympla é consultada no máximo uma
+vez a cada 15 minutos **para o site inteiro** — ISR na página, `Cache-Control`
+no route handler, Data Cache no `fetch` e memoização por request.
+
+A página abre com 6 eventos renderizados no servidor; "Ver mais" busca as fatias
+seguintes em `GET /api/eventos?offset=&limit=`, que lê do cache e não da Sympla.
+
+Para publicar um evento sem esperar os 15 minutos, defina
+`SYMPLA_REVALIDATE_SECRET` e chame:
+
+```bash
+curl -X POST -H "x-revalidate-secret: $SYMPLA_REVALIDATE_SECRET" \
+  https://SEU-DOMINIO/api/eventos/revalidate/
+```
 
 ## Design tokens
 
@@ -41,7 +69,8 @@ declarados em `--font-*`.
 ```
 src/
   app/
-    (site)/          rotas com chrome (Header + Rodapé) — hoje só a home
+    (site)/          rotas com chrome (Header + Rodapé)
+    api/eventos/     paginação da agenda + invalidação de cache sob demanda
     layout.tsx       <html>/<body>, metadata base
     not-found.tsx    404
     sitemap.ts       lista de rotas estáticas
@@ -54,7 +83,7 @@ src/
     voluntariado/    seções de Voluntariado
   content/           navegação, assets, conteúdo das seções — fonte única de verdade
   types/             contratos do conteúdo (Iniciativa, EventoAgenda, Mantenedor…)
-  lib/               helpers
+  lib/               helpers e a integração com o Sympla (sympla.ts)
   styles/            @font-face, mentoring.css
 ```
 
@@ -86,19 +115,20 @@ editar `src/content/home.ts`, trocar uma arte é editar `src/content/assets.ts`.
 ## Imagens e assets
 
 Vão em [`public/assets/`](public/assets/README.md), sempre referenciados via
-`src/content/assets.ts`. O export estático desliga o otimizador de imagem do Next
-(`images.unoptimized`), então o arquivo chega ao navegador como está — comprima antes de
-commitar e prefira SVG. A lista do que exportar do Figma, com tamanhos, está no
+`src/content/assets.ts`. `images.unoptimized` continua ligado (herança do export
+estático), então o arquivo chega ao navegador como está — comprima antes de
+commitar e prefira SVG. Agora que há runtime, ligar o otimizador é possível, mas
+é uma mudança à parte: mexe na entrega de imagem do site inteiro. A lista do que exportar do Figma, com tamanhos, está no
 [README de `public/assets`](public/assets/README.md).
 
 ## Rotas dinâmicas
 
-Quando o blog entrar, `/blog/[slug]` precisa de `generateStaticParams` lendo de
-`src/content/` — obrigatório com `output: "export"`, que não tem servidor para
-resolver slug em runtime.
+Quando o blog entrar, `/blog/[slug]` pode resolver o slug em runtime. Prefira
+ainda assim `generateStaticParams` para os slugs conhecidos: prerenderiza o que
+já existe e deixa o resto sob demanda.
 
 ## Formulário de contato
 
-O site é estático: não há Server Actions nem route handlers para receber POST.
-A futura página de contato precisa apontar para um serviço externo (Formspree,
-Basin, API própria) ou embutir o widget do CRM.
+Com runtime disponível, a futura página de contato pode usar Server Actions ou um
+route handler (veja `src/app/api/eventos/` como referência) — ou continuar
+apontando para um serviço externo (Formspree, Basin) ou para o widget do CRM.
