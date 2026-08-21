@@ -19,6 +19,12 @@ import { site } from "@/content/site";
  * mercado para home (só o nome da organização), troque por `site.name` —
  * `absolute: site.name` ignora o template por completo.
  */
+/**
+ * A seção "Eventos" lê a agenda do Sympla, então a home também é ISR — mesma
+ * janela da página /eventos.
+ */
+export const revalidate = 900;
+
 export const metadata: Metadata = {
   title: "Home",
   description: site.description,

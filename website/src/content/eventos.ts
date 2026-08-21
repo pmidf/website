@@ -1,15 +1,12 @@
-import type {
-  ConviteParticipacao,
-  EventoAgenda,
-  FormatoEvento,
-  PassoInscricao,
-} from "@/types";
+import type { ConviteParticipacao, FormatoEvento, PassoInscricao } from "@/types";
 
 /**
- * Conteúdo da página Eventos.
+ * Conteúdo *estático* da página Eventos.
  *
- * Publicar um evento é acrescentar um item em `EVENTOS` — os filtros de
- * formato e categoria se atualizam sozinhos a partir da lista.
+ * A agenda em si não mora aqui: ela vem da API do Sympla, em `lib/sympla.ts`.
+ * Publicar um evento é publicá-lo no Sympla — os filtros de formato e categoria
+ * se derivam sozinhos do que a API devolve. O que fica neste arquivo são os
+ * rótulos, o tratamento visual e os textos institucionais.
  */
 
 /** Opções do filtro de formato. "Todos" é estado da UI, não um formato real. */
@@ -45,10 +42,6 @@ export const ESTILO_FORMATO: Record<FormatoEvento, { card: string; chip: string 
   },
 };
 
-/** Gradiente roxo usado pelos cards que fogem da cor do próprio formato. */
-const GRADIENTE_ROXO = "bg-[linear-gradient(180deg,#2A0A5C_0%,#4F17A8_76%)]";
-const GRADIENTE_TEAL = "bg-[linear-gradient(180deg,#012029_0%,#00799E_76%)]";
-
 /** Evento que abre a página, no banner "Evento em destaque". */
 export const EVENTO_DESTAQUE = {
   chip: "Evento em destaque",
@@ -59,78 +52,6 @@ export const EVENTO_DESTAQUE = {
   inscricaoHref: "https://www.sympla.com.br/",
   programacaoHref: "/eventos/summit-2026",
 } as const;
-
-export const EVENTOS: EventoAgenda[] = [
-  {
-    id: "summit-2026",
-    data: "09 NOV 2026",
-    formato: "Presencial",
-    categoria: "Summit",
-    titulo: "PMI-DF Summit 2026",
-    local: "Brasília — DF",
-    descricao:
-      "Reunindo profissionais, estudantes, empresas e especialistas para compartilhar tendências, experiências e oportunidades de networking.",
-    href: "https://www.sympla.com.br/",
-  },
-  {
-    id: "webinar-fator-humano",
-    data: "26 NOV 2026",
-    formato: "Online",
-    categoria: "Webinar",
-    titulo: "Webinar | O fator humano nos projetos",
-    local: "Zoom",
-    descricao:
-      "Voltado para profissionais, estudantes e líderes que desejam desenvolver uma visão mais estratégica e humana sobre gestão de projetos.",
-    href: "https://www.sympla.com.br/",
-    gradiente: GRADIENTE_ROXO,
-  },
-  {
-    id: "workshop-pmp",
-    data: "29 NOV 2026",
-    formato: "Online",
-    categoria: "Workshop",
-    titulo: "Workshop: Preparação para PMP",
-    local: "Zoom",
-    descricao:
-      "Voltado para profissionais que desejam se preparar para a certificação PMP®, uma das credenciais mais reconhecidas no mundo.",
-    href: "https://www.sympla.com.br/",
-  },
-  {
-    id: "meetup-carreira",
-    data: "05 DEZ 2026",
-    formato: "Presencial",
-    categoria: "Meetup",
-    titulo: "Meetup PMI-DF | Carreira em projetos",
-    local: "Impact Hub Brasília",
-    descricao:
-      "Encontro aberto da comunidade para troca de experiências sobre transição e evolução de carreira em gerenciamento de projetos.",
-    href: "https://www.sympla.com.br/",
-    gradiente: GRADIENTE_ROXO,
-  },
-  {
-    id: "painel-ia",
-    data: "12 DEZ 2026",
-    formato: "Híbrido",
-    categoria: "Painel",
-    titulo: "Painel | IA aplicada a projetos",
-    local: "Impact Hub + Zoom",
-    descricao:
-      "Especialistas discutem o uso prático de inteligência artificial no planejamento, na execução e no controle de projetos.",
-    href: "https://www.sympla.com.br/",
-    gradiente: GRADIENTE_TEAL,
-  },
-  {
-    id: "student-club-primeiros-passos",
-    data: "18 DEZ 2026",
-    formato: "Presencial",
-    categoria: "Student Club",
-    titulo: "Student Club | Primeiros passos",
-    local: "Brasília — DF",
-    descricao:
-      "Sessão introdutória para universitários que querem conhecer a área de projetos e o programa Student Club do capítulo.",
-    href: "https://www.sympla.com.br/",
-  },
-];
 
 export const PASSOS: PassoInscricao[] = [
   {

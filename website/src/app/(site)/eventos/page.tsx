@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
-import { getEventosSympla } from "@/lib/sympla";
 
 import {
   Agenda,
@@ -9,6 +8,8 @@ import {
   FacaParte,
   Hero,
 } from "@/components/eventos";
+import { EVENTOS_POR_PAGINA } from "@/content/eventos";
+import { getPaginaEventos } from "@/lib/sympla";
 
 /**
  * Archivo e Inter vêm do Google Fonts via `next/font`, que baixa e serve os
@@ -34,6 +35,13 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * ISR: o HTML sai do CDN e só é regerado a cada janela. Alinhado ao
+ * `revalidate` do `fetch` em `lib/sympla` — de nada adianta a página revalidar
+ * de 15 em 15 minutos se o dado por baixo estiver preso num cache mais longo.
+ */
+export const revalidate = 900;
+
 export const metadata: Metadata = {
   title: "Eventos e Programas",
   description:
@@ -46,10 +54,12 @@ export const metadata: Metadata = {
  *
  * Só orquestra a ordem das seções — conteúdo em `src/content/eventos.ts`,
  * markup em `src/components/eventos/`. Header e Rodapé vêm do layout do route
- * group `(site)`.
+ * group `(site)` e a agenda vem da Sympla via `lib/sympla`.
  */
 export default async function EventosPage() {
-  const eventos = await getEventosSympla();
+  // Só a primeira página vai no payload do RSC; o "Ver mais" busca o resto em
+  // `/api/eventos`.
+  const { eventos, total, status } = await getPaginaEventos(0, EVENTOS_POR_PAGINA);
 
   return (
     <div
@@ -57,7 +67,7 @@ export default async function EventosPage() {
     >
       <Hero />
       <EventoDestaque />
-      <Agenda eventos={eventos} />
+      <Agenda eventosIniciais={eventos} total={total} status={status} />
       <ComoSeInscrever />
       <FacaParte />
     </div>

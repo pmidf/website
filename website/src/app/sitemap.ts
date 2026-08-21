@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { site } from "@/content/site";
 
-/** Exigido por `output: "export"` — rotas de metadata precisam ser estáticas. */
+/** A lista é fixa, então não há motivo para o sitemap ser gerado por request. */
 export const dynamic = "force-static";
 
 /**
