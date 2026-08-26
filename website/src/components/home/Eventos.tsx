@@ -20,11 +20,11 @@ export async function Eventos() {
         <TituloSecao>Eventos</TituloSecao>
 
         <p className="mx-auto mt-4 max-w-[676px] text-[18px] leading-relaxed text-[#200F3B] lg:text-[24px]">
-          Summits, workshops e encontros que movem a comunidade. Presenciais e online. Inscreva-se
+          Summit, workshops e treinamentos que movem a comunidade. Presenciais e online. Inscreva-se
           nos próximos!
         </p>
 
-        <Botao href="/eventos" className="mt-6">
+        <Botao href="/eventos" variante="escuro" className="mt-6">
           Saiba mais
         </Botao>
 
