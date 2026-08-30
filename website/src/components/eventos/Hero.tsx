@@ -15,10 +15,10 @@ export function Hero() {
           Eventos PMI-DF
         </h1>
         <p className="mx-auto mt-4 max-w-[783px] text-[18px] leading-relaxed text-[#F8F8F8] lg:text-[24px]">
-          Summits, workshops, encontros e webinars. Presenciais e online. Tudo o que a comunidade
+          Summit, workshops, encontros e webinars. Presenciais e online. Tudo o que a comunidade
           de projetos do DF está fazendo agora.
         </p>
-        <Botao href="#agenda" variante="gradiente" className="mt-7">
+        <Botao href="#agenda" variante="branco" className="mt-7">
           Ver agenda completa
         </Botao>
       </Container>

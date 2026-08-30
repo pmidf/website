@@ -53,7 +53,7 @@ export function Hero() {
             O Capítulo oficial do Project Management Institute no DF. Conectamos profissionais,
             empresas e instituições às melhores práticas globais de gerenciamento de projetos.
           </p>
-          <Botao href="quem-somos/" className="mt-7">
+          <Botao href="quem-somos/" variante="vidro" className="mt-7">
             Saiba mais
           </Botao>
         </div>

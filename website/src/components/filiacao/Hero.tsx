@@ -14,7 +14,7 @@ export function Hero() {
           Filie-se a maior comunidade de gerenciamentos de projetos do mundo! E participe dos
           eventos do PMI-DF.
         </p>
-        <Botao href={URL_PMI_GLOBAL} external variante="claro" className="mt-7">
+        <Botao href={URL_PMI_GLOBAL} external variante="branco" className="mt-7">
           Quero me filiar
         </Botao>
       </Container>

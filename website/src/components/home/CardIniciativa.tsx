@@ -27,7 +27,7 @@ export function CardIniciativa({ item }: { item: Iniciativa }) {
       <p className="relative mt-3 flex-1 text-[15px] leading-relaxed text-white/95">
         {item.descricao}
       </p>
-      <Botao href={item.href} className="relative mt-5 self-start">
+      <Botao href={item.href} variante="vidro" className="relative mt-5 self-start">
         Saiba mais
       </Botao>
     </article>

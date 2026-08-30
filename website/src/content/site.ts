@@ -7,7 +7,7 @@ export const site = {
   name: "PMI Distrito Federal",
   shortName: "PMI-DF",
   description:
-    "Capítulo oficial do Project Management Institute no Distrito Federal. Conectamos profissionais, empresas e instituições às melhores práticas globais de gerenciamento de projetos.",
+    "Capítulo oficial do Project Management Institute no Distrito Federal. Conectamos profissionais, empresas e instituições às melhores práticas de gestão, projetos e liderança.",
   // TODO: confirmar o domínio de produção — usado em metadataBase, robots e sitemap.
   url: "https://pmidf.org.br",
   locale: "pt-BR",

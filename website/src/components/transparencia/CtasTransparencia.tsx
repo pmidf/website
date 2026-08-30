@@ -1,5 +1,4 @@
-import Link from "next/link";
-
+import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 import { CTAS_TRANSPARENCIA } from "@/content/transparencia";
 
@@ -8,6 +7,14 @@ const estilos = {
   azul: "bg-[linear-gradient(180deg,#012029_0%,#00799E_100%)] text-white",
   claro: "bg-Blue text-[#200F3B]",
 };
+
+/** Cards com fundo escuro (roxo/azul) usam botão branco para contraste;
+ * o card claro usa botão escuro. */
+const variantePorCard = {
+  roxo: "branco",
+  azul: "branco",
+  claro: "escuro",
+} as const;
 
 export function CtasTransparencia() {
   return (
@@ -31,14 +38,14 @@ export function CtasTransparencia() {
                 {item.descricao}
               </p>
 
-              <Link
+              <Botao
                 href={item.href}
-                target={item.externo ? "_blank" : undefined}
-                rel={item.externo ? "noopener noreferrer" : undefined}
-                className="mt-7 inline-flex rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-6 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
+                external={item.externo}
+                variante={variantePorCard[item.variante as keyof typeof variantePorCard]}
+                className="mt-7"
               >
                 {item.cta}
-              </Link>
+              </Botao>
             </article>
           ))}
         </div>
