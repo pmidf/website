@@ -37,9 +37,9 @@ export const NAV_LINKS: NavLink[] = [
  * TODO: trocar pelos perfis reais do capítulo.
  */
 export const REDES: RedeSocial[] = [
-  { nome: "LinkedIn", href: "https://linkedin.com", Icone: FaLinkedinIn },
-  { nome: "Facebook", href: "https://facebook.com", Icone: FaFacebookF },
-  { nome: "Instagram", href: "https://instagram.com", Icone: FaInstagram },
-  { nome: "YouTube", href: "https://youtube.com", Icone: FaYoutube },
+  { nome: "LinkedIn", href: "https://www.linkedin.com/company/pmi-df/", Icone: FaLinkedinIn },
+  { nome: "Facebook", href: "https://www.facebook.com/pmidistritofederal", Icone: FaFacebookF },
+  { nome: "Instagram", href: "https://www.instagram.com/pmidf/", Icone: FaInstagram },
+  { nome: "YouTube", href: "https://www.youtube.com/@PMIDF-BR", Icone: FaYoutube },
   { nome: "WhatsApp", href: "https://wa.me/", Icone: FaWhatsapp },
 ];

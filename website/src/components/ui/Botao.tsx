@@ -21,6 +21,23 @@ const VARIANTES = {
     "backdrop-blur-[2px] shadow-[0_4px_2px_rgba(0,0,0,0.25)] ring-1 ring-white/15 " +
     "hover:brightness-125 focus-visible:outline-white",
 
+  /** Efeito vidro (aproximação do Glass effect do Figma via CSS). */
+  /* Referencia angulos do brilho:
+  135deg → brilho no canto superior esquerdo
+  225deg → brilho no canto superior direito
+  45deg → brilho no canto inferior direito
+  315deg → brilho no canto inferior esquerdo */
+  vidro:
+    "relative px-6 py-2 text-base text-white font-normal overflow-hidden " +
+    "rounded-[30px] border border-white/[0.12] " +
+    "bg-[linear-gradient(90deg,rgba(0,0,0,0.2)_12%,rgba(31,9,66,0.2)_100%)] " +
+    "backdrop-blur-[4px] " +
+    "before:absolute before:inset-0 before:rounded-[30px] " +
+    "before:bg-[linear-gradient(225deg,rgba(255,255,255,0.28)_0%,transparent_45%)] " +
+    "before:pointer-events-none " +
+    "shadow-[0_4px_2px_rgba(0,0,0,0.25)] " +
+    "hover:brightness-110 focus-visible:outline-current",
+
   /** Mesmo gradiente, mais opaco e sem blur — CTA principal de Eventos. */
   gradiente:
     "px-[26px] py-[11px] text-[15px] font-medium text-white " +

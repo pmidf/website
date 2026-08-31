@@ -15,8 +15,6 @@ export function Beneficios() {
           <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#200F3B]">
             Benefícios
           </TituloSecao>
-          {/* TODO: o protótipo ainda traz "Texto texto texto texto" aqui —
-              a chamada precisa ser escrita antes de publicar. */}
           <p className="mt-4 text-[20px] font-bold leading-snug text-[#1F0942] lg:text-[24px]">
             Texto texto texto texto
           </p>

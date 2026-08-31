@@ -13,7 +13,7 @@ export function Hero() {
         <p className="mx-auto mt-4 max-w-[783px] text-[18px] text-[#F8F8F8] lg:text-[24px]">
           Onde a sua jornada começa.
         </p>
-        <Botao href={URL_VEP} external variante="claro" className="mt-7">
+        <Botao href={URL_VEP} external variante="branco" className="mt-7">
           Ver vagas abertas
         </Botao>
       </Container>

@@ -25,7 +25,7 @@ export const HERO = {
     { texto: "PMI Distrito Federal", forte: true },
     { texto: ". Conheça quem constrói o capítulo todos os dias." },
   ],
-  botaoLabel: "Conheça o PMI Global",
+  botaoLabel: "Conheça o PMI",
   // O botão existe no Figma em x=87 y=560, fora dos 319px do frame do Hero —
   // erro de posicionamento no protótipo. Mantido, mas centralizado sob o
   // subtítulo em vez de reproduzir a posição órfã.
@@ -48,7 +48,7 @@ export const BLOCO_PMI: BlocoInstitucional = {
     [
       {
         texto:
-          "Reúne mais de 500 mil membros em mais de 200 países. Define padrões, emite certificações reconhecidas globalmente e publica o PMBOK, referência da área.",
+          "Reúne mais de 750 mil membros em mais de 290 capítulos. Define padrões, emite certificações reconhecidas globalmente e publica o PMBOK, referência da área.",
       },
     ],
   ],
@@ -57,7 +57,7 @@ export const BLOCO_PMI: BlocoInstitucional = {
 export const BLOCO_PMIDF: BlocoInstitucional = {
   titulo: "O Capítulo do PMI-DF",
   paragrafos: [
-    [{ texto: "O PMI-DF é o braço oficial do PMI no Distrito Federal. " }],
+    [{ texto: "O PMI-DF é o braço oficial do PMI no DF e entorno. " }],
     [{ texto: "Traduzimos a missão global em ações locais. " }],
     [
       {
@@ -132,7 +132,7 @@ export const DIRETORIA = {
     altura: 517,
   },
   rodapeTexto: "Conheça também nossos",
-  botaoLabel: "+190 voluntários ativos",
+  botaoLabel: "voluntários",
   // Único destino existente no site para "voluntários" (ver INICIATIVAS na
   // home) — a página em si ainda não foi implementada.
   botaoHref: "/voluntariado",

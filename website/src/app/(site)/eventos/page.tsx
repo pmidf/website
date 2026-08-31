@@ -45,7 +45,7 @@ export const revalidate = 900;
 export const metadata: Metadata = {
   title: "Eventos e Programas",
   description:
-    "Summits, workshops, encontros e webinars do PMI-DF. Presenciais e online, com inscrição pelo Sympla.",
+    "Summit, workshops, encontros e webinars do PMI-DF. Presenciais e online, com inscrição pelo Sympla.",
   alternates: { canonical: "/eventos" },
 };
 

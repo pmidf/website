@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Archivo, Inter } from "next/font/google";
 
 import { Container } from "@/components/ui/Container";
+import { Botao } from "@/components/ui/Botao";
 
 const archivo = Archivo({
   subsets: ["latin"],
@@ -140,12 +141,9 @@ export default function MaximizePage() {
             nível. Mentoria estruturada, conteúdo aplicado e comunidade de alto desempenho.
           </p>
 
-          <Link
-            href="#participar"
-            className="mt-7 inline-flex rounded-full bg-[linear-gradient(90deg,#A84519_0%,#00799E_100%)] px-8 py-3 text-[14px] font-medium text-white shadow-[0_4px_10px_rgba(0,0,0,0.25)] transition hover:brightness-110"
-          >
+          <Botao href="#participar" variante="branco" className="mt-7">
             Conhecer o programa
-          </Link>
+          </Botao>
         </Container>
       </section>
 

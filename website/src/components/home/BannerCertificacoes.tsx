@@ -43,7 +43,7 @@ export function BannerCertificacoes() {
             <p className="mt-6 text-[20px] font-bold text-white md:text-[26px] lg:text-[32px]">
               PMP® CAPM® PMIPMOCP® PMIACP®
             </p>
-            <Botao href="/certificacao" className="mt-7">
+            <Botao href="/certificacao" variante="vidro" className="mt-7">
               Saiba mais
             </Botao>
           </div>
