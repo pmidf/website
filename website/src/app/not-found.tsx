@@ -14,7 +14,7 @@ export default function NotFound() {
         <p className="mt-4 max-w-md text-[18px] leading-relaxed text-[#200F3B]">
           O endereço acessado não existe ou foi movido.
         </p>
-        <Botao href="/" className="mt-8">
+        <Botao href="/" className="mt-8" variante="texto-gradiente">
           Voltar para a home
         </Botao>
       </Container>

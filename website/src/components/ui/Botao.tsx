@@ -80,6 +80,46 @@ const VARIANTES = {
   "contorno-escuro":
     "px-[26px] py-[11px] text-[15px] font-medium border-[1.5px] border-[#1F0942]/35 text-[#1F0942] " +
     "hover:bg-[#1F0942]/5 focus-visible:outline-current",
+
+    /** Sólido roxo com sombra — texto branco. */
+roxo:
+  "px-[26px] py-[11px] text-[15px] font-medium bg-[#1F0942] text-white " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-[#2A0A5C] focus-visible:outline-current",
+
+/** Sólido petróleo com sombra — texto branco. Distinto de `teal` (que usa #F8F5F0, sem sombra). */
+petroleo:
+  "px-[26px] py-[11px] text-[15px] font-medium bg-[#023041] text-white " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-[#03445C] focus-visible:outline-current",
+
+/** Sólido terracota com sombra — texto branco. */
+terracota:
+  "px-[26px] py-[11px] text-[15px] font-medium bg-[#841E04] text-white " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-[#9E2405] focus-visible:outline-current",
+
+/** Fundo branco com sombra — texto roxo. */
+"texto-roxo":
+  "px-[26px] py-[11px] text-[15px] font-medium bg-white text-[#1F0942] " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-white/90 focus-visible:outline-current",
+
+/** Fundo branco com sombra — texto petróleo. */
+"texto-petroleo":
+  "px-[26px] py-[11px] text-[15px] font-medium bg-white text-[#023041] " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-white/90 focus-visible:outline-current",
+
+/** Fundo branco com sombra — texto terracota. */
+"texto-terracota":
+  "px-[26px] py-[11px] text-[15px] font-medium bg-white text-[#841E04] " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-white/90 focus-visible:outline-current",
+
+/**
+ * Fundo branco com sombra — texto recortado em gradiente (roxo → azul → laranja).
+ * Precisa do <span> interno, igual à variante `claro`.
+ */
+"texto-gradiente":
+  "px-[26px] py-[11px] text-[15px] font-medium bg-white " +
+  "shadow-[0_4px_2px_rgba(0,0,0,0.25)] hover:bg-white/90 focus-visible:outline-current " +
+  "[&>span]:bg-[linear-gradient(90deg,#1F0942_0%,#1AC7FF_50%,#FF610F_100%)] " +
+  "[&>span]:bg-clip-text [&>span]:text-transparent",
 } as const;
 
 export type VarianteBotao = keyof typeof VARIANTES;
