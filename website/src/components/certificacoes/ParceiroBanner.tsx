@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Botao } from "@/components/ui/Botao";
 
 type ParceiroBannerProps = {
   badge: string;
@@ -76,24 +76,25 @@ export function ParceiroBanner({
             ) : null}
 
             <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <Link
+              {/* Variantes do `Botao`, e não pílulas montadas aqui: é a
+                  padronização que a branch fix/cores-e-textos trouxe, aplicada
+                  à estrutura nova destes banners. */}
+              <Botao
                 href={ctaPrincipal.href}
-                target={ctaPrincipal.href.startsWith("http") ? "_blank" : undefined}
-                rel={ctaPrincipal.href.startsWith("http") ? "noreferrer" : undefined}
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[linear-gradient(90deg,#C4754E_0%,#B5E5F1_100%)] px-7 text-[15px] font-bold text-[#1F1144] transition hover:scale-[1.02]"
+                external={ctaPrincipal.href.startsWith("http")}
+                variante="texto-roxo"
               >
                 {ctaPrincipal.label}
-              </Link>
+              </Botao>
 
               {ctaSecundario ? (
-                <Link
+                <Botao
                   href={ctaSecundario.href}
-                  target={ctaSecundario.href.startsWith("http") ? "_blank" : undefined}
-                  rel={ctaSecundario.href.startsWith("http") ? "noreferrer" : undefined}
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/50 px-7 text-[15px] font-bold text-white transition hover:bg-white/10"
+                  external={ctaSecundario.href.startsWith("http")}
+                  variante="contorno-claro"
                 >
                   {ctaSecundario.label}
-                </Link>
+                </Botao>
               ) : null}
             </div>
           </div>
@@ -107,14 +108,14 @@ export function ParceiroBanner({
           </div>
 
           {observacaoCta ? (
-            <Link
+            <Botao
               href={observacaoCta.href}
-              target={observacaoCta.href.startsWith("http") ? "_blank" : undefined}
-              rel={observacaoCta.href.startsWith("http") ? "noreferrer" : undefined}
-              className="inline-flex min-h-[46px] shrink-0 items-center justify-center rounded-full bg-[linear-gradient(90deg,#C4754E_0%,#B5E5F1_100%)] px-6 text-[15px] font-bold text-[#1F1144] transition hover:scale-[1.02]"
+              external={observacaoCta.href.startsWith("http")}
+              variante="texto-terracota"
+              className="shrink-0"
             >
               {observacaoCta.label}
-            </Link>
+            </Botao>
           ) : null}
         </div>
       )}

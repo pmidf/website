@@ -60,8 +60,8 @@
    * Fallbacks reais em cada stack: enquanto os .woff2 não estiverem em
    * `public/fonts/`, o site renderiza com métrica próxima em vez de quebrar.
    * ------------------------------------------------------------------- */
-  --font-display: "Aeonik", "Segoe UI", system-ui, sans-serif;
-  --font-sans: "Aptos", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Agrandir", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Aeonik", "Segoe UI", system-ui, sans-serif;
   --font-narrow: "Aptos Narrow", "Aptos", "Segoe UI Semibold", sans-serif;
   --font-serif: "Teodor", "Aptos Serif", Georgia, serif;
   --font-mono: "Aptos Mono", ui-monospace, "Cascadia Mono", monospace;

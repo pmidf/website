@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { Botao } from "@/components/ui/Botao";
 
 export function FiliadosDesconto() {
   return (
@@ -20,12 +20,9 @@ export function FiliadosDesconto() {
           </p>
         </div>
 
-        <Link
-          href="/filiacao"
-          className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-        >
+        <Botao href="/filiacao" variante = "texto-petroleo">
           Quero me filiar
-        </Link>
+        </Botao>
       </Container>
     </section>
   );
