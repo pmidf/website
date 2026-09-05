@@ -32,7 +32,10 @@ const MENU_ITEMS: MenuItem[] = [
     label: "Eventos e Programas",
     children: [
       { label: "Eventos", href: "/eventos" },
-      { label: "Maximize", href: "/maximize" },
+      // Maximize sai do menu até o lançamento do programa. A página continua
+      // em `(site)/maximize/` (com noindex) para revisão interna — basta
+      // descomentar esta linha quando for ao ar.
+      // { label: "Maximize", href: "/maximize" },
       { label: "Mentoring", href: "/mentoring" },
     ],
   },
@@ -44,10 +47,12 @@ const MENU_ITEMS: MenuItem[] = [
     label: "InCompany",
     href: "/incompany",
   },
-  {
-    label: "Blog",
-    href: "/blog",
-  },
+  // O blog ainda não foi desenvolvido — sem página em `(site)/blog/`, o item
+  // levava direto ao 404. Descomentar junto com a criação da rota.
+  // {
+  //   label: "Blog",
+  //   href: "/blog",
+  // },
   {
     label: "Contato",
     href: "/contato",

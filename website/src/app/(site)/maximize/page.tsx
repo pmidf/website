@@ -19,11 +19,20 @@ const inter = Inter({
   display: "swap",
 });
 
+/**
+ * Página fora do ar até o lançamento do programa.
+ *
+ * O arquivo continua aqui de propósito: o link no Header e a entrada no
+ * `sitemap.ts` estão comentados, e o `robots` abaixo tira a rota do índice.
+ * A URL segue respondendo para revisão interna — para reativar, descomente as
+ * duas referências e remova o bloco `robots`.
+ */
 export const metadata: Metadata = {
   title: "Programa Maximize",
   description:
     "Programa de aceleração de carreira para profissionais de projetos do PMI-DF.",
   alternates: { canonical: "/maximize" },
+  robots: { index: false, follow: false },
 };
 
 const paraQuem = [
