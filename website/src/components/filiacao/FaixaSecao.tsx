@@ -18,16 +18,28 @@ import { cn } from "@/lib/utils";
  *
  * A seção que usa esta faixa precisa de `overflow-x-clip`: o pseudo-elemento
  * do lado direito passa da janela e, sem isso, cria barra de rolagem.
+ *
+ * ## A sombra é `drop-shadow`, e não `box-shadow`
+ *
+ * Antes a faixa e o pseudo-elemento tinham cada um o seu `box-shadow`. Como o
+ * pseudo é filho, a sombra dele é pintada por cima do fundo da faixa — e como
+ * a borda direita do pseudo encosta na borda esquerda da faixa, aparecia uma
+ * listra escura vertical no meio da faixa, no ponto em que as duas se
+ * encontram. Era o "fundo bugado".
+ *
+ * `filter: drop-shadow` resolve porque é aplicado à silhueta já composta do
+ * elemento com os filhos: uma sombra só, contornando a faixa inteira, sem
+ * costura interna.
  */
 const LADOS = {
   esquerda:
     "rounded-r-[50px] pr-8 md:pr-10 " +
     "before:absolute before:inset-y-0 before:right-full before:w-[50vw] " +
-    "before:bg-inherit before:shadow-[0_4px_4px_rgba(0,0,0,0.25)] before:content-['']",
+    "before:bg-inherit before:content-['']",
   direita:
     "ml-auto rounded-l-[50px] pl-8 text-right md:pl-10 " +
     "after:absolute after:inset-y-0 after:left-full after:w-[50vw] " +
-    "after:bg-inherit after:shadow-[0_4px_4px_rgba(0,0,0,0.25)] after:content-['']",
+    "after:bg-inherit after:content-['']",
 } as const;
 
 export function FaixaSecao({
@@ -46,7 +58,7 @@ export function FaixaSecao({
   return (
     <div
       className={cn(
-        "relative py-8 shadow-[0_4px_4px_rgba(0,0,0,0.25)] lg:py-10",
+        "relative py-8 drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] lg:py-10",
         LADOS[lado],
         cor,
         className,

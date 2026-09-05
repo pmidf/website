@@ -1,6 +1,7 @@
 import { FaixaSecao } from "@/components/filiacao/FaixaSecao";
-import { FotoCircular } from "@/components/filiacao/FotoCircular";
+import { FotoSecao } from "@/components/filiacao/FotoSecao";
 import { Container } from "@/components/ui/Container";
+import { assets } from "@/content/assets";
 import { TituloSecao } from "@/components/ui/TituloSecao";
 import { BENEFICIOS_GLOBAL } from "@/content/filiacao";
 
@@ -13,7 +14,7 @@ export function BeneficiosGlobal() {
           <TituloSecao className="font-display font-extrabold leading-[1.18] text-white">
             Benefícios do PMI
           </TituloSecao>
-          <p className="mt-4 text-[18px] leading-snug text-white lg:text-[24px]">
+          <p className="mt-3 text-[17px] leading-relaxed text-white lg:text-[19px]">
             Recursos que vêm com a filiação. Tudo que o PMI oferece a mais de 800 mil profissionais
             no mundo.
           </p>
@@ -27,13 +28,17 @@ export function BeneficiosGlobal() {
                a lista não batia nem com o título da faixa acima nem com a
                lista da seção seguinte, que tem ícones e é alinhada. */
             <li key={item.titulo} className="text-[#1F0942]">
-              <p className="text-[20px] font-bold lg:text-[24px]">{item.titulo}</p>
-              <p className="mt-1 text-[17px] leading-snug lg:text-[24px]">{item.descricao}</p>
+              <p className="text-[18px] font-bold lg:text-[20px]">{item.titulo}</p>
+              <p className="mt-1 text-[16px] leading-relaxed lg:text-[17px]">{item.descricao}</p>
             </li>
           ))}
         </ul>
 
-        <FotoCircular className="mx-auto lg:mx-0" />
+        <FotoSecao
+          src={assets.filiacao.encontro}
+          alt="Filiados reunidos no salão do Encontro de Filiados do PMI-DF"
+          className="mx-auto lg:mx-0"
+        />
       </Container>
     </section>
   );

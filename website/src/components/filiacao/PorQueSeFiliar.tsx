@@ -28,7 +28,7 @@ export function PorQueSeFiliar() {
             <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#200F3B]">
               Por que se filiar
             </TituloSecao>
-            <p className="mt-2 text-[18px] text-[#200F3B] lg:text-[24px]">
+            <p className="mt-3 text-[17px] text-[#200F3B] lg:text-[19px]">
               Três motivos para se filiar agora
             </p>
           </div>

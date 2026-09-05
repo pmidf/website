@@ -1,6 +1,6 @@
 /**
  * Barrel das seções de Filiação — mantém `page.tsx` com um import só.
- * `FotoCircular` e `FaixaSecao` não são reexportados: são blocos internos,
+ * `FotoSecao` e `FaixaSecao` não são reexportados: são blocos internos,
  * usados pelas seções e não pela página.
  */
 export { Hero } from "@/components/filiacao/Hero";

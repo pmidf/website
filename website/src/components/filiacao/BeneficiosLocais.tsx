@@ -1,6 +1,7 @@
 import { FaixaSecao } from "@/components/filiacao/FaixaSecao";
-import { FotoCircular } from "@/components/filiacao/FotoCircular";
+import { FotoSecao } from "@/components/filiacao/FotoSecao";
 import { Container } from "@/components/ui/Container";
+import { assets } from "@/content/assets";
 import { TituloSecao } from "@/components/ui/TituloSecao";
 import { BENEFICIOS_LOCAIS } from "@/content/filiacao";
 
@@ -16,10 +17,10 @@ export function BeneficiosLocais() {
           <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#F8F5F0]">
             Benefícios exclusivos do PMI-DF
           </TituloSecao>
-          <p className="mt-3 text-[18px] text-[#F8F5F0] lg:text-[24px]">
+          <p className="mt-3 text-[17px] text-[#F8F5F0] lg:text-[19px]">
             Clube de Benefícios PMI-DF.
           </p>
-          <p className="mt-3 text-[17px] leading-snug text-[#F8F5F0] lg:text-[24px]">
+          <p className="mt-2 text-[17px] leading-relaxed text-[#F8F5F0] lg:text-[19px]">
             Vantagens para os filiados. Atualizamos a lista regularmente!
           </p>
         </FaixaSecao>
@@ -40,14 +41,18 @@ export function BeneficiosLocais() {
                 <span aria-hidden className="h-[42px] w-[42px] shrink-0 lg:h-[53px] lg:w-[53px]" />
               )}
               <div className="text-[#1F0942]">
-                <p className="text-[20px] font-bold lg:text-[24px]">{titulo}</p>
-                <p className="mt-1 text-[17px] leading-snug lg:text-[24px]">{descricao}</p>
+                <p className="text-[18px] font-bold lg:text-[20px]">{titulo}</p>
+                <p className="mt-1 text-[16px] leading-relaxed lg:text-[17px]">{descricao}</p>
               </div>
             </li>
           ))}
         </ul>
 
-        <FotoCircular className="mx-auto lg:mx-0" />
+        <FotoSecao
+          src={assets.filiacao.grupo}
+          alt="Voluntários e filiados do PMI-DF no evento Projeta Gov"
+          className="mx-auto lg:mx-0"
+        />
       </Container>
     </section>
   );

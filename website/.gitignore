@@ -45,5 +45,7 @@ next-env.d.ts
 # lado, já recortados e comprimidos; `images.unoptimized` está ligado, então
 # qualquer arquivo aqui vai para o navegador como está.
 public/assets/**/*.JPG
+public/assets/**/*.HEIC
+public/assets/**/*.heic
 public/assets/**/*.jpg
 public/assets/**/*.jpeg

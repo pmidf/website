@@ -65,9 +65,20 @@ export const assets = {
     banner: "/assets/paginas/eventos/banner.webp",
   },
 
+  /**
+   * Fotos da página Filiação — uma por seção, todas 4:3.
+   *
+   * Antes as três seções repetiam a mesma arte quadrada recortada em círculo.
+   * Agora cada uma tem a sua, e o formato deitado mostra o ambiente em vez de
+   * um recorte fechado no meio.
+   */
   filiacao: {
-    /** Foto quadrada (572 × 572) recortada em círculo, repetida em 3 seções. */
-    fotoEvento: "/assets/paginas/filiacao/foto-evento.webp",
+    /** Salão cheio no Encontro de Filiados. */
+    encontro: "/assets/paginas/filiacao/encontro.webp",
+    /** Time do capítulo no Projeta Gov. */
+    grupo: "/assets/paginas/filiacao/grupo.webp",
+    /** Mesa posta e painel do Encontro de Filiados. */
+    mesa: "/assets/paginas/filiacao/mesa.webp",
   },
 
   /**
