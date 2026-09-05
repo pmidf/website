@@ -76,7 +76,6 @@ export const assets = {
    */
   quemSomos: {
     heroBrasilia: "/assets/paginas/quem-somos/hero-brasilia.webp",
-    organograma: "/assets/paginas/quem-somos/organograma.webp",
     /**
      * Retratos dos presidentes, servindo a Seção 5 de Quem Somos e à galeria
      * completa em `/quem-somos/presidentes`.

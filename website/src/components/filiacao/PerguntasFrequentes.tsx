@@ -23,7 +23,7 @@ export function PerguntasFrequentes() {
 
   return (
     <section className="bg-[#F8F5F0] pb-16 lg:pb-[88px]">
-      <Container gutter="amplo">
+      <Container>
         <div className="flex flex-col items-center gap-[14px] text-center">
           <Eyebrow>Dúvidas frequentes</Eyebrow>
           <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#200F3B]">

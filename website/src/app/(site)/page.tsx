@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import {
-  BannerCertificacoes,
+  Destaques,
   Eventos,
   Hero,
   InCompany,
@@ -42,7 +42,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#F8F5F0]">
       <Hero />
-      <BannerCertificacoes />
+      <Destaques />
       <Iniciativas />
       <Eventos />
       <InCompany />

@@ -10,23 +10,22 @@ import { BENEFICIOS_LOCAIS } from "@/content/filiacao";
  */
 export function BeneficiosLocais() {
   return (
-    <section className="bg-[#F8F5F0] pb-16 pt-12 lg:pb-20">
-      <FaixaSecao cor="bg-[#023041]" lado="direita" className="lg:w-[690px] lg:pl-10 lg:pr-[70px]">
-        <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#F8F5F0]">
-          Benefícios exclusivos do PMI-DF
-        </TituloSecao>
-        <p className="mt-3 text-[18px] text-[#F8F5F0] lg:text-[24px]">
-          Clube de Benefícios PMI-DF.
-        </p>
-        <p className="mt-3 text-[17px] leading-snug text-[#F8F5F0] lg:text-[24px]">
-          Vantagens para os filiados. Atualizamos a lista regularmente!
-        </p>
-      </FaixaSecao>
+    <section className="overflow-x-clip bg-[#F8F5F0] pb-16 pt-12 lg:pb-20">
+      <Container>
+        <FaixaSecao cor="bg-[#023041]" lado="direita" className="lg:max-w-[620px]">
+          <TituloSecao className="font-display font-extrabold leading-[1.18] text-[#F8F5F0]">
+            Benefícios exclusivos do PMI-DF
+          </TituloSecao>
+          <p className="mt-3 text-[18px] text-[#F8F5F0] lg:text-[24px]">
+            Clube de Benefícios PMI-DF.
+          </p>
+          <p className="mt-3 text-[17px] leading-snug text-[#F8F5F0] lg:text-[24px]">
+            Vantagens para os filiados. Atualizamos a lista regularmente!
+          </p>
+        </FaixaSecao>
+      </Container>
 
-      <Container
-        gutter="amplo"
-        className="mt-10 flex flex-col gap-10 lg:mt-14 lg:flex-row-reverse lg:items-center lg:gap-16"
-      >
+      <Container className="mt-10 flex flex-col gap-10 lg:mt-14 lg:flex-row-reverse lg:items-center lg:gap-16">
         <ul className="flex flex-col gap-6 lg:flex-1">
           {BENEFICIOS_LOCAIS.map(({ titulo, descricao, Icone }) => (
             <li key={titulo} className="flex items-start gap-4">

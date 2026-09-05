@@ -1,5 +1,7 @@
 import type { IconType } from "react-icons";
 
+import type { VarianteBotao } from "@/components/ui/Botao";
+
 /**
  * Contratos de dados do site institucional PMI-DF.
  *
@@ -40,6 +42,29 @@ export type Deco = {
   altura: number;
   /** Classes de posicionamento e tamanho responsivo dentro do card. */
   classe: string;
+};
+
+/**
+ * Slide do carrossel de destaques da home.
+ *
+ * `destaque` é a linha de reforço abaixo da descrição — as siglas das
+ * credenciais num slide, a data e o local do evento no outro. Muda de papel
+ * conforme o assunto, mas ocupa sempre a mesma posição na composição.
+ */
+export type BannerDestaque = {
+  id: string;
+  titulo: string;
+  descricao: string;
+  destaque: string;
+  ctaLabel: string;
+  ctaHref: string;
+  /** Inscrição fora do site (Sympla) abre em nova aba. */
+  ctaExterno?: boolean;
+  ctaVariante: VarianteBotao;
+  /** Classe Tailwind do fundo do card. */
+  fundo: string;
+  /** Arte decorativa da direita: caminho e largura da coluna que a contém. */
+  deco: { src: string; classe: string };
 };
 
 /** Card da seção "Conheça mais das nossas iniciativas". */

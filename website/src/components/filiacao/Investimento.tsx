@@ -15,7 +15,6 @@ export function Investimento() {
   return (
     <section className="bg-[#F8F5F0] py-16 lg:py-[88px]">
       <Container
-        gutter="amplo"
         className="flex flex-col gap-10 lg:flex-row lg:items-start lg:gap-[60px]"
       >
         <div className="flex flex-col items-start gap-4 lg:flex-1">

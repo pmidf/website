@@ -3,7 +3,7 @@
  * Os cards não são reexportados: são detalhe interno das seções.
  */
 export { Hero } from "@/components/home/Hero";
-export { BannerCertificacoes } from "@/components/home/BannerCertificacoes";
+export { Destaques } from "@/components/home/Destaques";
 export { Iniciativas } from "@/components/home/Iniciativas";
 export { Eventos } from "@/components/home/Eventos";
 export { InCompany } from "@/components/home/InCompany";

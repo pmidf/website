@@ -11,12 +11,18 @@ import { EVENTO_DESTAQUE } from "@/content/eventos";
  * O fundo é uma arte única: gradiente e círculos decorativos já vêm no
  * arquivo, então não há gradiente CSS nem imagens de ornamento posicionadas
  * em absoluto — o que também resolve o recorte no mobile de graça.
+ *
+ * A arte foi aparada para ser um retângulo opaco de ponta a ponta. O export
+ * original trazia margem transparente, sombra e cantos arredondados embutidos:
+ * com `object-cover` dentro de um contêiner que também arredonda, a sombra
+ * era esticada para dentro do cartão e os cantos da arte apareciam recortados
+ * por cima dos cantos do contêiner. Cantos e sombra agora são só CSS.
  */
 export function EventoDestaque() {
   return (
     <section className="relative z-10 -mt-12 rounded-t-[32px] bg-[#F8F5F0] pt-10 lg:-mt-16 lg:rounded-t-[50px] lg:pt-[33px]">
       <Container gutter="amplo">
-        <div className="relative isolate overflow-hidden rounded-[24px] px-6 py-10 md:px-10 md:py-12 lg:px-14 lg:py-12">
+        <div className="relative isolate overflow-hidden rounded-[24px] shadow-[0_4px_16px_rgba(32,15,59,0.18)] px-6 py-10 md:px-10 md:py-12 lg:px-14 lg:py-12">
           <Image
             src={assets.eventos.banner}
             alt=""
@@ -44,9 +50,6 @@ export function EventoDestaque() {
             <div className="mt-2 flex flex-wrap gap-[14px]">
               <Botao href={EVENTO_DESTAQUE.inscricaoHref} external variante="branco">
                 Inscreva-se no Sympla
-              </Botao>
-              <Botao href={EVENTO_DESTAQUE.programacaoHref} variante="contorno-claro">
-                Ver programação
               </Botao>
             </div>
           </div>
