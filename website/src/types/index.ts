@@ -181,34 +181,32 @@ export type PassoVoluntariado = {
 
 /* --- Página Mentoring ----------------------------------------------------- */
 
-/** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */
-export type EstatisticaMentoring = {
-  numero: string;
-  legenda: string;
-  cor: string;
-};
-
-/** Um dos dois cards de "Você pode entrar como mentor ou mentorado". */
-export type CaminhoMentoring = {
-  /** Define a variante visual do card (gradiente roxo vs. branco). */
+/**
+ * Um dos dois públicos do programa, com os requisitos do edital.
+ *
+ * `perfil` define a variante visual do card (gradiente roxo vs. branco) e
+ * `ctaHref` é um destino diferente por público: mentores se inscrevem pelo VEP
+ * do PMI Global, mentorados por formulário.
+ */
+export type PerfilMentoring = {
   perfil: "mentorado" | "mentor";
   titulo: string;
-  citacao: string;
-  itens: string[];
+  descricao: string;
+  requisitos: string[];
   ctaLabel: string;
+  ctaHref: string;
 };
 
-/** Etapa numerada da seção "Estrutura do ciclo". */
+/** Etapa numerada da seção "Etapas do programa". */
 export type EtapaCiclo = {
   titulo: string;
   descricao: string;
 };
 
-/** Card de "O que a mentoria entrega". `cor` é um `var()` de `mentoring.css`. */
-export type EntregaMentoring = {
-  titulo: string;
-  descricao: string;
-  cor: string;
+/** Linha da tabela de cronograma: uma fase do ciclo e a janela em que ocorre. */
+export type FaseCronograma = {
+  fase: string;
+  data: string;
 };
 
 /* --- Página Quem Somos ----------------------------------------------------- */

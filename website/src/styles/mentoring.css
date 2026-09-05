@@ -1,29 +1,31 @@
 /* ---------------------------------------------------------------------------
- * Página Mentoring — tradução direta do protótipo Figma.
+ * Página Mentoring — 14º Ciclo.
  *
- * Grid do protótipo: página de 1280, conteúdo de 1140, margem lateral de 70.
- * Todas as medidas abaixo são as do arquivo original — não arredonde ao editar.
+ * A linguagem visual é a do protótipo Figma original (hero roxo, curva creme,
+ * cards claros, seção escura de contraste). O que mudou foi o conteúdo: a
+ * página deixou de ser institucional genérica e passou a apresentar um ciclo
+ * concreto — datas, requisitos do edital, cronograma e resultado.
  *
  * Prefixo `mtr-` em todas as classes: este arquivo é global (importado pela
  * página) e o prefixo evita colisão com o resto do site, que é Tailwind.
+ *
+ * As 8 cores nomeadas vêm de `tokens.css`, compartilhado com Quem Somos.
  * ------------------------------------------------------------------------- */
 
 @import "./tokens.css";
 
 /* ===========================================================================
- * TOKENS
- * As 8 cores nomeadas vêm de `tokens.css` (compartilhadas com Quem Somos).
- * Aqui ficam só os derivados específicos desta página.
+ * TOKENS DERIVADOS
  * ======================================================================== */
 
 :root {
   --branco: #ffffff;
 
-  /* --- Derivados: transparências sobre fundo claro ----------------------- */
+  /* --- Transparências sobre fundo claro --------------------------------- */
   --borda-clara: rgba(32, 15, 59, 0.1);
   --texto-escuro-85: rgba(32, 15, 59, 0.85);
 
-  /* --- Derivados: transparências sobre fundo escuro ---------------------- */
+  /* --- Transparências sobre fundo escuro -------------------------------- */
   --branco-90: rgba(255, 255, 255, 0.9);
   --branco-88: rgba(255, 255, 255, 0.88);
   --branco-85: rgba(255, 255, 255, 0.85);
@@ -74,16 +76,36 @@
   --fonte-hero: "Agrandir", var(--font-archivo), "Archivo", system-ui,
     sans-serif;
 
+  /* --- Margem lateral ---------------------------------------------------
+   * Os mesmos valores do `Container` do resto do site (`px-5 md:px-8
+   * lg:px-10`), nos mesmos breakpoints do Tailwind. O protótipo pedia 70px
+   * fixos, o que jogava o conteúdo 30px para dentro da coluna do Header —
+   * mesma correção aplicada em Quem Somos.
+   * ------------------------------------------------------------------- */
+  --mtr-gutter: 20px;
+
   font-family: var(--fonte-corpo);
   background: var(--creme);
 }
 
-/* Faixa de conteúdo: 1140 dentro de 1280 (70 de margem de cada lado). */
+@media (min-width: 768px) {
+  .mtr-pagina {
+    --mtr-gutter: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mtr-pagina {
+    --mtr-gutter: 40px;
+  }
+}
+
+/* Faixa de conteúdo: 1280 de largura máxima, na mesma coluna do Header. */
 .mtr-container {
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
-  padding-inline: 70px;
+  padding-inline: var(--mtr-gutter);
 }
 
 /* ===========================================================================
@@ -134,6 +156,17 @@
   text-align: center;
 }
 
+.mtr-cabecalho__apoio {
+  max-width: 760px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--texto-corpo);
+}
+
+.mtr-cabecalho--centro .mtr-cabecalho__apoio {
+  margin-inline: auto;
+}
+
 /* Empilha cabeçalho + grade de cards. O espaçamento é `gap` (nunca margin nos
  * cards) — o Figma não cota essa distância; 36 é o valor lido no protótipo. */
 .mtr-secao__conteudo {
@@ -154,16 +187,25 @@
   line-height: 1.25; /* 20px de conteúdo: 8 + 20 + 8 = 36 de altura */
   text-decoration: none;
   cursor: pointer;
+  transition: filter 0.2s ease, background-color 0.2s ease;
 }
 
-/* Botão claro do hero — 186 × 36 no Figma. */
+.mtr-botao:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Botão claro do hero — o gradiente é recortado nas letras. */
 .mtr-botao--claro {
   padding: 8px 32px;
   background: var(--branco-off);
   box-shadow: var(--sombra-botao);
 }
 
-/* O gradiente é recortado nas letras; o fundo do botão continua sólido. */
+.mtr-botao--claro:hover {
+  filter: brightness(0.96);
+}
+
 .mtr-botao__gradiente {
   background: var(--gradiente-texto);
   -webkit-background-clip: text;
@@ -176,6 +218,35 @@
   padding: 9px 28px;
   background: var(--roxo-escuro);
   color: var(--branco);
+}
+
+.mtr-botao--escuro:hover {
+  background: #2a0a5c;
+}
+
+/* Secundário sobre fundo claro — usado nos CTAs repetidos do edital, que não
+ * devem competir com os botões de inscrição. */
+.mtr-botao--contorno {
+  padding: 8px 26px;
+  border: 1.5px solid rgba(31, 9, 66, 0.35);
+  color: var(--roxo-escuro);
+  background: transparent;
+}
+
+.mtr-botao--contorno:hover {
+  background: rgba(31, 9, 66, 0.05);
+}
+
+/* Sólido claro sobre fundo escuro. */
+.mtr-botao--branco {
+  padding: 9px 28px;
+  background: var(--branco);
+  color: var(--roxo-escuro);
+  box-shadow: var(--sombra-botao);
+}
+
+.mtr-botao--branco:hover {
+  filter: brightness(0.94);
 }
 
 /* --- Lista com marcadores circulares -------------------------------------- */
@@ -218,9 +289,25 @@
   gap: 16px;
   min-height: 313px;
   /* O padding inferior maior reserva espaço para a curva da seção seguinte. */
-  padding: 49px 70px 100px;
+  padding: 49px var(--mtr-gutter) 100px;
   background: var(--roxo-escuro);
   text-align: center;
+}
+
+/* Selo do ciclo. Fica acima do título porque "14º Ciclo" qualifica o
+ * programa — não é um segundo título nem parte do nome. */
+.mtr-hero__ciclo {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 18px;
+  border: 1px solid var(--branco-40);
+  border-radius: 500px;
+  background: var(--branco-16);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--branco);
 }
 
 .mtr-hero__titulo {
@@ -234,99 +321,140 @@
 
 .mtr-hero__subtitulo {
   max-width: 933px;
-  font-size: 24px;
-  /* O Figma não cota este line-height; 1.3 é o que aproxima os 313 de altura. */
-  line-height: 1.3;
+  font-size: 20px;
+  line-height: 1.5;
   color: var(--branco-off);
 }
 
 /* ===========================================================================
- * SEÇÃO 2 — O QUE É
+ * SEÇÃO 2 — DATAS DO CICLO
+ * A faixa que sobe sobre o hero. Antes trazia texto institucional; agora
+ * carrega os três dados que alguém abre a página para descobrir — prazo de
+ * inscrição, duração e para quem perguntar.
  * ======================================================================== */
 
-.mtr-oquee {
+.mtr-datas {
   /* A curva sobe sobre o hero: o z-index é o que a mantém visível. */
   position: relative;
   z-index: 2;
   margin-top: -73px;
-  min-height: 450px;
-  padding-block: 80px 90px;
+  padding-block: 70px 80px;
   background: var(--creme);
   border-radius: 40px 40px 0 0;
 }
 
-.mtr-oquee__conteudo {
+.mtr-datas__cards {
   display: flex;
-  align-items: flex-start;
-  gap: 60px;
-}
-
-/* 680 + 60 + 400 = 1140 */
-.mtr-oquee__texto {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 680px;
-  min-width: 0;
-}
-
-.mtr-oquee__paragrafo {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--texto-corpo);
-}
-
-.mtr-oquee__numeros {
-  display: flex;
-  flex-direction: column;
   align-items: stretch;
-  gap: 20px;
-  width: 400px;
-  min-width: 0;
+  gap: 24px;
+  margin-top: 32px;
 }
 
-/* Card 400 × 130 */
-.mtr-numero {
+.mtr-data {
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 6px;
-  min-height: 130px;
+  gap: 8px;
+  min-width: 0;
   padding: 26px 28px;
   background: var(--branco);
   border-radius: 16px;
   box-shadow: var(--sombra-card);
 }
 
-/* A cor vem do conteúdo (var() inline), não do markup. */
-.mtr-numero__valor {
-  font-family: var(--fonte-titulo);
-  font-weight: 800;
-  font-size: 44px;
-  line-height: 1.1;
+/* Barrinha de cor no topo, uma por card: é o que diferencia os três blocos
+ * sem precisar de ícone. A cor vem do conteúdo (var() inline). */
+.mtr-data__barra {
+  width: 44px;
+  height: 4px;
+  border-radius: 500px;
+  background: var(--cor-item, var(--roxo-primario));
 }
 
-.mtr-numero__legenda {
-  font-size: 16px;
+.mtr-data__rotulo {
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--texto-corpo);
+}
+
+.mtr-data__valor {
+  font-family: var(--fonte-titulo);
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.2;
+  color: var(--roxo-titulo);
+  /* O e-mail do terceiro card é longo e não tem espaços onde quebrar. */
+  overflow-wrap: anywhere;
+}
+
+a.mtr-data__valor {
+  text-decoration: none;
+}
+
+a.mtr-data__valor:hover {
+  color: var(--laranja);
+  text-decoration: underline;
+}
+
+.mtr-data__detalhe {
+  font-size: 15px;
+  line-height: 1.5;
   color: var(--texto-corpo);
 }
 
 /* ===========================================================================
- * SEÇÃO 3 — DOIS CAMINHOS
+ * SEÇÃO 3 — EDITAL DE ABERTURA
  * ======================================================================== */
 
-.mtr-caminhos {
+.mtr-edital {
+  padding-block: 40px 80px;
+  background: var(--creme);
+}
+
+.mtr-edital__card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 40px 44px;
+  background: var(--branco);
+  /* A barra lateral marca o bloco como citação de documento, sem precisar de
+   * moldura completa. */
+  border-left: 6px solid var(--laranja);
+  border-radius: 0 20px 20px 0;
+  box-shadow: var(--sombra-card);
+}
+
+.mtr-edital__texto {
+  max-width: 900px;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--texto-corpo);
+}
+
+.mtr-edital__card .mtr-botao {
+  align-self: flex-start;
+}
+
+/* ===========================================================================
+ * SEÇÃO 4 — QUEM PODE PARTICIPAR
+ * ======================================================================== */
+
+.mtr-perfis {
   padding-block: 80px;
   background: var(--creme);
 }
 
-.mtr-caminhos__cards {
+.mtr-perfis__cards {
   display: flex;
   /* stretch é obrigatório: iguala a altura dos dois cards. */
   align-items: stretch;
   gap: 28px;
 }
 
-.mtr-caminho {
+.mtr-perfil {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -337,80 +465,192 @@
   box-shadow: var(--sombra-caminho);
 }
 
-.mtr-caminho--mentorado {
+.mtr-perfil--mentorado {
   background: var(--gradiente-mentorado);
 }
 
-.mtr-caminho--mentor {
+.mtr-perfil--mentor {
   background: var(--branco);
   border: 1px solid var(--borda-clara);
 }
 
-.mtr-caminho__titulo {
+.mtr-perfil__titulo {
   font-family: var(--fonte-corpo);
   font-weight: 600;
   font-size: 26px;
   letter-spacing: normal;
 }
 
-.mtr-caminho--mentorado .mtr-caminho__titulo {
+.mtr-perfil--mentorado .mtr-perfil__titulo {
   color: var(--branco);
 }
 
-.mtr-caminho--mentor .mtr-caminho__titulo {
+.mtr-perfil--mentor .mtr-perfil__titulo {
   color: var(--roxo-titulo);
 }
 
-.mtr-caminho__citacao {
-  font-size: 17px;
-  line-height: 1.58;
+.mtr-perfil__descricao {
+  font-size: 16px;
+  line-height: 1.6;
 }
 
-.mtr-caminho--mentorado .mtr-caminho__citacao {
+.mtr-perfil--mentorado .mtr-perfil__descricao {
   color: var(--branco-90);
 }
 
-.mtr-caminho--mentor .mtr-caminho__citacao {
+.mtr-perfil--mentor .mtr-perfil__descricao {
   color: var(--texto-escuro-85);
 }
 
-.mtr-caminho__divisor {
+.mtr-perfil__divisor {
   height: 1px;
 }
 
-.mtr-caminho--mentorado .mtr-caminho__divisor {
+.mtr-perfil--mentorado .mtr-perfil__divisor {
   background: var(--branco-20);
 }
 
-.mtr-caminho--mentor .mtr-caminho__divisor {
+.mtr-perfil--mentor .mtr-perfil__divisor {
   background: var(--borda-clara);
 }
 
-.mtr-caminho--mentorado .mtr-lista {
+.mtr-perfil__rotulo-lista {
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.mtr-perfil--mentorado .mtr-perfil__rotulo-lista {
+  color: var(--ciano);
+}
+
+.mtr-perfil--mentor .mtr-perfil__rotulo-lista {
+  color: var(--laranja);
+}
+
+.mtr-perfil--mentorado .mtr-lista {
   color: var(--branco-78);
 }
 
-.mtr-caminho--mentor .mtr-lista {
+.mtr-perfil--mentor .mtr-lista {
   color: var(--texto-corpo);
 }
 
 /* `auto` no topo empurra o botão para a base: com os cards esticados, os dois
- * CTAs terminam alinhados mesmo com listas de alturas diferentes. */
-.mtr-caminho .mtr-botao {
+ * CTAs terminam alinhados mesmo com listas de alturas diferentes — e as duas
+ * listas aqui têm tamanhos bem diferentes (8 requisitos contra 5). */
+.mtr-perfil .mtr-botao {
   align-self: flex-start;
   margin-top: auto;
 }
 
+.mtr-perfil--mentorado .mtr-botao--escuro {
+  background: var(--branco);
+  color: var(--roxo-escuro);
+}
+
+.mtr-perfil--mentorado .mtr-botao--escuro:hover {
+  filter: brightness(0.94);
+  background: var(--branco);
+}
+
 /* ===========================================================================
- * SEÇÃO 4 — ESTRUTURA DO CICLO
+ * SEÇÃO 5 — CRONOGRAMA
+ * Tabela de verdade, e não uma lista estilizada: o dado é bidimensional
+ * (fase × data) e o leitor de tela precisa anunciar o cabeçalho de cada
+ * célula. `<th scope="row">` na fase é o que faz isso funcionar.
  * ======================================================================== */
 
-.mtr-ciclo {
+.mtr-cronograma {
   padding-block: 80px;
+  background: var(--branco);
+}
+
+/* Rolagem horizontal como rede de segurança: a tabela tem só 2 colunas e
+ * costuma caber, mas um nome de fase muito longo não pode estourar a página. */
+.mtr-tabela-wrap {
+  overflow-x: auto;
+}
+
+.mtr-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.mtr-tabela caption {
+  /* Visível só para leitor de tela: o título da seção já cumpre esse papel
+   * para quem enxerga, mas a tabela precisa do próprio nome. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.mtr-tabela th,
+.mtr-tabela td {
+  padding: 18px 20px;
+  vertical-align: top;
+}
+
+.mtr-tabela thead th {
+  border-bottom: 2px solid var(--roxo-primario);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--roxo-primario);
+}
+
+.mtr-tabela tbody tr {
+  border-bottom: 1px solid var(--borda-clara);
+}
+
+.mtr-tabela tbody tr:last-child {
+  border-bottom: 0;
+}
+
+/* Zebra discreta: com 8 linhas, ajuda o olho a não pular de fase. */
+.mtr-tabela tbody tr:nth-child(even) {
   background: var(--creme);
 }
 
-.mtr-ciclo__cards {
+.mtr-tabela tbody th {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--roxo-titulo);
+}
+
+.mtr-tabela tbody td {
+  /* Impede que "06/08 a 13/08/2026" quebre no meio da data. */
+  white-space: nowrap;
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--texto-corpo);
+}
+
+.mtr-cronograma__acao {
+  margin-top: 32px;
+}
+
+/* ===========================================================================
+ * SEÇÃO 6 — ETAPAS DO PROGRAMA
+ * Faixa escura: quebra a sequência de seções claras e separa o "o que
+ * acontece" do "quando acontece" da seção anterior.
+ * ======================================================================== */
+
+.mtr-etapas {
+  padding-block: 84px 96px;
+  background: var(--roxo-escuro);
+}
+
+.mtr-etapas__cards {
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
@@ -423,10 +663,10 @@
   flex-direction: column;
   gap: 14px;
   width: calc(33.333% - 16px);
-  padding: 24px 26px;
-  background: var(--branco);
+  padding: 26px;
+  background: var(--branco-06);
+  border: 1px solid var(--branco-14);
   border-radius: 16px;
-  box-shadow: var(--sombra-card);
 }
 
 .mtr-etapa__numero {
@@ -449,73 +689,78 @@
   font-size: 19px;
   line-height: 1.3;
   letter-spacing: normal;
-  color: var(--roxo-titulo);
+  color: var(--branco);
 }
 
 .mtr-etapa__descricao {
   font-size: 15px;
   line-height: 1.55;
-  color: var(--texto-corpo);
-}
-
-/* ===========================================================================
- * SEÇÃO 5 — O QUE A MENTORIA ENTREGA
- * ======================================================================== */
-
-.mtr-entregas {
-  padding-block: 84px 96px;
-  background: var(--roxo-escuro);
-}
-
-/* São 5 cards: `center` distribui 3 na primeira linha e 2 centralizados na
- * segunda, sem precisar de containers separados. */
-.mtr-entregas__cards {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: center;
-  gap: 27px;
-}
-
-/* 3 × (33,333% − 18) + 2 × 27 = 100% */
-.mtr-entrega {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  width: calc(33.333% - 18px);
-  padding: 26px;
-  background: var(--branco-06);
-  border: 1px solid var(--branco-14);
-  border-radius: 16px;
-}
-
-/* A cor de fundo varia por card e vem do conteúdo (var() inline). */
-.mtr-entrega__icone {
-  flex: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-}
-
-.mtr-entrega__titulo {
-  font-family: var(--fonte-corpo);
-  font-weight: 600;
-  font-size: 19px;
-  letter-spacing: normal;
-  color: var(--branco);
-}
-
-.mtr-entrega__texto {
-  font-size: 15px;
   color: var(--branco-72);
 }
 
 /* ===========================================================================
- * SEÇÃO 6 — BANNER "PRÓXIMO CICLO"
+ * SEÇÃO 7 — SELECIONADOS
  * ======================================================================== */
 
-.mtr-inscricoes {
-  padding-block: 72px 96px;
+.mtr-selecionados {
+  padding-block: 80px;
+  background: var(--creme);
+}
+
+.mtr-selecionados__cards {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+}
+
+.mtr-selecionado {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+  padding: 32px;
+  background: var(--branco);
+  border: 1px dashed rgba(32, 15, 59, 0.25);
+  border-radius: 16px;
+}
+
+.mtr-selecionado__titulo {
+  font-family: var(--fonte-corpo);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: normal;
+  color: var(--roxo-titulo);
+}
+
+/* Chip de estado. A borda tracejada do card e este chip juntos dizem "ainda
+ * não há lista aqui" sem precisar de uma frase de desculpas. */
+.mtr-selecionado__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: 500px;
+  background: rgba(79, 23, 168, 0.08);
+  font-size: 15px;
+  color: var(--roxo-primario);
+}
+
+.mtr-selecionado__status::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--laranja);
+}
+
+/* ===========================================================================
+ * SEÇÃO 8 — FECHAMENTO
+ * ======================================================================== */
+
+.mtr-fechamento {
+  padding-block: 24px 96px;
   background: var(--creme);
 }
 
@@ -560,16 +805,18 @@
   color: var(--branco-88);
 }
 
-.mtr-banner__chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 18px;
-  background: var(--branco-16);
-  border: 1px solid var(--branco-40);
-  border-radius: 500px;
-  font-weight: 500;
-  font-size: 14px;
+.mtr-banner__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}
+
+.mtr-banner__email {
   color: var(--branco);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ===========================================================================
@@ -577,66 +824,50 @@
  * ======================================================================== */
 
 @media (max-width: 1024px) {
-  .mtr-container {
-    padding-inline: 24px;
-  }
-
-  /* --- Hero --- */
-  .mtr-hero {
-    padding: 60px 24px 90px;
-  }
-
   .mtr-hero__titulo {
     font-size: 32px;
   }
 
   .mtr-hero__subtitulo {
-    font-size: 20px;
+    font-size: 18px;
   }
 
-  /* --- O que é --- */
-  .mtr-oquee__conteudo {
-    flex-direction: column;
-    gap: 40px;
+  .mtr-titulo-secao {
+    font-size: 32px;
   }
 
-  .mtr-oquee__texto {
-    width: 100%;
+  /* --- Datas --- */
+  .mtr-datas__cards {
+    flex-wrap: wrap;
   }
 
-  /* Cards lado a lado enquanto ainda há largura para isso. */
-  .mtr-oquee__numeros {
-    flex-direction: row;
-    width: 100%;
+  /* 2 na primeira linha, 1 na segunda — melhor que espremer três. */
+  .mtr-data {
+    flex: 1 1 calc(50% - 12px);
   }
 
-  .mtr-numero {
-    flex: 1;
-    min-width: 0;
+  /* --- Edital --- */
+  .mtr-edital__card {
+    padding: 32px;
   }
 
-  /* --- Dois caminhos --- */
-  .mtr-caminhos__cards {
+  /* --- Perfis --- */
+  .mtr-perfis__cards {
     gap: 20px;
   }
 
-  .mtr-caminho {
+  .mtr-perfil {
     padding: 28px;
   }
 
-  /* --- Estrutura do ciclo --- */
+  /* --- Etapas --- */
   .mtr-etapa {
     width: calc(50% - 12px);
   }
 
-  /* --- Entregas --- */
-  .mtr-entrega {
-    width: calc(50% - 14px);
-  }
-
   /* --- Banner --- */
   .mtr-banner {
-    padding: 48px 60px;
+    padding: 48px 40px;
   }
 }
 
@@ -645,13 +876,8 @@
  * ======================================================================== */
 
 @media (max-width: 767px) {
-  .mtr-container {
-    padding-inline: 20px;
-  }
-
-  /* --- Hero --- */
   .mtr-hero {
-    padding: 48px 20px 72px;
+    padding: 48px var(--mtr-gutter) 72px;
   }
 
   .mtr-hero__titulo {
@@ -660,49 +886,77 @@
 
   .mtr-hero__subtitulo {
     max-width: 100%;
-    font-size: 17px;
+    font-size: 16px;
   }
 
-  /* --- O que é --- */
-  .mtr-oquee {
+  .mtr-titulo-secao {
+    font-size: 26px;
+  }
+
+  /* --- Datas --- */
+  .mtr-datas {
     padding-block: 56px;
   }
 
-  .mtr-oquee__numeros {
+  .mtr-datas__cards {
     flex-direction: column;
   }
 
-  .mtr-numero__valor {
-    font-size: 36px;
+  .mtr-data__valor {
+    font-size: 22px;
   }
 
-  /* --- Dois caminhos --- */
-  .mtr-caminhos__cards {
+  /* --- Edital --- */
+  .mtr-edital__card {
+    padding: 24px;
+    border-radius: 0 16px 16px 0;
+  }
+
+  .mtr-edital__texto {
+    font-size: 16px;
+  }
+
+  /* --- Perfis --- */
+  .mtr-perfis__cards {
     flex-direction: column;
     gap: 20px;
   }
 
-  .mtr-caminho {
+  .mtr-perfil {
     padding: 24px;
   }
 
-  .mtr-caminho__titulo {
+  .mtr-perfil__titulo {
     font-size: 22px;
   }
 
-  .mtr-caminho .mtr-botao {
+  .mtr-perfil .mtr-botao {
     align-self: stretch;
     width: 100%;
   }
 
-  /* --- Estrutura do ciclo --- */
+  /* --- Cronograma --- */
+  .mtr-tabela th,
+  .mtr-tabela td {
+    padding: 14px 12px;
+  }
+
+  .mtr-tabela tbody th {
+    font-size: 15px;
+  }
+
+  .mtr-tabela tbody td {
+    font-size: 14px;
+  }
+
+  /* --- Etapas --- */
   .mtr-etapa {
     width: 100%;
   }
 
-  /* --- Entregas --- */
-  .mtr-entrega {
-    width: 100%;
+  /* --- Selecionados --- */
+  .mtr-selecionados__cards {
+    flex-direction: column;
   }
 
   /* --- Banner --- */
@@ -712,5 +966,10 @@
 
   .mtr-banner::after {
     display: none;
+  }
+
+  .mtr-banner__acoes {
+    flex-direction: column;
+    align-self: stretch;
   }
 }

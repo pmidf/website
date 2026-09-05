@@ -1,19 +1,31 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
+import type { CSSProperties } from "react";
 
 import {
-  CAMINHOS,
-  ENTREGAS,
-  ESTATISTICAS,
-  ETAPAS_CICLO,
-  LINK_INSCRICAO,
+  CRONOGRAMA,
+  DATAS_CHAVE,
+  EDITAL,
+  EMAIL_PROGRAMA,
+  ETAPAS_PROGRAMA,
+  FECHAMENTO,
+  HERO,
+  LINK_EDITAL,
+  PERFIS,
+  SELECIONADOS,
 } from "@/content/mentoring";
 import "@/styles/mentoring.css";
 
 /**
- * Página Mentoring — construída a partir do protótipo Figma (1280 de largura,
- * conteúdo de 1140). As medidas vivem em `src/styles/mentoring.css`; os textos,
- * em `src/content/mentoring.ts`. Este arquivo é só a estrutura semântica.
+ * Página Mentoring — 14º Ciclo.
+ *
+ * Estrutura semântica apenas: as medidas vivem em `src/styles/mentoring.css`
+ * e todo o texto, datas e links em `src/content/mentoring.ts`. Virar o ciclo é
+ * editar o conteúdo; este arquivo não conhece nenhuma data.
+ *
+ * A ordem das seções segue a pergunta de quem chega: o que é → quando →
+ * o que diz o edital → posso participar → quando acontece cada coisa →
+ * como funciona → quem foi selecionado → com quem falo.
  */
 
 /* Archivo e Inter vêm do Google Fonts via `next/font`, que baixa e serve os
@@ -35,87 +47,123 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mentoring",
+  title: "Programa de Mentoring",
   description:
-    "Conexão entre quem tem experiência e quem quer crescer. O programa oficial de mentoria do PMI-DF, com ciclos anuais e método próprio.",
+    "14º Ciclo do Programa de Mentoring do PMI-DF: inscrições, requisitos para mentores e mentorados, cronograma completo e edital.",
+  alternates: { canonical: "/mentoring" },
 };
+
+/** Cores das barrinhas dos cards de data, na ordem da lista. */
+const CORES_DATAS = ["var(--laranja)", "var(--roxo-primario)", "var(--ciano)"];
 
 export default function MentoringPage() {
   return (
     <div className={`${archivo.variable} ${inter.variable} mtr-pagina`}>
       {/* === Seção 1 — Hero ============================================== */}
       <section className="mtr-hero">
-        <h1 className="mtr-hero__titulo">Programa de Mentoring</h1>
-        <p className="mtr-hero__subtitulo">
-          Conexão entre quem tem experiência e quem quer crescer. O programa
-          oficial de mentoria do PMI-DF, com ciclos anuais e método próprio.
-        </p>
-        <a href={LINK_INSCRICAO} className="mtr-botao mtr-botao--claro">
-          <span className="mtr-botao__gradiente">Ver inscrições abertas</span>
+        <p className="mtr-hero__ciclo">{HERO.ciclo}</p>
+        <h1 className="mtr-hero__titulo">{HERO.titulo}</h1>
+        <p className="mtr-hero__subtitulo">{HERO.objetivo}</p>
+        <a
+          href={LINK_EDITAL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mtr-botao mtr-botao--claro"
+        >
+          <span className="mtr-botao__gradiente">{HERO.ctaLabel}</span>
         </a>
       </section>
 
-      {/* === Seção 2 — O que é =========================================== */}
-      <section className="mtr-oquee">
-        <div className="mtr-container mtr-oquee__conteudo">
-          <div className="mtr-oquee__texto">
-            <p className="mtr-rotulo">O que é</p>
-            <h2 className="mtr-titulo-secao">Mentoria com estrutura</h2>
-            <p className="mtr-oquee__paragrafo">
-              O Mentoring do PMI-DF conecta mentores experientes a mentorados em
-              busca de direção. Não é conversa informal. É relacionamento
-              guiado, com objetivos, encontros regulares e acompanhamento do
-              capítulo.
-            </p>
-          </div>
+      {/* === Seção 2 — Datas do ciclo ==================================== */}
+      <section className="mtr-datas">
+        <div className="mtr-container">
+          <header className="mtr-cabecalho">
+            <p className="mtr-rotulo">Datas do ciclo</p>
+            <h2 className="mtr-titulo-secao">Quando acontece</h2>
+          </header>
 
-          <div className="mtr-oquee__numeros">
-            {ESTATISTICAS.map((estatistica) => (
-              <div key={estatistica.legenda} className="mtr-numero">
+          <div className="mtr-datas__cards">
+            {DATAS_CHAVE.map((data, indice) => (
+              <article key={data.rotulo} className="mtr-data">
                 <span
-                  className="mtr-numero__valor"
-                  style={{ color: estatistica.cor }}
-                >
-                  {estatistica.numero}
-                </span>
-                <span className="mtr-numero__legenda">
-                  {estatistica.legenda}
-                </span>
-              </div>
+                  className="mtr-data__barra"
+                  aria-hidden="true"
+                  style={
+                    {
+                      "--cor-item": CORES_DATAS[indice % CORES_DATAS.length],
+                    } as CSSProperties
+                  }
+                />
+                <h3 className="mtr-data__rotulo">{data.rotulo}</h3>
+                {data.href ? (
+                  <a href={data.href} className="mtr-data__valor">
+                    {data.valor}
+                  </a>
+                ) : (
+                  <p className="mtr-data__valor">{data.valor}</p>
+                )}
+                <p className="mtr-data__detalhe">{data.detalhe}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === Seção 3 — Dois caminhos ===================================== */}
-      <section className="mtr-caminhos">
+      {/* === Seção 3 — Edital de abertura ================================ */}
+      <section className="mtr-edital">
+        <div className="mtr-container">
+          <div className="mtr-edital__card">
+            <header className="mtr-cabecalho">
+              <p className="mtr-rotulo">{EDITAL.rotulo}</p>
+              <h2 className="mtr-titulo-secao">{EDITAL.titulo}</h2>
+            </header>
+            <p className="mtr-edital__texto">{EDITAL.texto}</p>
+            <a
+              href={LINK_EDITAL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mtr-botao mtr-botao--contorno"
+            >
+              Acesse o edital
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* === Seção 4 — Quem pode participar ============================== */}
+      <section className="mtr-perfis">
         <div className="mtr-container mtr-secao__conteudo">
           <header className="mtr-cabecalho">
-            <p className="mtr-rotulo">Dois caminhos</p>
-            <h2 className="mtr-titulo-secao">
-              Você pode entrar como mentor ou mentorado
-            </h2>
+            <p className="mtr-rotulo">Quem pode participar</p>
+            <h2 className="mtr-titulo-secao">Mentores e mentorados</h2>
+            <p className="mtr-cabecalho__apoio">
+              As inscrições acontecem por canais diferentes: mentores pelo VEP, o
+              portal de voluntariado do PMI Global, e mentorados por formulário.
+            </p>
           </header>
 
-          <div className="mtr-caminhos__cards">
-            {CAMINHOS.map((caminho) => (
+          <div className="mtr-perfis__cards">
+            {PERFIS.map((perfil) => (
               <article
-                key={caminho.perfil}
-                className={`mtr-caminho mtr-caminho--${caminho.perfil}`}
+                key={perfil.perfil}
+                className={`mtr-perfil mtr-perfil--${perfil.perfil}`}
               >
-                <h3 className="mtr-caminho__titulo">{caminho.titulo}</h3>
-                <p className="mtr-caminho__citacao">{caminho.citacao}</p>
-                <div className="mtr-caminho__divisor" aria-hidden="true" />
+                <h3 className="mtr-perfil__titulo">{perfil.titulo}</h3>
+                <p className="mtr-perfil__descricao">{perfil.descricao}</p>
+                <div className="mtr-perfil__divisor" aria-hidden="true" />
+                <p className="mtr-perfil__rotulo-lista">Requisitos</p>
                 <ul className="mtr-lista">
-                  {caminho.itens.map((item) => (
-                    <li key={item}>{item}</li>
+                  {perfil.requisitos.map((requisito) => (
+                    <li key={requisito}>{requisito}</li>
                   ))}
                 </ul>
                 <a
-                  href={LINK_INSCRICAO}
+                  href={perfil.ctaHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="mtr-botao mtr-botao--escuro"
                 >
-                  {caminho.ctaLabel}
+                  {perfil.ctaLabel}
                 </a>
               </article>
             ))}
@@ -123,16 +171,61 @@ export default function MentoringPage() {
         </div>
       </section>
 
-      {/* === Seção 4 — Estrutura do ciclo ================================ */}
-      <section className="mtr-ciclo">
+      {/* === Seção 5 — Cronograma ======================================== */}
+      <section className="mtr-cronograma">
         <div className="mtr-container mtr-secao__conteudo">
-          <header className="mtr-cabecalho mtr-cabecalho--centro">
-            <p className="mtr-rotulo">Como funciona</p>
-            <h2 className="mtr-titulo-secao">Estrutura do ciclo</h2>
+          <header className="mtr-cabecalho">
+            <p className="mtr-rotulo">Cronograma</p>
+            <h2 className="mtr-titulo-secao">Fases do 14º Ciclo</h2>
           </header>
 
-          <div className="mtr-ciclo__cards">
-            {ETAPAS_CICLO.map((etapa, indice) => (
+          {/* Tabela de verdade: o dado é fase × data, e `scope` é o que faz o
+              leitor de tela anunciar o cabeçalho certo em cada célula. */}
+          <div className="mtr-tabela-wrap">
+            <table className="mtr-tabela">
+              <caption>Cronograma do 14º Ciclo do Programa de Mentoring</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Fase</th>
+                  <th scope="col">Datas</th>
+                </tr>
+              </thead>
+              <tbody>
+                {CRONOGRAMA.map((linha) => (
+                  <tr key={linha.fase}>
+                    <th scope="row">{linha.fase}</th>
+                    <td>{linha.data}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mtr-cronograma__acao">
+            <a
+              href={LINK_EDITAL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mtr-botao mtr-botao--contorno"
+            >
+              Acesse o edital
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* === Seção 6 — Etapas do programa ================================ */}
+      <section className="mtr-etapas">
+        <div className="mtr-container mtr-secao__conteudo">
+          <header className="mtr-cabecalho mtr-cabecalho--centro">
+            <p className="mtr-rotulo mtr-rotulo--ciano">Como funciona</p>
+            <h2 className="mtr-titulo-secao mtr-titulo-secao--claro">
+              Etapas do programa
+            </h2>
+          </header>
+
+          <div className="mtr-etapas__cards">
+            {ETAPAS_PROGRAMA.map((etapa, indice) => (
               <article key={etapa.titulo} className="mtr-etapa">
                 {/* O número é ordinal decorativo, não um heading. */}
                 <span className="mtr-etapa__numero" aria-hidden="true">
@@ -146,50 +239,58 @@ export default function MentoringPage() {
         </div>
       </section>
 
-      {/* === Seção 5 — O que a mentoria entrega ========================== */}
-      <section className="mtr-entregas">
+      {/* === Seção 7 — Selecionados ====================================== */}
+      <section className="mtr-selecionados">
         <div className="mtr-container mtr-secao__conteudo">
-          <header className="mtr-cabecalho mtr-cabecalho--centro">
-            <p className="mtr-rotulo mtr-rotulo--ciano">Por que participar</p>
-            <h2 className="mtr-titulo-secao mtr-titulo-secao--claro">
-              O que a mentoria entrega
-            </h2>
+          <header className="mtr-cabecalho">
+            <p className="mtr-rotulo">{SELECIONADOS.rotulo}</p>
+            <h2 className="mtr-titulo-secao">{SELECIONADOS.titulo}</h2>
+            <p className="mtr-cabecalho__apoio">{SELECIONADOS.descricao}</p>
           </header>
 
-          <div className="mtr-entregas__cards">
-            {ENTREGAS.map((entrega) => (
-              <article key={entrega.titulo} className="mtr-entrega">
-                <span
-                  className="mtr-entrega__icone"
-                  style={{ background: entrega.cor }}
-                  aria-hidden="true"
-                />
-                <h3 className="mtr-entrega__titulo">{entrega.titulo}</h3>
-                <p className="mtr-entrega__texto">{entrega.descricao}</p>
+          <div className="mtr-selecionados__cards">
+            {SELECIONADOS.grupos.map((grupo) => (
+              <article key={grupo.titulo} className="mtr-selecionado">
+                <h3 className="mtr-selecionado__titulo">{grupo.titulo}</h3>
+                <p className="mtr-selecionado__status">{grupo.status}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* === Seção 6 — Banner "Próximo ciclo" ============================ */}
-      <section className="mtr-inscricoes" id="inscricoes">
+      {/* === Seção 8 — Fechamento ======================================== */}
+      <section className="mtr-fechamento">
         <div className="mtr-container">
           <div className="mtr-banner">
-            <p className="mtr-rotulo mtr-rotulo--claro">Inscrições</p>
+            <p className="mtr-rotulo mtr-rotulo--claro">Dúvidas</p>
             <h2 className="mtr-titulo-secao mtr-titulo-secao--claro">
-              Próximo ciclo
+              {FECHAMENTO.titulo}
             </h2>
             <p className="mtr-banner__texto">
-              As inscrições abrem em datas específicas do ano. Cadastre-se para
-              ser avisado quando o próximo ciclo começar.
+              {FECHAMENTO.descricao} Fale com a coordenação pelo e-mail{" "}
+              <a href={`mailto:${EMAIL_PROGRAMA}`} className="mtr-banner__email">
+                {EMAIL_PROGRAMA}
+              </a>
+              .
             </p>
-            <p className="mtr-banner__chip">
-              Pré-requisito: filiação ao PMI-DF
-            </p>
-            <a href={LINK_INSCRICAO} className="mtr-botao mtr-botao--escuro">
-              Inscrever-me agora
-            </a>
+
+            <div className="mtr-banner__acoes">
+              <a
+                href={LINK_EDITAL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mtr-botao mtr-botao--branco"
+              >
+                {FECHAMENTO.ctaLabel}
+              </a>
+              <a
+                href={`mailto:${EMAIL_PROGRAMA}`}
+                className="mtr-botao mtr-botao--branco"
+              >
+                Falar com a coordenação
+              </a>
+            </div>
           </div>
         </div>
       </section>
