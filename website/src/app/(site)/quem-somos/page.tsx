@@ -20,6 +20,7 @@ import {
   PRESIDENTES_TITULO,
   TRAJETORIA,
 } from "@/content/quem-somos";
+import { iniciais } from "@/lib/utils";
 import type { Segmento } from "@/types";
 import "@/styles/quem-somos.css";
 
@@ -201,13 +202,25 @@ export default function QuemSomosPage() {
           <div className="qs-presidentes__grade">
             {PRESIDENTES.map((presidente) => (
               <article key={presidente.nome} className="qs-presidente">
-                <Image
-                  src={presidente.foto}
-                  alt={presidente.nome}
-                  width={250}
-                  height={250}
-                  className="qs-presidente__foto"
-                />
+                {/* `foto` é opcional desde que a lista virou a galeria
+                    completa (`content/presidentes.ts`): quem ainda não tem
+                    arquivo entra com as iniciais, mantendo a grade alinhada. */}
+                {presidente.foto ? (
+                  <Image
+                    src={presidente.foto}
+                    alt={presidente.nome}
+                    width={250}
+                    height={250}
+                    className="qs-presidente__foto"
+                  />
+                ) : (
+                  <span
+                    aria-hidden
+                    className="qs-presidente__foto qs-presidente__foto--iniciais"
+                  >
+                    {iniciais(presidente.nome)}
+                  </span>
+                )}
                 <p className="qs-presidente__legenda">
                   <span className="qs-presidente__nome">{presidente.nome}</span>
                   <br />

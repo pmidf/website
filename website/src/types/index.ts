@@ -181,34 +181,32 @@ export type PassoVoluntariado = {
 
 /* --- Página Mentoring ----------------------------------------------------- */
 
-/** Card de número da seção "O que é". `cor` é um `var()` de `mentoring.css`. */
-export type EstatisticaMentoring = {
-  numero: string;
-  legenda: string;
-  cor: string;
-};
-
-/** Um dos dois cards de "Você pode entrar como mentor ou mentorado". */
-export type CaminhoMentoring = {
-  /** Define a variante visual do card (gradiente roxo vs. branco). */
+/**
+ * Um dos dois públicos do programa, com os requisitos do edital.
+ *
+ * `perfil` define a variante visual do card (gradiente roxo vs. branco) e
+ * `ctaHref` é um destino diferente por público: mentores se inscrevem pelo VEP
+ * do PMI Global, mentorados por formulário.
+ */
+export type PerfilMentoring = {
   perfil: "mentorado" | "mentor";
   titulo: string;
-  citacao: string;
-  itens: string[];
+  descricao: string;
+  requisitos: string[];
   ctaLabel: string;
+  ctaHref: string;
 };
 
-/** Etapa numerada da seção "Estrutura do ciclo". */
+/** Etapa numerada da seção "Etapas do programa". */
 export type EtapaCiclo = {
   titulo: string;
   descricao: string;
 };
 
-/** Card de "O que a mentoria entrega". `cor` é um `var()` de `mentoring.css`. */
-export type EntregaMentoring = {
-  titulo: string;
-  descricao: string;
-  cor: string;
+/** Linha da tabela de cronograma: uma fase do ciclo e a janela em que ocorre. */
+export type FaseCronograma = {
+  fase: string;
+  data: string;
 };
 
 /* --- Página Quem Somos ----------------------------------------------------- */
@@ -236,11 +234,29 @@ export type MarcoTrajetoria = {
   cor: string;
 };
 
-/** Card de presidente (Seção 5). */
+/** Idiomas em que as biografias dos presidentes existem. */
+export type Idioma = "pt" | "en";
+
+/**
+ * Presidente do capítulo (Seção 5 de Quem Somos e galeria completa em
+ * `/quem-somos/presidentes`).
+ *
+ * Tudo além de nome e período é opcional porque a galeria é preenchida aos
+ * poucos: sem `foto` o card cai no avatar de iniciais, sem `bio` mostra só a
+ * identificação, e sem `linkedin` some o botão. Nenhuma dessas ausências
+ * quebra a grade.
+ *
+ * `bio` guarda as duas versões de cada parágrafo, na mesma ordem, e
+ * `bioOriginal` diz qual delas a pessoa de fato escreveu — a outra é tradução,
+ * e a página sinaliza isso ao leitor.
+ */
 export type Presidente = {
-  foto: string;
   nome: string;
   periodo: string;
+  foto?: string;
+  linkedin?: string;
+  bioOriginal?: Idioma;
+  bio?: Record<Idioma, string[]>;
 };
 
 /** Depoimento (Seção 6). `lado` decide de que lado a foto fica; `cardGradiente`
@@ -254,4 +270,22 @@ export type Depoimento = {
   legenda: string;
   cardGradiente: string;
   lado: "esquerda" | "direita";
+};
+
+/* --- Galeria de voluntários ----------------------------------------------- */
+
+/**
+ * Pessoa listada em `/voluntarios`.
+ *
+ * `foto` e `linkedin` são opcionais: a galeria é alimentada aos poucos, e um
+ * voluntário sem foto entra com avatar de iniciais em vez de ficar de fora.
+ * `diretoria` é o que agrupa os cards — o mesmo recorte do organograma da
+ * página Quem Somos.
+ */
+export type Voluntario = {
+  nome: string;
+  papel: string;
+  diretoria: string;
+  foto?: string;
+  linkedin?: string;
 };

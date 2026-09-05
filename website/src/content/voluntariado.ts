@@ -6,7 +6,19 @@ import type { CardColorido, PassoVoluntariado } from "@/types";
  * As vagas moram no VEP (Volunteer Engagement Portal) do PMI Global, não no
  * site — por isso todos os CTAs apontam para a mesma URL, declarada uma vez.
  */
-export const URL_VEP = "https://www.pmi.org/chapters/northern-italy/volunteer-opportunities";
+/**
+ * Busca já filtrada pelo capítulo Distrito Federal no VEP e ordenada da vaga
+ * mais recente para a mais antiga — os filtros viajam na query string, então
+ * a URL precisa ser copiada inteira, sem "limpar" os parâmetros.
+ */
+export const URL_VEP =
+  "https://volunteer.pmi.org/search?size=n_10_n" +
+  "&filters%5B0%5D%5Bfield%5D=chapterName.keyword" +
+  "&filters%5B0%5D%5Bvalues%5D%5B0%5D=Distrito+Federal%2C+Brazil+Chapter" +
+  "&filters%5B0%5D%5Btype%5D%5Btype%5D=any" +
+  "&sort%5B0%5D%5Bfield%5D=postingStartDate" +
+  "&sort%5B0%5D%5Bdirection%5D=desc" +
+  "#tab=All";
 
 export const PERFIS: string[] = [
   "Pessoas movidas por propósito que querem impactar a comunidade do Distrito Federal e deixar sua marca pessoal",

@@ -2,7 +2,10 @@ import { Container } from "@/components/ui/Container";
 
 export function CtaFormulario() {
   return (
-    <section id="solicitar" className="bg-[#F8F5F0] py-16 lg:py-24">
+    /* Branco, e não o creme #F8F5F0 do resto da página: a seção anterior
+       (Formatos) já é creme, e a de Clientes — que fazia a alternância — está
+       desativada. Ver o comentário em `(site)/incompany/page.tsx`. */
+    <section id="solicitar" className="bg-white py-16 lg:py-24">
       <Container>
         <div className="grid items-center gap-10 rounded-[56px] bg-[linear-gradient(110deg,#210040_0%,#4F17A8_52%,#012F44_100%)] px-8 py-14 text-white lg:grid-cols-[1fr_340px] lg:rounded-[120px] lg:px-16 lg:py-20">
           <div>

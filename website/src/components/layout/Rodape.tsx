@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { assets } from "@/content/assets";
 import { REDES } from "@/content/navegacao";
+import { site } from "@/content/site";
 
 /** Rodapé institucional: logo, contato, redes sociais e aviso de privacidade. */
 export function Rodape() {
@@ -18,18 +19,25 @@ export function Rodape() {
           className="h-[52px] w-auto lg:h-[61px]"
         />
 
+        {/* E-mail, telefone e endereço vêm de `content/site.ts` — a mesma
+            fonte que alimenta a página de contato e o link de WhatsApp. */}
         <address className="not-italic text-[16px] text-black">
           <p>
             <strong>E-mail:</strong>{" "}
-            <a href="mailto:contato@pmidf.org.br" className="hover:underline">
-              contato@pmidf.org.br
+            <a href={`mailto:${site.contact.email}`} className="hover:underline">
+              {site.contact.email}
+            </a>
+          </p>
+          <p className="mt-3">
+            <strong>Telefone:</strong>{" "}
+            <a href={site.contact.telefone.link} className="hover:underline">
+              {site.contact.telefone.exibicao}
             </a>
           </p>
           <p className="mt-3">
             <strong>Endereço fiscal:</strong>
             <br />
-            Impact Hub Brasília - SGAN 601 Edifício Íon. Lote H - Asa Norte, Brasília - DF,
-            70830-019
+            {site.contact.address}
           </p>
         </address>
 
@@ -52,10 +60,10 @@ export function Rodape() {
             ))}
           </ul>
           <Link
-            href="/politica-de-privacidade"
+            href="/aviso-de-privacidade"
             className="mt-4 inline-block text-[16px] text-black hover:underline"
           >
-            Política de privacidade
+            Aviso de privacidade
           </Link>
         </div>
       </Container>

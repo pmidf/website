@@ -1,10 +1,9 @@
 import { assets } from "@/content/assets";
-import type {
-  BlocoInstitucional,
-  Depoimento,
-  MarcoTrajetoria,
-  Presidente,
-} from "@/types";
+import {
+  GALERIA_PRESIDENTES,
+  PRESIDENTES_EM_DESTAQUE,
+} from "@/content/presidentes";
+import type { BlocoInstitucional, Depoimento, MarcoTrajetoria } from "@/types";
 
 /**
  * Conteúdo da página Quem Somos.
@@ -133,9 +132,9 @@ export const DIRETORIA = {
   },
   rodapeTexto: "Conheça também nossos",
   botaoLabel: "voluntários",
-  // Único destino existente no site para "voluntários" (ver INICIATIVAS na
-  // home) — a página em si ainda não foi implementada.
-  botaoHref: "/voluntariado",
+  // Galeria de quem ocupa as posições do organograma. Não confundir com
+  // `/voluntariado`, que explica o programa e leva às vagas abertas.
+  botaoHref: "/quem-somos/voluntarios",
 };
 
 /* === Seção 5 — Presidentes ================================================ */
@@ -144,27 +143,15 @@ export const PRESIDENTES_TITULO = "Presidentes que nos trouxeram até aqui";
 export const PRESIDENTES_SUBTITULO =
   "Cada presidente deixou sua marca na trajetória do capítulo. Conheça quem liderou o PMI-DF desde a fundação.";
 
-export const PRESIDENTES: Presidente[] = [
-  {
-    foto: assets.quemSomos.presidenteMatheus,
-    nome: "Matheus Rocha",
-    periodo: "Gestão 2025/2026",
-  },
-  {
-    foto: assets.quemSomos.presidenteCristina,
-    nome: "Cristina Duarte",
-    periodo: "01/01/2023 até 31/12/2024",
-  },
-  {
-    foto: assets.quemSomos.presidenteGino,
-    nome: "Gino Terentim",
-    periodo: "01/01/2021 até 31/12/2022",
-  },
-];
+/**
+ * Só as gestões mais recentes. A lista completa vive em
+ * `content/presidentes.ts` (fonte única) e é exibida em `/quem-somos/presidentes` — esta
+ * seção é a prévia que leva até lá.
+ */
+export const PRESIDENTES = GALERIA_PRESIDENTES.slice(0, PRESIDENTES_EM_DESTAQUE);
 
 export const PRESIDENTES_BOTAO_LABEL = "Ver galeria completa";
-// Sem destino real definido — não existe página de galeria ainda.
-export const PRESIDENTES_BOTAO_HREF = "#";
+export const PRESIDENTES_BOTAO_HREF = "/quem-somos/presidentes";
 
 /* === Seção 6 — Depoimentos ("Vozes da comunidade") ======================= */
 
