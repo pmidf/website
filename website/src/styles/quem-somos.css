@@ -2,8 +2,10 @@
  * Página Quem Somos — tradução direta do nó "Sobre" do arquivo Figma
  * (puxado via MCP: get_metadata + get_design_context + download_assets).
  *
- * Grid do protótipo: página de 1280, conteúdo de 1140, margem lateral de 70 —
- * exceto na Seção 2, que é full-bleed de propósito (a foto encosta na borda).
+ * Grid do protótipo: página de 1280, margem lateral de 70 — exceto na Seção 2,
+ * que é full-bleed de propósito (a foto encosta na borda). A margem de 70 foi
+ * trocada pela do `Container` do site (`--qs-gutter`) para que o conteúdo caia
+ * na mesma coluna do Header; ver o comentário em `.qs-pagina`.
  *
  * Prefixo `qs-` em todas as classes: este arquivo é global (importado pela
  * página) e o prefixo evita colisão com o resto do site, que é Tailwind.
@@ -60,14 +62,35 @@
   --sombra-card: 0 2px 10px rgba(32, 15, 59, 0.08);
 
   font-family: var(--fonte-corpo);
+
+  /* --- Margem lateral ---------------------------------------------------
+   * Os mesmos valores do `Container` do resto do site (`px-5 md:px-8
+   * lg:px-10`), nos mesmos breakpoints do Tailwind. Antes esta página usava
+   * 70px fixos (a margem do frame do Figma), o que deixava todo o conteúdo
+   * 30px fora da coluna do Header no desktop. Alinhar ao menu vale mais que
+   * reproduzir a margem do protótipo.
+   * ------------------------------------------------------------------- */
+  --qs-gutter: 20px;
 }
 
-/* Faixa de conteúdo: 1140 dentro de 1280 (70 de margem de cada lado). */
+@media (min-width: 768px) {
+  .qs-pagina {
+    --qs-gutter: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .qs-pagina {
+    --qs-gutter: 40px;
+  }
+}
+
+/* Faixa de conteúdo: 1280 de largura máxima, na mesma coluna do Header. */
 .qs-container {
   width: 100%;
   max-width: 1280px;
   margin-inline: auto;
-  padding-inline: 70px;
+  padding-inline: var(--qs-gutter);
 }
 
 /* Empilha cabeçalho + conteúdo de uma seção com o mesmo ritmo vertical. */
@@ -181,7 +204,7 @@
   justify-content: center;
   gap: 20px;
   height: 319px;
-  padding-inline: 70px;
+  padding-inline: var(--qs-gutter);
   background: var(--gradiente-hero);
   text-align: center;
 }
@@ -244,15 +267,30 @@
   background: var(--creme);
 }
 
+/* Contexto de posicionamento dos 4 blocos de texto.
+ *
+ * Antes era `display: contents` e os blocos se posicionavam em relação à
+ * seção inteira, que é full-bleed — num monitor de 1920px o `left: 91px` do
+ * Figma colava o texto na borda da tela enquanto o Header começava a 360px.
+ * Agora eles medem a partir desta caixa de 1280 centralizada, a mesma coluna
+ * do menu. A foto continua fora dela, encostando na borda (é o full-bleed
+ * intencional do design).
+ *
+ * `inset: 0` + `max-width` + `margin-inline: auto` é o que centraliza uma
+ * caixa absoluta: com `left` e `right` resolvidos e uma largura menor que o
+ * espaço disponível, a margem automática distribui a sobra. */
 .qs-oquee__texto {
-  /* Em desktop os filhos são absolutos e este wrapper não participa do
-   * layout; em telas menores vira o container em coluna (ver responsivo). */
-  display: contents;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 .qs-oquee__titulo-1 {
   position: absolute;
-  left: 91px;
+  /* Alinhado ao menu (era 91px, a margem do frame do Figma). */
+  left: var(--qs-gutter);
   top: 34px;
   width: 295px;
 }
@@ -264,7 +302,7 @@
  * botão em vez de acompanhar o texto. */
 .qs-oquee__texto-1 {
   position: absolute;
-  left: 91px;
+  left: var(--qs-gutter);
   /* Pedido explícito: 71px (valor do Figma) ficava colado no título — o
    * texto começava antes da própria caixa do título terminar. */
   top: 90px;
@@ -671,14 +709,6 @@
  * ======================================================================== */
 
 @media (max-width: 1024px) {
-  .qs-container {
-    padding-inline: 24px;
-  }
-
-  .qs-hero {
-    padding-inline: 24px;
-  }
-
   /* Sai do posicionamento absoluto: os 4 blocos voltam ao fluxo normal,
    * empilhados na ordem do documento, alinhados à esquerda com padding 24px
    * (perdem o escalonamento do Bloco 2, que só existe no desktop). */
@@ -688,10 +718,13 @@
   }
 
   .qs-oquee__texto {
+    position: static;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding-inline: 24px;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: var(--qs-gutter);
   }
 
   .qs-oquee__titulo-1,
@@ -757,14 +790,6 @@
  * ======================================================================== */
 
 @media (max-width: 767px) {
-  .qs-container {
-    padding-inline: 20px;
-  }
-
-  .qs-hero {
-    padding-inline: 20px;
-  }
-
   .qs-hero__titulo,
   .qs-titulo {
     font-size: 28px;
