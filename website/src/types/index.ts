@@ -234,11 +234,29 @@ export type MarcoTrajetoria = {
   cor: string;
 };
 
-/** Card de presidente (Seção 5). */
+/** Idiomas em que as biografias dos presidentes existem. */
+export type Idioma = "pt" | "en";
+
+/**
+ * Presidente do capítulo (Seção 5 de Quem Somos e galeria completa em
+ * `/quem-somos/presidentes`).
+ *
+ * Tudo além de nome e período é opcional porque a galeria é preenchida aos
+ * poucos: sem `foto` o card cai no avatar de iniciais, sem `bio` mostra só a
+ * identificação, e sem `linkedin` some o botão. Nenhuma dessas ausências
+ * quebra a grade.
+ *
+ * `bio` guarda as duas versões de cada parágrafo, na mesma ordem, e
+ * `bioOriginal` diz qual delas a pessoa de fato escreveu — a outra é tradução,
+ * e a página sinaliza isso ao leitor.
+ */
 export type Presidente = {
-  foto: string;
   nome: string;
   periodo: string;
+  foto?: string;
+  linkedin?: string;
+  bioOriginal?: Idioma;
+  bio?: Record<Idioma, string[]>;
 };
 
 /** Depoimento (Seção 6). `lado` decide de que lado a foto fica; `cardGradiente`
@@ -252,4 +270,22 @@ export type Depoimento = {
   legenda: string;
   cardGradiente: string;
   lado: "esquerda" | "direita";
+};
+
+/* --- Galeria de voluntários ----------------------------------------------- */
+
+/**
+ * Pessoa listada em `/voluntarios`.
+ *
+ * `foto` e `linkedin` são opcionais: a galeria é alimentada aos poucos, e um
+ * voluntário sem foto entra com avatar de iniciais em vez de ficar de fora.
+ * `diretoria` é o que agrupa os cards — o mesmo recorte do organograma da
+ * página Quem Somos.
+ */
+export type Voluntario = {
+  nome: string;
+  papel: string;
+  diretoria: string;
+  foto?: string;
+  linkedin?: string;
 };

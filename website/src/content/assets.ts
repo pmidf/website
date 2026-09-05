@@ -77,9 +77,27 @@ export const assets = {
   quemSomos: {
     heroBrasilia: "/assets/paginas/quem-somos/hero-brasilia.webp",
     organograma: "/assets/paginas/quem-somos/organograma.webp",
+    /**
+     * Retratos dos presidentes, servindo a Seção 5 de Quem Somos e à galeria
+     * completa em `/quem-somos/presidentes`.
+     *
+     * Os oito primeiros vieram das fotos de perfil do LinkedIn, baixadas e
+     * convertidas para .webp (400px de lado, ou o tamanho original quando
+     * menor que isso). Ficam versionados aqui de propósito: as URLs do
+     * `media.licdn.com` são assinadas e expiram em semanas — apontar para elas
+     * deixaria a galeria sem rosto sozinha.
+     */
     presidenteMatheus: "/assets/paginas/quem-somos/presidente-matheus.webp",
     presidenteCristina: "/assets/paginas/quem-somos/presidente-cristina.webp",
     presidenteGino: "/assets/paginas/quem-somos/presidente-gino.webp",
+    presidenteNathalia: "/assets/paginas/quem-somos/presidente-nathalia.webp",
+    presidenteJose: "/assets/paginas/quem-somos/presidente-jose.webp",
+    presidenteFrancisco: "/assets/paginas/quem-somos/presidente-francisco.webp",
+    presidenteMarcelo: "/assets/paginas/quem-somos/presidente-marcelo.webp",
+    presidenteGiuseppe: "/assets/paginas/quem-somos/presidente-giuseppe.webp",
+    presidenteRodrigo: "/assets/paginas/quem-somos/presidente-rodrigo.webp",
+    presidenteYuri: "/assets/paginas/quem-somos/presidente-yuri.webp",
+    presidenteMargareth: "/assets/paginas/quem-somos/presidente-margareth.webp",
     depoimentoAna: "/assets/paginas/quem-somos/depoimento-ana.webp",
     depoimentoLucas: "/assets/paginas/quem-somos/depoimento-lucas.webp",
     depoimentoCamila: "/assets/paginas/quem-somos/depoimento-camila.webp",
