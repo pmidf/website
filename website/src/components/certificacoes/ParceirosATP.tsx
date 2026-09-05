@@ -1,6 +1,6 @@
-import Link from "next/link";
-
 import { Container } from "@/components/ui/Container";
+import { PARCEIROS_CERTIFICACAO } from "@/content/parceiros-certificacao";
+import { ParceiroBanner } from "./ParceiroBanner";
 
 export function ParceirosATP() {
   return (
@@ -43,55 +43,23 @@ export function ParceirosATP() {
           </article>
         </div>
 
-        <div className="mt-12 rounded-[18px] bg-[linear-gradient(110deg,#210040_0%,#4F17A8_100%)] p-7 text-white shadow-[0_8px_22px_rgba(32,15,59,0.16)] lg:p-9">
-          <div className="grid items-center gap-8 lg:grid-cols-[140px_1fr]">
-            <div className="h-[92px] rounded-[12px] bg-white" />
-
-            <div>
-              <span className="inline-flex rounded-full bg-[#1AC7FF] px-4 py-1 text-[11px] font-bold uppercase tracking-[0.12em] text-[#012029]">
-                Authorized Training Partner
-              </span>
-
-              <h3 className="mt-4 text-[28px] font-extrabold leading-tight">JUMP</h3>
-
-              <p className="mt-3 max-w-[760px] text-[15px] leading-relaxed text-white/85">
-                Parceira do PMI-DF em treinamentos preparatórios para PMP®, CAPM® e PMI-ACP®.
-                Filiados e participantes do capítulo têm cupom de desconto nos cursos.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-4">
-                <Link
-                  href="/contato?assunto=cupom-jump"
-                  className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-                >
-                  Solicitar cupom de desconto
-                </Link>
-
-                <Link
-                  href="https://www.pmi.org/certifications/certification-resources/authorized-training-partners"
-                  target="_blank"
-                  className="rounded-full border border-white/60 px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-white/10"
-                >
-                  Ver cursos ↗
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 flex flex-col gap-4 border-l-4 border-[#FF610F] pl-5 lg:flex-row lg:items-center lg:justify-between">
-          <p className="max-w-[780px] text-[15px] leading-relaxed text-[#5C546E]">
-            Procura outro parceiro? O diretório oficial do PMI lista todos os Authorized Training
-            Partners e permite verificar se um provedor é autorizado.
-          </p>
-
-          <Link
-            href="https://www.pmi.org/certifications/certification-resources/authorized-training-partners"
-            target="_blank"
-            className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-          >
-            Abrir diretório ↗
-          </Link>
+        <div className="mt-12 space-y-10">
+          {PARCEIROS_CERTIFICACAO.map((parceiro) => (
+            <ParceiroBanner
+              key={parceiro.nome}
+              badge={parceiro.badge}
+              nome={parceiro.nome}
+              logoText={parceiro.logoText}
+              logoSrc={parceiro.logoSrc}
+              logoAlt={parceiro.logoAlt}
+              descricao={parceiro.descricao}
+              detalhe={parceiro.detalhe}
+              ctaPrincipal={parceiro.ctaPrincipal}
+              ctaSecundario={parceiro.ctaSecundario}
+              observacao={parceiro.observacao}
+              observacaoCta={parceiro.observacaoCta}
+            />
+          ))}
         </div>
       </Container>
     </section>

@@ -22,7 +22,7 @@ export function CtaFinal() {
 
           <p className="mx-auto mt-5 max-w-[685px] text-[18px] leading-snug text-white lg:text-[24px]">
             A <strong className="font-bold">filiação</strong> é feita pelo portal do{" "}
-            <strong className="font-bold">PMI Global</strong>. Selecione o{" "}
+            <strong className="font-bold">PMI </strong>. Selecione o{" "}
             <strong className="font-bold">PMI-DF</strong> como seu capítulo no momento do
             cadastro, é isso que conecta você à nossa comunidade local.
           </p>

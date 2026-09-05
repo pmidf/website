@@ -25,12 +25,12 @@ export function InCompany() {
             InCompany
           </h2>
           <p className="mt-3 text-[18px] leading-snug text-white lg:text-[24px]">
-            Treinamentos sob medida para sua empresa ou órgão.
+            Treinamentos sob medida para seu time.
           </p>
 
           <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-10">
             <p className="text-[16px] leading-relaxed text-white lg:text-[22px]">
-              Levamos conteúdo PMI direto ao seu time, com cases reais e instrutores qualificados.
+              levamos conteúdos de qualidade ao seu time, com cases reais e instrutores qualificados.
               Formatos fechados, presenciais ou remotos.
             </p>
             <p className="text-[16px] leading-relaxed text-white lg:text-[22px]">

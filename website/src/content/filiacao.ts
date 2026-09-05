@@ -88,10 +88,6 @@ export const BENEFICIOS_GLOBAL: Beneficio[] = [
       "Economia significativa nas provas PMP, CAPM, PMI-ACP e demais credenciais.",
   },
   {
-    titulo: "Comunidades de prática",
-    descricao: "Grupos temáticos por indústria e metodologia, em escala global.",
-  },
-  {
     titulo: "ProjectManagement.com",
     descricao: "Acesso premium à maior plataforma de conteúdo da área.",
   },
@@ -104,12 +100,12 @@ export const BENEFICIOS_GLOBAL: Beneficio[] = [
 /** Clube de benefícios local. Ícones do Font Awesome 6 via `react-icons`. */
 export const BENEFICIOS_LOCAIS: Beneficio[] = [
   {
-    titulo: "FGV",
+    titulo: "Descontos em instituições de ensino superior IPOG e FGV.",
     descricao: "10% de desconto em cursos de pós-graduação e curta duração",
     Icone: FaGraduationCap,
   },
   {
-    titulo: "Aulas de inglês",
+    titulo: "Grupos de estudo de inglês",
     descricao: "Condições especiais em escolas parceiras",
     Icone: FaLanguage,
   },
@@ -142,7 +138,7 @@ export const PERFIS: string[] = [
 export const CATEGORIAS: CategoriaFiliacao[] = [
   {
     titulo: "Profissional",
-    descricao: "Anuidade padrão do PMI Global + taxa do capítulo PMI-DF.",
+    descricao: "Anuidade padrão do PMI.",
     barra: "bg-[#4F17A8]",
   },
   {
@@ -169,11 +165,11 @@ export const FAQ: PerguntaFrequente[] = [
   {
     pergunta: "Como escolho o PMI-DF como capítulo?",
     resposta:
-      "Durante o cadastro no portal do PMI Global, na etapa de escolha de capítulo, selecione PMI Distrito Federal. É esse passo que conecta você à comunidade local.",
+      "Durante o cadastro no portal do PMI, na etapa de escolha de capítulo, selecione PMI Distrito Federal. É esse passo que conecta você à comunidade local.",
   },
   {
     pergunta: "Posso cancelar?",
     resposta:
-      "Sim. A filiação é anual e não renova automaticamente sem aviso. O cancelamento é feito na sua conta do PMI Global.",
+      "Sim. A filiação é anual, você pode ou não renovar. O cancelamento é feito no mypmi.org.",
   },
 ];

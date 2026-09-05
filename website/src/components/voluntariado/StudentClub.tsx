@@ -18,7 +18,7 @@ export function StudentClub() {
             É estudante? Comece pelo Student Club
           </p>
           <p className="text-[16px] leading-[1.58] text-[#5C546E] lg:text-[18px]">
-            O Student Club é o programa do PMI-DF para universitários. Eventos próprios, mentoria
+            O Student Club é o programa do PMI-DF para quem está na universidade. Eventos próprios, mentoria
             com profissionais sêniores e o primeiro contato real com gerenciamento de projetos.
             Você participa antes mesmo de estar no mercado.
           </p>

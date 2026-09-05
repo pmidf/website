@@ -11,7 +11,7 @@ export function Hero() {
           Filiação PMI-DF
         </h1>
         <p className="mx-auto mt-4 max-w-[783px] text-[18px] leading-relaxed text-[#F8F8F8] lg:text-[24px]">
-          Filie-se a maior comunidade de gerenciamentos de projetos do mundo! E participe dos
+          Filie-se a maior comunidade com mais de 800 mil profissionais de projetos! E participe dos
           eventos do PMI-DF.
         </p>
         <Botao href={URL_PMI_GLOBAL} external variante="claro" className="mt-7">

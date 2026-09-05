@@ -67,6 +67,94 @@ function parseSymplaDate(value?: string) {
   return data;
 }
 
+function criarChaveEvento(evento: SymplaEvent) {
+  const id = String(evento.id || "").trim();
+
+  if (id) {
+    return `id:${id}`;
+  }
+
+  const nome = String(evento.name || "").trim().toLowerCase();
+  const data = String(evento.start_date || evento.end_date || "").trim();
+
+  return `fallback:${nome}:${data}`;
+}
+
+function removerDuplicados(eventos: SymplaEvent[]) {
+  const mapa = new Map<string, SymplaEvent>();
+
+  for (const evento of eventos) {
+    const chave = criarChaveEvento(evento);
+
+    if (!mapa.has(chave)) {
+      mapa.set(chave, evento);
+    }
+  }
+
+  return Array.from(mapa.values());
+}
+
+function debugDuplicados(eventos: SymplaEvent[], etapa: string) {
+  const contagem = new Map<string, SymplaEvent[]>();
+
+  for (const evento of eventos) {
+    const chave = criarChaveEvento(evento);
+
+    if (!contagem.has(chave)) {
+      contagem.set(chave, []);
+    }
+
+    contagem.get(chave)?.push(evento);
+  }
+
+  const duplicados = Array.from(contagem.entries()).filter(
+    ([, lista]) => lista.length > 1,
+  );
+
+  console.log(`\n[DEBUG DUPLICADOS] ${etapa}`);
+  console.log(`Total de eventos: ${eventos.length}`);
+  console.log(`Total de chaves únicas: ${contagem.size}`);
+  console.log(`Total de duplicados: ${duplicados.length}`);
+
+  if (duplicados.length > 0) {
+    for (const [chave, lista] of duplicados) {
+      console.log(`\nDuplicado encontrado: ${chave}`);
+
+      for (const evento of lista) {
+        console.log({
+          id: evento.id,
+          name: evento.name,
+          start_date: evento.start_date,
+          end_date: evento.end_date,
+        });
+      }
+    }
+  }
+
+  console.log("[FIM DEBUG DUPLICADOS]\n");
+}
+
+function criarIdEvento(evento: SymplaEvent) {
+  const id = String(evento.id || "").trim();
+
+  if (id) {
+    return id;
+  }
+
+  const nome = String(evento.name || "evento")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  const data = String(evento.start_date || evento.end_date || "")
+    .slice(0, 10)
+    .replaceAll("-", "");
+
+  return `${nome}-${data}`;
+}
+
 function formatarDataCard(value?: string) {
   const data = parseSymplaDate(value);
 
@@ -177,7 +265,7 @@ function mapearEvento(evento: SymplaEvent): EventoAgenda {
   const formato = detectarFormato(evento);
 
   return {
-    id: String(evento.id || evento.name || crypto.randomUUID()),
+    id: criarIdEvento(evento),
     data: formatarDataCard(evento.start_date || evento.end_date),
     formato,
     categoria: detectarCategoria(evento),
@@ -202,6 +290,7 @@ export async function getEventosSympla(): Promise<EventoAgenda[]> {
 
     while (true) {
       const url = new URL(`${API_BASE}/events`);
+
       url.searchParams.set("page", String(page));
       url.searchParams.set("page_size", String(PAGE_SIZE));
 
@@ -229,17 +318,24 @@ export async function getEventosSympla(): Promise<EventoAgenda[]> {
     }
 
     const filtrados = HIDE_PAST_EVENTS
-      ? eventos.filter((evento) => !eventoEstaCanceladoOuPassado(evento))
-      : eventos;
+  ? eventos.filter((evento) => !eventoEstaCanceladoOuPassado(evento))
+  : eventos;
 
-    return filtrados
-      .sort((a, b) => {
-        const dataA = parseSymplaDate(a.start_date)?.getTime() || 0;
-        const dataB = parseSymplaDate(b.start_date)?.getTime() || 0;
+  debugDuplicados(eventos, "Antes de filtrar eventos antigos");
+  debugDuplicados(filtrados, "Depois de filtrar eventos antigos");
 
-        return dataB - dataA;
-      })
-      .map(mapearEvento);
+  const semDuplicados = removerDuplicados(filtrados);
+
+  console.log("Eventos após remover duplicados:", semDuplicados.length);
+
+  return semDuplicados
+  .sort((a, b) => {
+    const dataA = parseSymplaDate(a.start_date)?.getTime() || 0;
+    const dataB = parseSymplaDate(b.start_date)?.getTime() || 0;
+
+    return dataB - dataA;
+  })
+  .map(mapearEvento);
   } catch (error) {
     console.error(error);
     console.warn("Falha na Sympla. Usando eventos estáticos como fallback.");

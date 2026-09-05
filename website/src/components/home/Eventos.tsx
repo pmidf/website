@@ -16,7 +16,7 @@ export async function Eventos() {
         <TituloSecao>Eventos</TituloSecao>
 
         <p className="mx-auto mt-4 max-w-[676px] text-[18px] leading-relaxed text-[#200F3B] lg:text-[24px]">
-          Summits, workshops e encontros que movem a comunidade. Presenciais e online. Inscreva-se
+          Summit, Workshops e treinamentos que movem a comunidade. Presenciais e online. Inscreva-se
           nos próximos!
         </p>
 

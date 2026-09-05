@@ -130,7 +130,8 @@ export default function QuemSomosPage() {
       <section className="qs-trajetoria">
         <span className="qs-trajetoria__blob qs-trajetoria__blob--1" aria-hidden="true" />
         <span className="qs-trajetoria__blob qs-trajetoria__blob--2" aria-hidden="true" />
-        <span className="qs-trajetoria__blob qs-trajetoria__blob--3" aria-hidden="true" />
+        <span className="qs-trajetoria__blob qs-trajetoria__blob--3" aria-hidden="true" /> 
+        
 
         <div className="qs-container qs-trajetoria__conteudo">
           <header className="qs-cabecalho">

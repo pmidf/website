@@ -25,7 +25,7 @@ export const HERO = {
     { texto: "PMI Distrito Federal", forte: true },
     { texto: ". Conheça quem constrói o capítulo todos os dias." },
   ],
-  botaoLabel: "Conheça o PMI Global",
+  botaoLabel: "Conheça o PMI",
   // O botão existe no Figma em x=87 y=560, fora dos 319px do frame do Hero —
   // erro de posicionamento no protótipo. Mantido, mas centralizado sob o
   // subtítulo em vez de reproduzir a posição órfã.
@@ -48,7 +48,7 @@ export const BLOCO_PMI: BlocoInstitucional = {
     [
       {
         texto:
-          "Reúne mais de 500 mil membros em mais de 200 países. Define padrões, emite certificações reconhecidas globalmente e publica o PMBOK, referência da área.",
+          "Reúne mais de 750 mil membros em mais de 290 capítulos. Define padrões, emite certificações reconhecidas globalmente e publica o PMBOK, referência da área.",
       },
     ],
   ],
@@ -62,7 +62,7 @@ export const BLOCO_PMIDF: BlocoInstitucional = {
     [
       {
         texto:
-          "Promovemos eventos, formamos profissionais, conectamos empresas e fortalecemos a comunidade de projetos em Brasília.",
+          "Promovemos eventos, formamos profissionais, conectamos empresas e fortalecemos a comunidade de projetos DF e entorno.",
       },
     ],
   ],
@@ -93,8 +93,13 @@ export const TRAJETORIA = {
  */
 export const MARCOS: MarcoTrajetoria[] = [
   {
-    ano: "2000",
-    texto: "Fundação do capítulo PMI-DF",
+    ano: "1999",
+    texto: "Início da formação do capítulo",
+    cor: "linear-gradient(90deg, #ff610f, #841e04)",
+  },
+  {
+    ano: "2001",
+    texto: " formalização do capítulo PMI-DF",
     cor: "linear-gradient(90deg, #ff610f, #841e04)",
   },
   {
@@ -102,6 +107,11 @@ export const MARCOS: MarcoTrajetoria[] = [
     texto:
       "Primeiro vez do Congresso Brasileiro de Gestão, Projetos e Liderança em Brasília",
     cor: "linear-gradient(90deg, #8a38f5, #1f0942)",
+  },
+  {
+    ano: "2020",
+    texto: "Realização do primeiro e único CGBPL online.",
+    cor: "linear-gradient(90deg, #1ac7ff, #023041)",
   },
   {
     ano: "2021",
@@ -132,7 +142,7 @@ export const DIRETORIA = {
     altura: 517,
   },
   rodapeTexto: "Conheça também nossos",
-  botaoLabel: "+190 voluntários ativos",
+  botaoLabel: "conheça nosso voluntários",
   // Único destino existente no site para "voluntários" (ver INICIATIVAS na
   // home) — a página em si ainda não foi implementada.
   botaoHref: "/voluntariado",
@@ -148,7 +158,7 @@ export const PRESIDENTES: Presidente[] = [
   {
     foto: assets.quemSomos.presidenteMatheus,
     nome: "Matheus Rocha",
-    periodo: "Gestão 2025/2026",
+    periodo: "01/01/2025 até 31/12/2026",
   },
   {
     foto: assets.quemSomos.presidenteCristina,
@@ -175,34 +185,34 @@ export const DEPOIMENTOS_SUBTITULO =
 export const DEPOIMENTOS: Depoimento[] = [
   {
     foto: assets.quemSomos.depoimentoAna,
-    nome: "Ana Luiza Martins",
-    papel: "Desenvolvedora Front-end",
+    nome: "Ana Paula Sometes",
+    papel: "Presidente do Student Club",
     chipGradiente: "linear-gradient(90deg, #8a38f5, #1f0942)",
     citacao:
-      "Participar da comunidade mudou completamente a forma como eu aprendo tecnologia. Além do conhecimento técnico, encontrei pessoas que realmente incentivam meu crescimento profissional e pessoal.",
-    legenda: "Membro há 2 anos",
+      "Voluntariar-se é se desafiar o tempo todo e descobrir que podemos ir muito além do que acreditávamos ser possível lá no ponto de partida. Quando olho para poucos meses atrás e percebo os novos conhecimentos que adquiri, as habilidades que desenvolvi, as pessoas queridas com quem troquei experiências e o impacto do trabalho que o nosso time realizou, sinto que todo o investimento do meu tempo neste propósito valeu cada segundo",
+    legenda: "Membro há 1 anos",
     cardGradiente: "var(--gradiente-mentorado)",
     lado: "esquerda",
   },
   {
     foto: assets.quemSomos.depoimentoLucas,
-    nome: "Lucas Costa",
-    papel: "Voluntário de Projetos",
+    nome: "Rodrigo Ferreira",
+    papel: "Engenheiro de Produção PMP",
     chipGradiente: "linear-gradient(90deg, #1ac7ff, #023041)",
     citacao:
-      "Comecei como voluntário buscando experiência prática e hoje já participei de projetos que fortaleceram meu portfólio e minha confiança. O ambiente é colaborativo e acolhedor desde o primeiro contato.",
+      "Eu não esperava que um trabalho voluntário mudasse a forma como enxergo minha carreira. No PMI DF, aprendi que liderar não é ter todas as respostas, é criar espaço para as pessoas certas crescerem. Ganhei mais que experiência: ganhei amigos que viraram parceiros de caminhada profissional. O PMI DF não forma apenas gestores de projeto. Forma quem decide assumir a própria trajetória, e não faz isso sozinho.",
     legenda: "1 ano de atuação",
     cardGradiente: "linear-gradient(180deg, #023041, #057ba7)",
     lado: "direita",
   },
   {
     foto: assets.quemSomos.depoimentoCamila,
-    nome: "Camila Ferreira",
-    papel: "UX/UI Designer",
+    nome: "Renata Marra",
+    papel: "Diretora PMI-DF",
     chipGradiente: "linear-gradient(90deg, #ff610f, #841e04)",
     citacao:
-      "A comunidade me ajudou a transformar ideias em projetos reais. Cada evento, workshop e troca com outras pessoas trouxe novas perspectivas para minha carreira na área de tecnologia.",
-    legenda: "Participante ativa desde 2023",
+      "Desde que me envolvi com o PMI-DF, venho desenvolvendo novas habilidades, ampliando minha visão e aprendendo diariamente com pessoas incríveis. Quanto mais me envolvo, mais preparada e confiante me sinto profissionalmente. É um forte sentimento de pertencimento, somado à vontade genuína de gerar impacto, contribuir e fazer a diferença. Acredito que pessoas transformam projetos, e projetos transformam pessoas.",
+    legenda: "Participante ativa desde 2024",
     cardGradiente: "linear-gradient(180deg, #841e04, #ff610f)",
     lado: "esquerda",
   },

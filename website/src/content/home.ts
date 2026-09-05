@@ -21,7 +21,7 @@ export const INICIATIVAS: Iniciativa[] = [
   {
     titulo: "Filiação",
     descricao:
-      "Acesso global, local e benefícios. Conecte-se a mais de 500 mil profissionais. Receba publicações, ferramentas e descontos exclusivos.",
+      "Acesso global, local e benefícios. Conecte-se a mais de 750 mil profissionais. Receba publicações, ferramentas e descontos exclusivos.",
     href: "/filiacao",
     gradiente: "bg-[linear-gradient(180deg,#000000_0%,#1F0942_60%)]",
     deco: {

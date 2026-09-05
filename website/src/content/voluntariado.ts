@@ -12,7 +12,7 @@ export const PERFIS: string[] = [
   "Pessoas movidas por propósito que querem impactar a comunidade do Distrito Federal e deixar sua marca pessoal",
   "Profissionais em busca de expandir seu networking, conhecer novas pessoas e se envolver com uma comunidade de projetos",
   "Estudantes que se interessam pela área e querem experiência profissional",
-  "Profissionais em busca de recolocação profissional",
+  "Profissionais em busca de recolocação no mercado de trabalho",
   "Pessoas que têm disponibilidade para atuar em voluntariado",
 ];
 
@@ -46,7 +46,7 @@ export const BENEFICIOS: CardColorido[] = [
   {
     titulo: "Currículo que se destaca",
     descricao:
-      "Experiência em PMI pesa em entrevistas e promoções. É reconhecida globalmente.",
+      "Experiência no voluntariado pesa em entrevistas e promoções. É reconhecida globalmente.",
     cor: "bg-[#1AC7FF]",
   },
   {
@@ -63,7 +63,7 @@ export const PASSOS: PassoVoluntariado[] = [
   },
   {
     titulo: "Candidate-se.",
-    descricao: "Envie seu interesse pela plataforma se candidatando.",
+    descricao: "Envie seu interesse pela plataforma",
   },
 ];
 
@@ -73,12 +73,6 @@ export const CARDS_STUDENT_CLUB: CardColorido[] = [
     descricao:
       "Encontros, palestras e atividades pensados para quem ainda está na graduação.",
     cor: "bg-[#FF610F]",
-  },
-  {
-    titulo: "Mentoria com sêniores",
-    descricao:
-      "Contato direto com profissionais experientes do capítulo, desde o primeiro dia.",
-    cor: "bg-[#05BFE0]",
   },
   {
     titulo: "Primeiro contato real",
