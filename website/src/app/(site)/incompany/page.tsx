@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 import {
   Catalogo,
-  Clientes,
+  // Clientes,
   ComoFunciona,
   CtaFormulario,
   Formatos,
@@ -27,7 +27,15 @@ export default function InCompanyPage() {
       <ComoFunciona />
       <Catalogo />
       <Formatos />
-      <Clientes />
+      {/* "Quem já treinou com a gente" fica fora do ar enquanto não houver
+          logos de clientes para exibir — a seção renderizava 4 placeholders
+          tracejados. O componente segue em `components/incompany/Clientes.tsx`;
+          para reativar, descomente aqui e no import acima.
+
+          Ao voltar, `CtaFormulario` precisa retomar o fundo creme (#F8F5F0):
+          hoje ele é branco justamente porque passou a seguir Formatos, que já
+          é creme. */}
+      {/* <Clientes /> */}
       <CtaFormulario />
     </div>
   );
