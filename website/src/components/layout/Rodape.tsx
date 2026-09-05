@@ -60,10 +60,10 @@ export function Rodape() {
             ))}
           </ul>
           <Link
-            href="/politica-de-privacidade"
+            href="/aviso-de-privacidade"
             className="mt-4 inline-block text-[16px] text-black hover:underline"
           >
-            Política de privacidade
+            Aviso de privacidade
           </Link>
         </div>
       </Container>
