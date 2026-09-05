@@ -21,12 +21,6 @@ export function Governanca() {
               stakeholders — filiados, gestores, órgãos de compliance e a comunidade em geral.
               Aqui ficam os artefatos de gestão e governança do capítulo.
             </p>
-
-            <div className="mt-6 rounded-[12px] bg-[#F8F5F0] px-5 py-4">
-              <p className="border-l-4 border-[#4F17A8] pl-4 text-[14px] font-bold text-[#200F3B]">
-                Última revisão do portal: agosto de 2026 · Revisado a cada trimestre pela diretoria.
-              </p>
-            </div>
           </div>
         </div>
       </Container>

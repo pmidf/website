@@ -1,21 +1,25 @@
 import { Container } from "@/components/ui/Container";
 
+/**
+ * Dobra inicial, na mesma forma das demais páginas.
+ *
+ * O parágrafo "Início / Sobre / Transparência" que abria a seção era uma
+ * trilha de navegação escrita à mão. Desde que o layout do route group passou
+ * a renderizar a trilha de verdade (WCAG 2.4.8), a página mostrava as duas —
+ * uma clicável, outra não.
+ */
 export function Hero() {
   return (
-    <section className="bg-[linear-gradient(110deg,#210040_0%,#4F17A8_48%,#FF610F_100%)] py-16 text-white lg:py-24">
+    <section className="bg-[linear-gradient(90deg,#1F0942_13%,#FF610F_50%,#1AC7FF_89%)] py-14 text-center lg:py-20">
       <Container>
-        <p className="text-[13px] text-white/70">Início / Sobre / Transparência</p>
+        <h1 className="text-[30px] font-extrabold leading-tight text-[#F8F8F8] md:text-[36px] lg:text-[40px]">
+          Transparência
+        </h1>
 
-        <div className="mt-8 max-w-[760px]">
-          <h1 className="text-[38px] font-extrabold leading-tight lg:text-[56px]">
-            Transparência
-          </h1>
-
-          <p className="mt-5 max-w-[720px] text-[17px] leading-relaxed text-white/90 lg:text-[21px]">
-            Documentos institucionais, fiscais e regulatórios do PMI-DF, disponíveis para consulta
-            pública.
-          </p>
-        </div>
+        <p className="mx-auto mt-4 max-w-[767px] text-[18px] leading-relaxed text-[#F8F8F8] lg:text-[24px]">
+          Documentos institucionais, fiscais e regulatórios do PMI-DF, disponíveis para consulta
+          pública.
+        </p>
       </Container>
     </section>
   );

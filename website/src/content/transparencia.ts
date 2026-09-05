@@ -41,7 +41,10 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
         tipo: "LINK",
         titulo: "Código de Ética e Conduta Profissional do PMI",
         descricao: "Portal do PMI Global",
-        href: "https://www.pmi.org/-/media/pmi/documents/public/pdf/ethics/pmi-code-of-ethics.pdf?rev=ba9caa41b351486d863f556e6f10be93&sc_lang_temp=pt-PT",
+        // Sem `?rev=…&sc_lang_temp=pt-PT`: com esses parâmetros o PMI responde
+        // 200 com um arquivo de 0 byte — o download abria vazio. A URL limpa
+        // entrega o PDF de verdade (1,7 MB).
+        href: "https://www.pmi.org/-/media/pmi/documents/public/pdf/ethics/pmi-code-of-ethics.pdf",
         externo: true,
       },
     ],

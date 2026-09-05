@@ -40,3 +40,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# originais de câmera (15-18 MB cada). As versões servidas são os .webp ao
+# lado, já recortados e comprimidos; `images.unoptimized` está ligado, então
+# qualquer arquivo aqui vai para o navegador como está.
+public/assets/**/*.JPG
+public/assets/**/*.jpg
+public/assets/**/*.jpeg

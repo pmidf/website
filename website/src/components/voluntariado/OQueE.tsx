@@ -5,10 +5,12 @@ import { TituloSecao } from "@/components/ui/TituloSecao";
 import { assets } from "@/content/assets";
 
 /**
- * Apresentação do programa, com a estrela decorativa ao lado.
+ * Apresentação do programa, com a foto dos voluntários ao lado.
  *
- * A estrela some abaixo de `md`: em telas estreitas ela empurraria o texto
- * para fora da primeira dobra sem acrescentar informação.
+ * A foto entrou no lugar de uma estrela decorativa: a seção fala de pessoas,
+ * e mostrá-las diz mais que uma forma geométrica. Diferente da estrela, ela
+ * aparece também no mobile — deixou de ser ornamento e passou a ser conteúdo,
+ * então some só o `aria-hidden`, não a imagem.
  */
 export function OQueE() {
   return (
@@ -30,17 +32,17 @@ export function OQueE() {
           </p>
         </div>
 
-        {/* A arte é 517 × 501, não o quadrado que o protótipo cota. Fixar só a
-            largura e deixar `h-auto` mantém a proporção real — travar as duas
-            medidas em 544 esticaria a estrela em 3%. */}
+        {/* Sem `object-cover` nem largura máxima: a foto é deitada e ocupa a
+            coluna inteira, mostrada por completo. `h-auto` com as medidas
+            intrínsecas preserva a proporção e reserva a altura antes de a
+            imagem carregar. */}
         <Image
-          src={assets.voluntariado.estrela}
-          alt=""
-          aria-hidden
-          width={517}
-          height={501}
-          sizes="(max-width: 1024px) 392px, 561px"
-          className="mx-auto hidden h-auto w-[392px] max-w-none md:block lg:w-[561px]"
+          src={assets.voluntariado.voluntarios}
+          alt="Voluntários do PMI-DF reunidos no palco do PMI-DF Summit 2026"
+          width={1400}
+          height={933}
+          sizes="(max-width: 1024px) 100vw, 680px"
+          className="h-auto w-full rounded-[24px] shadow-[0_4px_16px_rgba(32,15,59,0.18)]"
         />
       </Container>
     </section>

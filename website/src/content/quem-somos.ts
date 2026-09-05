@@ -67,9 +67,9 @@ export const BLOCO_PMIDF: BlocoInstitucional = {
   ],
 };
 
-export const FOTO_BRASILIA = {
-  src: assets.quemSomos.heroBrasilia,
-  alt: "Fotografia de Brasília, sede do PMI Distrito Federal",
+export const FOTO_COMUNIDADE = {
+  src: assets.quemSomos.voluntarios,
+  alt: "Voluntários do PMI-DF reunidos no palco do PMI-DF Summit 2026",
   largura: 426,
   altura: 639,
 };
@@ -193,7 +193,6 @@ export const DEPOIMENTOS: Depoimento[] = [
     chipGradiente: "linear-gradient(90deg, #8a38f5, #1f0942)",
     citacao:
       "Voluntariar-se é se desafiar o tempo todo e descobrir que podemos ir muito além do que acreditávamos ser possível lá no ponto de partida. Quando olho para poucos meses atrás e percebo os novos conhecimentos que adquiri, as habilidades que desenvolvi, as pessoas queridas com quem troquei experiências e o impacto do trabalho que o nosso time realizou, sinto que todo o investimento do meu tempo neste propósito valeu cada segundo",
-    legenda: "Membro há 1 anos",
     cardGradiente: "var(--gradiente-mentorado)",
     lado: "esquerda",
   },
@@ -204,7 +203,6 @@ export const DEPOIMENTOS: Depoimento[] = [
     chipGradiente: "linear-gradient(90deg, #1ac7ff, #023041)",
     citacao:
       "Eu não esperava que um trabalho voluntário mudasse a forma como enxergo minha carreira. No PMI DF, aprendi que liderar não é ter todas as respostas, é criar espaço para as pessoas certas crescerem. Ganhei mais que experiência: ganhei amigos que viraram parceiros de caminhada profissional. O PMI DF não forma apenas gestores de projeto. Forma quem decide assumir a própria trajetória, e não faz isso sozinho.",
-    legenda: "1 ano de atuação",
     cardGradiente: "linear-gradient(180deg, #023041, #057ba7)",
     lado: "direita",
   },
@@ -215,7 +213,6 @@ export const DEPOIMENTOS: Depoimento[] = [
     chipGradiente: "linear-gradient(90deg, #ff610f, #841e04)",
     citacao:
       "Desde que me envolvi com o PMI-DF, venho desenvolvendo novas habilidades, ampliando minha visão e aprendendo diariamente com pessoas incríveis. Quanto mais me envolvo, mais preparada e confiante me sinto profissionalmente. É um forte sentimento de pertencimento, somado à vontade genuína de gerar impacto, contribuir e fazer a diferença. Acredito que pessoas transformam projetos, e projetos transformam pessoas.",
-    legenda: "Participante ativa desde 2024",
     cardGradiente: "linear-gradient(180deg, #841e04, #ff610f)",
     lado: "esquerda",
   },

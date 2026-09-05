@@ -75,7 +75,15 @@ export const assets = {
    * e convertidas para .webp no tamanho de exibição.
    */
   quemSomos: {
-    heroBrasilia: "/assets/paginas/quem-somos/hero-brasilia.webp",
+    /**
+     * Time do capítulo no palco do PMI-DF Summit 2026, na Seção 2. Substituiu
+     * a fotografia de Brasília (`hero-brasilia.webp`, ainda na pasta): a seção
+     * fala de quem constrói o capítulo, não da cidade.
+     *
+     * Recortada em 2:3 para a moldura em cápsula, fechada nas pessoas — o
+     * original é 3:2 e, aberto, deixaria uma faixa grande de teto vazia.
+     */
+    voluntarios: "/assets/paginas/quem-somos/voluntarios.webp",
     /**
      * Retratos dos presidentes, servindo a Seção 5 de Quem Somos e à galeria
      * completa em `/quem-somos/presidentes`.
@@ -103,7 +111,37 @@ export const assets = {
   },
 
   voluntariado: {
-    /** Estrela decorativa de "O que é ser voluntário" (517 × 501). */
-    estrela: "/assets/paginas/voluntariado/estrela.webp",
+    /**
+     * Time do capítulo no palco do PMI-DF Summit 2026, em "O que é ser
+     * voluntário". Substituiu a estrela decorativa: a seção fala de pessoas, e
+     * uma foto delas diz mais que uma forma geométrica. O `estrela.webp`
+     * continua na pasta, sem uso.
+     *
+     * Sem recorte — é a foto inteira, só redimensionada. A mesma imagem
+     * aparece em Quem Somos, lá em recorte 2:3 por causa da moldura em
+     * cápsula (`quemSomos.voluntarios`).
+     */
+    voluntarios: "/assets/paginas/voluntariado/time-summit.webp",
+  },
+
+  /** Artes exclusivas do Student Club. */
+  studentClub: {
+    /** Estudantes do clube em um encontro presencial. Foto inteira, 16:9. */
+    estudantes: "/assets/paginas/student-club/estudantes.webp",
+
+    /**
+     * Retratos dos depoimentos, vindos das fotos de perfil do LinkedIn e
+     * versionados aqui: as URLs do `media.licdn.com` são assinadas e expiram
+     * em semanas.
+     *
+     * A de Ludmilla Sophia é um `framedphoto`: traz a moldura "#OPENTOWORK"
+     * queimada na imagem, e vai sem recorte porque essa moldura é desenhada
+     * para o recorte circular — é assim que ela aparece no LinkedIn. Quando o
+     * aviso sair do perfil dela, basta trocar pela URL de `displayphoto`.
+     */
+    depoimentoHugo: "/assets/paginas/student-club/depoimento-hugo.webp",
+    depoimentoLudmilla: "/assets/paginas/student-club/depoimento-ludmilla.webp",
+    depoimentoAna: "/assets/paginas/student-club/depoimento-ana.webp",
+    depoimentoJulia: "/assets/paginas/student-club/depoimento-julia.webp",
   },
 } as const;

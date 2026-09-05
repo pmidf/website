@@ -1,42 +1,34 @@
-import Link from "next/link";
-
+import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 
+/**
+ * Dobra inicial, na mesma forma das demais páginas: título centralizado na
+ * escala 30/36/40, subtítulo de apoio e CTAs pelo `Botao` do design system.
+ *
+ * A foto do clube saiu daqui e desceu para "Onde os gerentes de projeto se
+ * formam" — no hero ela empurrava a primeira seção de conteúdo para fora da
+ * dobra, e ilustra melhor o texto que explica o programa.
+ */
 export function Hero() {
   return (
-    <section className="bg-[linear-gradient(110deg,#210040_0%,#4F17A8_48%,#FF610F_100%)] py-14 text-white lg:py-20">
+    <section className="bg-[linear-gradient(90deg,#1F0942_13%,#FF610F_50%,#1AC7FF_89%)] py-14 text-center lg:py-20">
       <Container>
-        <p className="text-[13px] text-white/60">Início / Student Club</p>
+        <h1 className="text-[30px] font-extrabold leading-tight text-[#F8F8F8] md:text-[36px] lg:text-[40px]">
+          PMI-DF Student Club
+        </h1>
 
-        <div className="mt-10 max-w-[720px]">
-          <p className="text-[12px] font-bold uppercase tracking-[0.24em] text-[#1AC7FF]">
-            Comunidade estudantil
-          </p>
+        <p className="mx-auto mt-4 max-w-[767px] text-[18px] leading-relaxed text-[#F8F8F8] lg:text-[24px]">
+          O clube estudantil oficial do PMI Distrito Federal. Um espaço para quem está começando na
+          carreira de projetos aprender, praticar e se conectar com o mercado.
+        </p>
 
-          <h1 className="mt-4 text-[36px] font-extrabold leading-tight lg:text-[54px]">
-            PMI-DF Student Club
-          </h1>
-
-          <p className="mt-5 max-w-[650px] text-[16px] leading-relaxed text-white/85 lg:text-[19px]">
-            O clube estudantil oficial do PMI Distrito Federal. Um espaço para quem está começando
-            na carreira de projetos aprender, praticar e se conectar com o mercado.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="#participar"
-              className="rounded-full bg-white/80 px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:bg-white"
-            >
-              Quero fazer parte →
-            </Link>
-
-            <Link
-              href="#beneficios"
-              className="rounded-full border border-white/60 px-7 py-3 text-[14px] font-semibold text-white transition hover:bg-white/10"
-            >
-              Conhecer benefícios
-            </Link>
-          </div>
+        <div className="mt-7 flex flex-wrap justify-center gap-4">
+          <Botao href="#participar" variante="branco">
+            Quero fazer parte
+          </Botao>
+          <Botao href="#beneficios" variante="contorno-claro">
+            Conhecer benefícios
+          </Botao>
         </div>
       </Container>
     </section>

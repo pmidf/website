@@ -292,9 +292,24 @@ export type Depoimento = {
   papel: string;
   chipGradiente: string;
   citacao: string;
-  legenda: string;
   cardGradiente: string;
   lado: "esquerda" | "direita";
+};
+
+/* --- Página Student Club --------------------------------------------------- */
+
+/**
+ * Depoimento de um estudante do clube.
+ *
+ * `foto` é opcional pelo mesmo motivo da galeria de presidentes: sem arquivo,
+ * o card cai no avatar de iniciais em vez de abrir um buraco na grade.
+ * `paragrafos` guarda o texto como a pessoa escreveu, quebra por quebra.
+ */
+export type DepoimentoEstudante = {
+  nome: string;
+  paragrafos: string[];
+  linkedin: string;
+  foto?: string;
 };
 
 /* --- Galeria de voluntários ----------------------------------------------- */

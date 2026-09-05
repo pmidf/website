@@ -18,18 +18,24 @@ export function Beneficios() {
           projetos.
         </p>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Flex com quebra e centralização, e não `grid-cols-3`: são cinco
+            benefícios, e numa grade de três colunas a última linha ficaria com
+            dois cards encostados à esquerda e um buraco à direita. Assim ela
+            fica centralizada sob as três de cima. As larguras reproduzem as
+            colunas — `calc(33.333% - 16px)` com `gap-6` fecha exatamente três
+            por linha. */}
+        <ul className="mt-10 flex flex-wrap justify-center gap-6">
           {BENEFICIOS_STUDENT.map((item) => (
-            <article
+            <li
               key={item.titulo}
-              className="rounded-[14px] bg-[#F8F5F0] px-7 py-8 shadow-[0_2px_10px_rgba(32,15,59,0.06)]"
+              className="w-full rounded-[14px] bg-[#F8F5F0] px-7 py-8 shadow-[0_2px_10px_rgba(32,15,59,0.06)] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
             >
-              <span className={`block h-1 w-12 rounded-full ${item.cor}`} />
+              <span aria-hidden className={`block h-1 w-12 rounded-full ${item.cor}`} />
               <h3 className="mt-5 text-[19px] font-bold text-[#200F3B]">{item.titulo}</h3>
               <p className="mt-4 text-[15px] leading-relaxed text-[#5C546E]">{item.descricao}</p>
-            </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
     </section>
   );

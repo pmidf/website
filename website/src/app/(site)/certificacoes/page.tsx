@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 
 import {
   Hero,
-  TabsNav,
   CertificacoesPrincipais,
   Comparativo,
   FiliadosDesconto,
@@ -23,7 +22,6 @@ export default function CertificacoesPage() {
   return (
     <div className="min-h-screen bg-[#F8F5F0]">
       <Hero />
-      <TabsNav />
       <CertificacoesPrincipais />
       <Comparativo />
       <FiliadosDesconto />

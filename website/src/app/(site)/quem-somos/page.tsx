@@ -11,7 +11,7 @@ import {
   DEPOIMENTOS_SUBTITULO,
   DEPOIMENTOS_TITULO,
   DIRETORIA,
-  FOTO_BRASILIA,
+  FOTO_COMUNIDADE,
   HERO,
   MARCOS,
   PRESIDENTES,
@@ -119,10 +119,10 @@ export default function QuemSomosPage() {
 
         <div className="qs-oquee__foto-wrap">
           <Image
-            src={FOTO_BRASILIA.src}
-            alt={FOTO_BRASILIA.alt}
-            width={FOTO_BRASILIA.largura}
-            height={FOTO_BRASILIA.altura}
+            src={FOTO_COMUNIDADE.src}
+            alt={FOTO_COMUNIDADE.alt}
+            width={FOTO_COMUNIDADE.largura}
+            height={FOTO_COMUNIDADE.altura}
             className="qs-oquee__foto"
           />
         </div>
@@ -304,7 +304,6 @@ export default function QuemSomosPage() {
                     &ldquo;{depoimento.citacao}&rdquo;
                   </p>
                   <p className="qs-depoimento__nome">{depoimento.nome}</p>
-                  <p className="qs-depoimento__legenda">{depoimento.legenda}</p>
                 </div>
               </article>
             ))}

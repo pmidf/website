@@ -1,39 +1,33 @@
-import Link from "next/link";
+import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 
+/**
+ * Dobra inicial, na mesma forma das demais páginas.
+ *
+ * Saíram daqui a trilha "Início / Certificações" escrita à mão — que duplicava
+ * o breadcrumb real do layout — e os dois botões com pílula própria, agora
+ * variantes do `Botao`.
+ */
 export function Hero() {
   return (
-    <section className="bg-[linear-gradient(110deg,#210040_0%,#4F17A8_48%,#FF610F_100%)] py-14 text-white lg:py-20">
+    <section className="bg-[linear-gradient(90deg,#1F0942_13%,#FF610F_50%,#1AC7FF_89%)] py-14 text-center lg:py-20">
       <Container>
-        <p className="text-[13px] text-white/65">Início / Certificações</p>
+        <h1 className="text-[30px] font-extrabold leading-tight text-[#F8F8F8] md:text-[36px] lg:text-[40px]">
+          Certificações PMI
+        </h1>
 
-        <div className="mt-8 max-w-[760px]">
-          <h1 className="text-[36px] font-extrabold leading-tight lg:text-[54px]">
-            Certificações PMI
-          </h1>
+        <p className="mx-auto mt-4 max-w-[767px] text-[18px] leading-relaxed text-[#F8F8F8] lg:text-[24px]">
+          Credenciais reconhecidas em mais de 200 países. Entenda qual faz sentido para o seu
+          momento de carreira e onde estudar com desconto pelo PMI-DF.
+        </p>
 
-          <p className="mt-4 max-w-[700px] text-[16px] leading-relaxed text-white/85 lg:text-[19px]">
-            Credenciais reconhecidas em mais de 200 países. Entenda qual faz
-            sentido para o seu momento de carreira e onde estudar com desconto
-            pelo PMI-DF.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="https://www.pmi.org/certifications"
-              target="_blank"
-              className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-            >
-              Ver certificações no PMI Global →
-            </Link>
-
-            <Link
-              href="/contato?assunto=certificacao"
-              className="rounded-full border border-white/60 px-7 py-3 text-[14px] font-semibold text-white transition hover:bg-white/10"
-            >
-              Solicitar cupom de desconto
-            </Link>
-          </div>
+        <div className="mt-7 flex flex-wrap justify-center gap-4">
+          <Botao href="https://www.pmi.org/certifications" external variante="branco">
+            Ver certificações no PMI Global
+          </Botao>
+          <Botao href="/contato?assunto=certificacao" variante="contorno-claro">
+            Solicitar cupom de desconto
+          </Botao>
         </div>
       </Container>
     </section>

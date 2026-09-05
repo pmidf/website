@@ -4,6 +4,7 @@ import {
   Beneficios,
   ComoParticipar,
   CtaFinal,
+  Depoimentos,
   Faq,
   Hero,
   MissaoValores,
@@ -26,6 +27,7 @@ export default function StudentClubPage() {
       <MissaoValores />
       <Beneficios />
       <ComoParticipar />
+      <Depoimentos />
       <QuemPodeParticipar />
       <Faq />
       <CtaFinal />

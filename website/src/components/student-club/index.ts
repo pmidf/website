@@ -1,4 +1,5 @@
 export { Hero } from "@/components/student-club/Hero";
+export { Depoimentos } from "@/components/student-club/Depoimentos";
 export { OQueE } from "@/components/student-club/OQueE";
 export { MissaoValores } from "@/components/student-club/MissaoValores";
 export { Beneficios } from "@/components/student-club/Beneficios";
