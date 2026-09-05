@@ -1,3 +1,5 @@
+import { site } from "@/content/site";
+
 export type TipoDocumento = "PDF" | "LINK";
 
 export type DocumentoTransparencia = {
@@ -130,7 +132,8 @@ export const CTAS_TRANSPARENCIA = [
     titulo: "Falar com a gestão",
     descricao: "Dúvidas sobre governança, prestação de contas ou documentos do capítulo.",
     cta: "Enviar e-mail",
-    href: "mailto:contato@pmidf.org.br",
+    // Endereço vem de `content/site.ts`, a fonte única de contato do capítulo.
+    href: `mailto:${site.contact.email}`,
     variante: "roxo",
   },
   {
