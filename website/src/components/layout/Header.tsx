@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { FaChevronDown } from "react-icons/fa6";
 
 import { Container } from "@/components/ui/Container";
 import { assets } from "@/content/assets";
@@ -59,6 +60,32 @@ const MENU_ITEMS: MenuItem[] = [
   },
 ];
 
+/**
+ * Seta que marca um item com submenu.
+ *
+ * É um glifo do Font Awesome 6 via `react-icons` — o mesmo conjunto das redes
+ * sociais do rodapé —, e não o caractere "▾" que estava aqui antes. O caractere
+ * dependia da fonte do sistema para existir e para ter peso: no fallback ele
+ * saía fino e desalinhado da linha de base, o que o fazia parecer menor do que
+ * os 12px declarados.
+ *
+ * O tamanho vem por `className` porque o menu desktop e o mobile têm escalas
+ * de texto diferentes (16/18px contra 17px numa linha de toque).
+ *
+ * A cor é sempre `currentColor`: o botão inteiro (rótulo + seta) muda de cor
+ * junto no hover e quando o submenu abre, em vez de a seta ter vida própria.
+ */
+function Seta({ aberta, className }: { aberta: boolean; className: string }) {
+  return (
+    <FaChevronDown
+      aria-hidden
+      className={`${className} transition-transform duration-200 ${
+        aberta ? "rotate-180" : ""
+      }`}
+    />
+  );
+}
+
 export function Header() {
   const [aberto, setAberto] = useState(false);
   const [submenuDesktop, setSubmenuDesktop] = useState<string | null>(null);
@@ -114,23 +141,34 @@ export function Header() {
                   onClick={() => alternarSubmenuDesktop(item.label)}
                   aria-expanded={estaAberto}
                   aria-haspopup="menu"
-                  className="flex items-center gap-2 px-3 py-2 text-[16px] text-[#200F3B] transition hover:text-[#FF610F] xl:text-[18px]"
+                  /* A cor sai de um ternário, e não de duas classes `text-*`
+                     empilhadas: utilitários da mesma propriedade são resolvidos
+                     pela ordem da folha de estilo gerada, não pela ordem em que
+                     foram escritos. */
+                  className={`flex items-center gap-1.5 px-3 py-2 text-[16px] transition hover:text-[#FF610F] xl:text-[18px] ${
+                    estaAberto ? "text-[#FF610F]" : "text-[#200F3B]"
+                  }`}
                 >
                   {item.label}
-                  <span
-                    className={`text-[12px] transition-transform ${
-                      estaAberto ? "rotate-180" : ""
-                    }`}
-                  >
-                    ▾
-                  </span>
+                  <Seta aberta={estaAberto} className="h-[13px] w-[13px]" />
                 </button>
 
                 {estaAberto && (
                   <div
                     role="menu"
-                    className="absolute left-0 top-full mt-3 w-[240px] rounded-[16px] border border-[#200F3B]/10 bg-white p-2 shadow-[0_12px_30px_rgba(32,15,59,0.14)]"
+                    className="absolute left-0 top-full mt-2 w-[240px] rounded-[16px] border border-[#200F3B]/10 bg-white p-2 shadow-[0_12px_30px_rgba(32,15,59,0.14)]"
                   >
+                    {/* Bico apontando para o botão: é o que liga o cartão ao
+                        item que o abriu. Sem ele, o painel flutua solto sobre a
+                        página e não se lê como parte daquele item do menu.
+                        Um quadrado girado 45°, com as bordas de cima e da
+                        esquerda visíveis, forma o triângulo com o mesmo traço
+                        do cartão. */}
+                    <span
+                      aria-hidden
+                      className="absolute -top-[6px] left-6 h-[11px] w-[11px] rotate-45 rounded-tl-[2px] border-l border-t border-[#200F3B]/10 bg-white"
+                    />
+
                     {item.children?.map((child) => (
                       <Link
                         key={child.href}
@@ -206,15 +244,21 @@ export function Header() {
                   type="button"
                   onClick={() => alternarSubmenuMobile(item.label)}
                   aria-expanded={estaAberto}
-                  className="flex w-full items-center justify-between py-3 text-left text-[17px] text-[#200F3B]"
+                  className={`flex w-full items-center justify-between py-3 text-left text-[17px] transition ${
+                    estaAberto ? "text-[#FF610F]" : "text-[#200F3B]"
+                  }`}
                 >
                   {item.label}
+                  {/* No mobile a seta ganha um disco: numa lista em que quase
+                      todo item é um link direto, o disco é o que diferencia à
+                      distância os dois itens que abrem submenu — e dá alvo de
+                      toque ao redor de um glifo de 13px. */}
                   <span
-                    className={`text-[13px] transition-transform ${
-                      estaAberto ? "rotate-180" : ""
+                    className={`flex h-7 w-7 items-center justify-center rounded-full transition ${
+                      estaAberto ? "bg-[#FF610F]/10" : "bg-[#200F3B]/[0.06]"
                     }`}
                   >
-                    ▾
+                    <Seta aberta={estaAberto} className="h-[13px] w-[13px]" />
                   </span>
                 </button>
 
