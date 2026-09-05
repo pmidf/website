@@ -374,6 +374,32 @@ function derivarId(evento: SymplaEvent) {
     .replace(/(^-|-$)/g, "");
 }
 
+/**
+ * Descarta eventos repetidos, preservando a ordem de chegada.
+ *
+ * A paginação da Sympla pode devolver o mesmo evento em mais de uma página —
+ * basta a agenda mudar entre duas requisições do laço para um item deslizar de
+ * uma página para a outra. Sem esta poda, o card aparecia duas vezes na agenda
+ * e o React ainda reclamava de `key` duplicada.
+ *
+ * A chave é a mesma de `derivarId`: o `id` da Sympla quando existe e, na falta
+ * dele, o slug de nome + data. Reaproveitar a função é o que garante que dois
+ * registros considerados iguais aqui também recebam o mesmo `id` no card.
+ */
+function removerDuplicados(eventos: SymplaEvent[]) {
+  const vistos = new Map<string, SymplaEvent>();
+
+  for (const evento of eventos) {
+    const chave = derivarId(evento);
+
+    if (!vistos.has(chave)) {
+      vistos.set(chave, evento);
+    }
+  }
+
+  return Array.from(vistos.values());
+}
+
 function mapearEvento(evento: SymplaEvent): EventoAgenda {
   const formato = detectarFormato(evento);
 
@@ -490,7 +516,7 @@ export const getEventosSympla = cache(
     try {
       const crus = await buscarTodasAsPaginas(token);
 
-      const eventos = crus
+      const eventos = removerDuplicados(crus)
         .filter((evento) => !estaCancelado(evento))
         .sort((a, b) => {
           const inicioA = parseSymplaDate(a.start_date)?.getTime() ?? 0;

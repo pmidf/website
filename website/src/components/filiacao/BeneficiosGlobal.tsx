@@ -11,10 +11,10 @@ export function BeneficiosGlobal() {
       <Container>
         <FaixaSecao cor="bg-[#1F0942]" lado="esquerda" className="lg:max-w-[560px]">
           <TituloSecao className="font-display font-extrabold leading-[1.18] text-white">
-            Benefícios do PMI Global
+            Benefícios do PMI
           </TituloSecao>
           <p className="mt-4 text-[18px] leading-snug text-white lg:text-[24px]">
-            Recursos que vêm com a filiação. Tudo que o PMI oferece a mais de 500 mil profissionais
+            Recursos que vêm com a filiação. Tudo que o PMI oferece a mais de 800 mil profissionais
             no mundo.
           </p>
         </FaixaSecao>

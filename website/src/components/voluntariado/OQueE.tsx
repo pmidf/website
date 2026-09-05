@@ -25,7 +25,7 @@ export function OQueE() {
             Somos movidos por propósito
           </p>
           <p className="mt-2 max-w-[360px] text-[18px] leading-snug text-[#200F3B] lg:text-[24px]">
-            O PMI-DF é construído por voluntários. Mais de 190 profissionais voluntários ativos
+            O PMI-DF é construído por voluntários. Mais de 190 profissionais voluntários
             hoje, em comitês, diretorias e programas.
           </p>
         </div>

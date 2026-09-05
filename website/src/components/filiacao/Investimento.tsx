@@ -23,14 +23,14 @@ export function Investimento() {
             Investimento transparente
           </TituloSecao>
           <p className="text-[16px] leading-[1.58] text-[#5C546E] lg:text-[18px]">
-            A anuidade é paga diretamente ao PMI Global. Valores podem variar conforme câmbio e
+            A anuidade é paga diretamente ao PMI. Valores podem variar conforme câmbio e
             categoria (profissional, estudante, aposentado).
           </p>
           <p className="text-[16px] font-medium text-[#200F3B]">
             Consulte os valores atualizados no site oficial do PMI.
           </p>
           <Botao href={URL_PMI_GLOBAL} external variante="escuro" className="mt-2">
-            Ver valores no PMI Global
+            Ver valores no PMI
           </Botao>
         </div>
 

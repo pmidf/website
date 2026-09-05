@@ -31,7 +31,7 @@ export function InCompany() {
           <div className="mt-6 grid gap-6 lg:grid-cols-2 lg:gap-10">
             <p className="text-[16px] leading-relaxed text-white lg:text-[22px]">
               Levamos conteúdos de qualidade ao seu time, com cases reais e instrutores qualificados.
-              Formatos presenciais ou remotos.
+              Formatos fechados, presenciais ou remotos.
             </p>
             <p className="text-[16px] leading-relaxed text-white lg:text-[22px]">
               Capacite líderes, equipes, padronize processos e acelere entregas. Fale com a gente
