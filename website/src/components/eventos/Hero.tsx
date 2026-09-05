@@ -18,7 +18,7 @@ export function Hero() {
           Summit, workshops, encontros e webinars. Presenciais e online. Tudo o que a comunidade
           de projetos do DF está fazendo agora.
         </p>
-        <Botao href="#agenda" variante="branco" className="mt-7">
+        <Botao href="#agenda" variante="texto-petroleo" className="mt-7">
           Ver agenda completa
         </Botao>
       </Container>

@@ -153,12 +153,12 @@ export const PRESIDENTES: Presidente[] = [
   {
     foto: assets.quemSomos.presidenteCristina,
     nome: "Cristina Duarte",
-    periodo: "01/01/2023 até 31/12/2024",
+    periodo: "Gestão 2023/2024",
   },
   {
     foto: assets.quemSomos.presidenteGino,
     nome: "Gino Terentim",
-    periodo: "01/01/2021 até 31/12/2022",
+    periodo: "Gestão 2021/2022",
   },
 ];
 

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Botao } from "@/components/ui/Botao";
 
 import { Container } from "@/components/ui/Container";
 
@@ -22,12 +23,12 @@ export function Hero() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link
+              <Botao
                 href="#solicitar"
-                className="rounded-full bg-white/80 px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:bg-white"
+                variante="texto-roxo"
               >
                 Solicitar proposta
-              </Link>
+              </Botao>
 
               <Link
                 href="#catalogo"

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Botao } from "@/components/ui/Botao";
 
 import { Container } from "@/components/ui/Container";
 
@@ -17,13 +18,9 @@ export function CtaFinal() {
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="https://www.pmi.org/certifications"
-              target="_blank"
-              className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-            >
+            <Botao href="https://www.pmi.org/certifications" variante="texto-roxo">
               Ir para o PMI Global →
-            </Link>
+            </Botao>
 
             <Link
               href="/contato?assunto=certificacao"

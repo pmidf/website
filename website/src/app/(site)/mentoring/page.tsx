@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
+import { Botao } from "@/components/ui/Botao";
 
 import {
   CAMINHOS,
@@ -50,9 +51,9 @@ export default function MentoringPage() {
           Conexão entre quem tem experiência e quem quer crescer. O programa
           oficial de mentoria do PMI-DF, com ciclos anuais e método próprio.
         </p>
-        <a href={LINK_INSCRICAO} className="mtr-botao mtr-botao--claro">
-          <span className="mtr-botao__gradiente">Ver inscrições abertas</span>
-        </a>
+        <Botao href={LINK_INSCRICAO} variante="claro">
+          Ver inscrições abertas
+        </Botao>
       </section>
 
       {/* === Seção 2 — O que é =========================================== */}

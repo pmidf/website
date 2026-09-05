@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Botao } from "@/components/ui/Botao";
 
 import { Container } from "@/components/ui/Container";
 
@@ -60,12 +61,9 @@ export function ParceirosATP() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-4">
-                <Link
-                  href="/contato?assunto=cupom-jump"
-                  className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-                >
+                <Botao href="/contato?assunto=cupom-jump" variante="texto-roxo">
                   Solicitar cupom de desconto
-                </Link>
+                </Botao>
 
                 <Link
                   href="https://www.pmi.org/certifications/certification-resources/authorized-training-partners"
@@ -85,13 +83,11 @@ export function ParceirosATP() {
             Partners e permite verificar se um provedor é autorizado.
           </p>
 
-          <Link
+          <Botao
             href="https://www.pmi.org/certifications/certification-resources/authorized-training-partners"
-            target="_blank"
-            className="rounded-full bg-[linear-gradient(90deg,#B86A4B_0%,#BEEFFF_100%)] px-7 py-3 text-[14px] font-semibold text-[#200F3B] transition hover:brightness-105"
-          >
+            variante="texto-terracota">
             Abrir diretório ↗
-          </Link>
+          </Botao>
         </div>
       </Container>
     </section>
