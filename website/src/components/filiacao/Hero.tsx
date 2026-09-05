@@ -6,7 +6,7 @@ import { URL_PMI_GLOBAL } from "@/content/filiacao";
 export function Hero() {
   return (
     <section className="bg-[#1F0942] pb-24 pt-12 text-center lg:pb-32 lg:pt-14">
-      <Container gutter="amplo">
+      <Container>
         <h1 className="font-display text-[30px] font-extrabold leading-tight text-[#F8F8F8] md:text-[36px] lg:text-[40px]">
           Filiação PMI-DF
         </h1>

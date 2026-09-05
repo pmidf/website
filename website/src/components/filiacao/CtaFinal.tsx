@@ -14,7 +14,7 @@ import { URL_PMI_GLOBAL } from "@/content/filiacao";
 export function CtaFinal() {
   return (
     <section className="bg-[#F8F5F0] pb-16 lg:pb-[88px]">
-      <Container gutter="amplo">
+      <Container>
         <div className="relative isolate overflow-hidden rounded-[40px] bg-[#1F0942] px-6 py-12 text-center lg:rounded-[400px] lg:px-24 lg:py-[70px]">
           <h2 className="font-display text-[28px] font-bold text-white md:text-[34px] lg:text-[40px]">
             Pronto para se filiar?

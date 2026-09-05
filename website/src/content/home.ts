@@ -1,5 +1,5 @@
 import { assets } from "@/content/assets";
-import type { Evento, Iniciativa, Mantenedor } from "@/types";
+import type { BannerDestaque, Evento, Iniciativa, Mantenedor } from "@/types";
 
 /**
  * Conteúdo das seções da home.
@@ -8,6 +8,46 @@ import type { Evento, Iniciativa, Mantenedor } from "@/types";
  * renderizam. Publicar um novo evento ou trocar um mantenedor não exige tocar
  * em nenhum arquivo .tsx.
  */
+
+/**
+ * Slides do carrossel de destaques, logo abaixo do Hero.
+ *
+ * A ordem é a ordem de exibição, e o primeiro é o que aparece antes de o
+ * carrossel começar a girar — quem chega e não espera vê este.
+ *
+ * Os dados do Summit vieram da própria página do evento no Sympla
+ * (09/11/2026 09h às 11/11/2026 13h, Monumental Eventos). Conferir a cada
+ * edição: a data e o link são de um evento específico, não de uma série.
+ */
+export const BANNERS: BannerDestaque[] = [
+  {
+    id: "certificacoes",
+    titulo: "Nossas certificações",
+    descricao:
+      "As certificações do PMI são reconhecidas no mundo todo. Elevam sua carreira, ampliam oportunidades e atestam domínio técnico. Conheça cada credencial no portal oficial.",
+    destaque: "PMP® CAPM® PMIPMOCP® PMIACP®",
+    ctaLabel: "Saiba mais",
+    ctaHref: "/certificacoes",
+    ctaVariante: "vidro",
+    fundo: "bg-[#5B2205]",
+    deco: { src: assets.formas.losangosLaranja, classe: "w-[220px] xl:w-[280px]" },
+  },
+  {
+    id: "summit-2026",
+    titulo: "PMI-DF Summit 2026",
+    descricao:
+      "Três dias de palestras, painéis e networking com a comunidade de projetos do Distrito Federal. Certificado de participação com carga horária de até 20 horas e elegibilidade para PDUs.",
+    destaque: "9 a 11 de novembro · Monumental Eventos, Brasília/DF",
+    ctaLabel: "Garanta seu ingresso",
+    ctaHref: "https://www.sympla.com.br/evento/pmi-df-summit-2026/3199543",
+    ctaExterno: true,
+    // Pílula branca com texto em gradiente: é o CTA de compra da página, e
+    // precisa pesar mais que o "Saiba mais" translúcido do outro slide.
+    ctaVariante: "claro",
+    fundo: "bg-[linear-gradient(110deg,#210040_0%,#4F17A8_55%,#012F44_100%)]",
+    deco: { src: assets.formas.circuloCiano, classe: "w-[190px] xl:w-[230px]" },
+  },
+];
 
 /**
  * Cada iniciativa recebe a forma da própria família cromática: triângulo roxo

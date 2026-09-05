@@ -16,7 +16,9 @@ export function FotoCircular({ className = "" }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:max-w-[572px]",
+        // 572px só a partir de xl: em janelas de 1024 a 1280 a foto sozinha
+        // comia metade da coluna e espremia a lista ao lado.
+        "relative aspect-square w-full max-w-[360px] shrink-0 overflow-hidden rounded-full lg:max-w-[440px] xl:max-w-[572px]",
         className,
       )}
     >
@@ -24,7 +26,7 @@ export function FotoCircular({ className = "" }: { className?: string }) {
         src={assets.filiacao.fotoEvento}
         alt="Participantes em um evento do PMI-DF"
         fill
-        sizes="(max-width: 1024px) 360px, 572px"
+        sizes="(max-width: 1024px) 360px, (max-width: 1280px) 440px, 572px"
         className="object-cover"
       />
     </div>

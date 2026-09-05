@@ -124,14 +124,30 @@ export const MARCOS: MarcoTrajetoria[] = [
 export const DIRETORIA = {
   titulo: "Organograma",
   subtitulo: "A diretoria que conduz o PMI-DF nesta gestão 2025-2026.",
-  imagem: {
-    src: assets.quemSomos.organograma,
-    alt: "Organograma da diretoria do PMI-DF, gestão 2025-2026",
-    largura: 1280,
-    altura: 517,
+  /**
+   * Embed do Canva, e não mais uma imagem exportada.
+   *
+   * A diretoria muda a cada gestão e as posições "em breve" vão sendo
+   * preenchidas ao longo do biênio. Com o embed, quem cuida da arte publica no
+   * Canva e o site acompanha — antes cada troca exigia exportar um .webp,
+   * commitar e esperar um deploy.
+   *
+   * `href` é o link de origem: cumpre a atribuição pedida pelo Canva e é a
+   * saída para quem não conseguir carregar o iframe (rede corporativa,
+   * bloqueador de terceiros) ou quiser ver os nomes em tela cheia.
+   */
+  embed: {
+    src: "https://www.canva.com/design/DAGd-DS6jJI/--jfPioB7IaP9cnlVNNoSg/view?embed",
+    titulo: "Organograma da diretoria do PMI-DF, gestão 2025-2026",
+    href:
+      "https://www.canva.com/design/DAGd-DS6jJI/--jfPioB7IaP9cnlVNNoSg/view" +
+      "?utm_content=DAGd-DS6jJI&utm_campaign=designshare&utm_medium=embeds&utm_source=link",
+    nome: "ORGANOGRAMA PMI-DF",
+    autor: "Comunicação PMI",
   },
-  rodapeTexto: "Conheça também nossos",
-  botaoLabel: "voluntários",
+  rodapeTexto:
+    "O organograma mostra os cargos. Por trás de cada um há uma pessoa que doa tempo ao capítulo.",
+  botaoLabel: "Conhecer nossos voluntários",
   // Galeria de quem ocupa as posições do organograma. Não confundir com
   // `/voluntariado`, que explica o programa e leva às vagas abertas.
   botaoHref: "/quem-somos/voluntarios",

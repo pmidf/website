@@ -487,27 +487,49 @@
   background: var(--branco);
 }
 
-.qs-diretoria__imagem {
-  display: block;
+/* Moldura do embed do Canva.
+ *
+ * `aspect-ratio` reserva a altura antes de o iframe carregar, então a página
+ * não pula quando ele aparece — é o mesmo efeito do truque de `padding-top`
+ * que o Canva sugere, sem o wrapper extra. 16/9 é a proporção do design.
+ *
+ * A sombra e o raio de 8px são os do próprio código de incorporação: mantê-los
+ * faz o quadro parecer parte da página em vez de um retângulo colado nela. */
+.qs-diretoria__embed {
+  position: relative;
   width: 100%;
-  height: auto;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+  background: var(--branco-off);
 }
 
-/* Organograma é ilegível no celular: em vez de espremer, deixa rolar. */
-.qs-diretoria__imagem-wrap {
-  overflow-x: auto;
+.qs-diretoria__embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
+/* Empilhado, e não lado a lado: a frase deixou de ser um pedaço da própria
+ * chamada ("Conheça também nossos" + botão "voluntários") e virou uma linha
+ * de apoio com sentido próprio — grande demais para caber na mesma linha do
+ * botão sem quebrar de forma desajeitada. */
 .qs-diretoria__rodape {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 8px;
+  text-align: center;
 }
 
 .qs-diretoria__rodape-texto {
-  font-size: 24px;
+  max-width: 640px;
+  font-size: 20px;
+  line-height: 1.45;
   color: var(--roxo-titulo);
 }
 

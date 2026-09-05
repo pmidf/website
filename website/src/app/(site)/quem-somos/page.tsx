@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Archivo, Inter } from "next/font/google";
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
 
 import {
@@ -167,24 +168,29 @@ export default function QuemSomosPage() {
             <p className="qs-subtitulo">{DIRETORIA.subtitulo}</p>
           </header>
 
-          <div className="qs-diretoria__imagem-wrap">
-            <Image
-              src={DIRETORIA.imagem.src}
-              alt={DIRETORIA.imagem.alt}
-              width={DIRETORIA.imagem.largura}
-              height={DIRETORIA.imagem.altura}
-              className="qs-diretoria__imagem"
+          {/* Embed do Canva. `title` é obrigatório: sem ele o leitor de tela
+              anuncia só "quadro", sem dizer o que há dentro. */}
+          <div className="qs-diretoria__embed">
+            <iframe
+              src={DIRETORIA.embed.src}
+              title={DIRETORIA.embed.titulo}
+              loading="lazy"
+              allow="fullscreen"
+              allowFullScreen
             />
           </div>
 
+
+          {/* O CTA carrega a intenção inteira no rótulo ("Conhecer nossos
+              voluntários"), em vez de depender da frase ao lado para fazer
+              sentido — antes o botão dizia só "voluntários", o que fora de
+              contexto não diz aonde leva. E é <Link>, não <a>: rota interna
+              passa pelo roteador, que prefetcha o destino. */}
           <div className="qs-diretoria__rodape">
             <p className="qs-diretoria__rodape-texto">{DIRETORIA.rodapeTexto}</p>
-            <a
-              href={DIRETORIA.botaoHref}
-              className="qs-botao qs-botao--claro-gradiente qs-botao--grande"
-            >
-              <span>{DIRETORIA.botaoLabel}</span>
-            </a>
+            <Link href={DIRETORIA.botaoHref} className="qs-botao qs-botao--escuro">
+              {DIRETORIA.botaoLabel}
+            </Link>
           </div>
         </div>
       </section>
