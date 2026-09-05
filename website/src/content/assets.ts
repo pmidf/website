@@ -39,6 +39,21 @@ export const assets = {
     pentagonoRoxo: "/assets/formas/pentagono-roxo.webp",
   },
 
+  /**
+   * Peças geométricas das certificações, baixadas do próprio PMI Global
+   * (`cert-hero-shapes`): círculo para a CAPM, triângulo para a PMP e
+   * pentágono para as especializadas.
+   *
+   * Vieram com ~55px de moldura transparente em volta, que empurrava o
+   * desenho para dentro do card — foram aparadas até o conteúdo. O alfa é
+   * original, então a peça assenta sobre qualquer fundo.
+   */
+  certificacoes: {
+    gemCapm: "/assets/certificacoes/gem-capm.webp",
+    gemPmp: "/assets/certificacoes/gem-pmp.webp",
+    gemEspecializacao: "/assets/certificacoes/gem-especializacao.webp",
+  },
+
   mantenedores: {
     brbLab: "/assets/mantenedores/brb-lab.webp",
     brisk: "/assets/mantenedores/brisk.webp",

@@ -1,82 +1,49 @@
-type ParceiroCta = {
-  label: string;
+export type ParceiroCertificacao = {
+  nome: string;
+  /** Iniciais exibidas na placa quando não há arquivo de logo. */
+  logoText: string;
+  descricao: string;
+  /** Site do parceiro. Um destino por card — o único CTA de cada um. */
   href: string;
 };
 
-export type ParceiroCertificacao = {
-  badge: string;
-  nome: string;
-  descricao: string;
-  detalhe?: string;
-  logoText?: string;
-  logoSrc?: string;
-  logoAlt?: string;
-  ctaPrincipal: ParceiroCta;
-  ctaSecundario?: ParceiroCta;
-  observacao?: string;
-  observacaoCta?: ParceiroCta;
-};
-
+/**
+ * Os três parceiros de treinamento do capítulo.
+ *
+ * Todos os três são Authorized Training Partners do PMI — por isso o selo é da
+ * seção, e não de cada card. Antes cada um trazia um rótulo diferente
+ * ("Turma de abril — vagas limitadas", "Treinamento corporativo"), o que dava
+ * a entender que só o primeiro era ATP e transformava a seção numa vitrine de
+ * ofertas com prazo, que envelhece sozinha.
+ *
+ * Cada card tem um CTA só, para o site do parceiro. A solicitação de cupom é
+ * uma ação do capítulo, não de um parceiro específico, então virou um único
+ * botão no fim da seção.
+ */
 export const PARCEIROS_CERTIFICACAO: ParceiroCertificacao[] = [
   {
-    badge: "Authorized Training Partner",
-    nome: "JUMP",
-    logoText: "J",
+    nome: 'Jump Educação',
+    logoText: 'J',
     descricao:
-      "Parceira do PMI-DF em treinamentos preparatórios para PMP®, CAPM® e PMI-ACP®. Filiados e participantes do capítulo têm cupom de desconto nos cursos.",
-    detalhe:
-      "Conteúdo oficial, instrutores avaliados e horas de contato válidas para apoiar sua preparação com mais segurança.",
-    ctaPrincipal: {
-      label: "Solicitar cupom de desconto",
-      href: "/contato?assunto=cupom-jump",
-    },
-    ctaSecundario: {
-      label: "Ver cursos ↗",
-      href: "https://jumppmi.com.br",
-    },
-    observacao:
-      "Procura outro parceiro? O diretório oficial do PMI lista todos os Authorized Training Partners e permite verificar se um provedor é autorizado.",
-    observacaoCta: {
-      label: "Abrir diretório ↗",
-      href: "https://www.pmi.org/",
-    },
+      'Treinamentos preparatórios para PMP®, CAPM® e PMI-ACP®, com conteúdo oficial e horas de contato válidas para a inscrição no exame.',
+    href: 'https://www.jumpeducacao.com.br/',
   },
   {
-    badge: "Turma de abril - vagas limitadas",
-    nome: "Plano Academy",
-    logoText: "PA",
+    nome: 'Plano Consulting',
+    logoText: 'PC',
     descricao:
-      "Passe no PMP® na primeira tentativa com uma turma ao vivo, preparada para quem quer foco, método e acompanhamento durante a jornada.",
-    detalhe:
-      "Início: 20/04/2026 · Horário: 18h30 às 22h30 · Seg e Qui · Modalidade: Online ao vivo · Carga horária: 40h em 10 encontros.",
-    ctaPrincipal: {
-      label: "Quero minha vaga",
-      href: "/contato?assunto=plano-academy",
-    },
-    ctaSecundario: {
-      label: "Conhecer programa ↗",
-      href: "#",
-    },
-    observacao:
-      "Ideal para quem precisa de um cronograma definido e quer estudar com foco em aprovação.",
+      'Turmas ao vivo com método e acompanhamento, para quem prefere um cronograma definido e estudo em grupo até a aprovação.',
+    href: 'https://plano.consulting/',
   },
   {
-    badge: "Treinamento corporativo",
-    nome: "DC | DinsmoreCompass",
-    logoText: "DC",
+    nome: 'DC | DinsmoreCompass',
+    logoText: 'DC',
     descricao:
-      "Referência em gestão de projetos, processos e pessoas, com educação corporativa e treinamentos autorizados pelo PMI para desenvolvimento técnico de equipes.",
-    detalhe:
-      "A DC possui atuação em educação corporativa, Academia DC e treinamentos voltados ao desenvolvimento de competências em projetos.",
-    ctaPrincipal: {
-      label: "Solicitar proposta",
-      href: "https://www.dc.srv.br/contato/",
-    },
-    ctaSecundario: {
-      label: "Visitar site ↗",
-      href: "https://www.dc.srv.br",
-    },
-    observacao:
-      "Boa opção para empresas que querem capacitação in company e jornadas estruturadas em gerenciamento de projetos.",
+      'Educação corporativa e preparatório PMP® autorizado pelo PMI, com foco no desenvolvimento de competências de times inteiros.',
+    href: 'https://www.dc.srv.br/preparatoriopmpatpdopmi.html',
   },
 ];
+
+/** Diretório oficial do PMI, para conferir se um provedor é autorizado. */
+export const DIRETORIO_ATP =
+  'https://www.pmi.org/certifications/certification-resources/authorized-training-partners';

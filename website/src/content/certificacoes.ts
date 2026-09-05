@@ -1,39 +1,81 @@
-export const CERTIFICACOES = [
+import { assets } from "@/content/assets";
+import type { CertificacaoPMI } from "@/types";
+
+/**
+ * As quatro credenciais que o capítulo destaca, na mesma organização do site
+ * do PMI Global: as principais em cards escuros com o gem colorido, as
+ * especializadas em cards claros com o pentágono.
+ *
+ * O `gem` é a peça original do PMI, baixada do site deles: círculo para a
+ * CAPM, triângulo para a PMP, pentágono para as especializadas. `gemAltura`
+ * varia porque as três têm proporções diferentes — o triângulo é mais baixo
+ * que largo. Quem chega
+ * vindo de lá reconhece a peça.
+ *
+ * Os textos são nossos (em português, com o recorte do capítulo); a estrutura
+ * do card é a deles: rótulo, gem, sigla, nome por extenso, exigência de
+ * experiência, descrição e um "saiba mais" para a página oficial.
+ */
+export const CERTIFICACOES: CertificacaoPMI[] = [
   {
+    grupo: "principal",
+    id: "capm",
     sigla: "CAPM®",
-    subtitulo: "Sem exigência de experiência",
-    titulo: "Certified Associate in Project Management",
+    titulo: "Certified Associate in Project Management (CAPM)®",
+    experiencia: "Sem exigência de experiência",
     descricao:
       "Para quem está começando na área e quer comprovar domínio dos fundamentos do gerenciamento de projetos que os times esperam.",
-    cor: "bg-[linear-gradient(180deg,#006A86_0%,#00799E_100%)]",
-    iconeBg: "bg-[#1AC7FF]",
+    href: "https://www.pmi.org/certifications/certified-associate-capm",
+    fundo: "bg-[#023041]",
+    sigla_cor: "text-[#1AC7FF]",
+    gem: assets.certificacoes.gemCapm,
+    gemLargura: 440,
+    gemAltura: 440,
   },
   {
+    grupo: "principal",
+    id: "pmp",
     sigla: "PMP®",
-    subtitulo: "3+ anos liderando projetos",
-    titulo: "Project Management Professional",
+    titulo: "Project Management Professional (PMP)®",
+    experiencia: "3+ anos liderando projetos",
     descricao:
       "A credencial mais reconhecida da profissão. Valida sua capacidade de conduzir pessoas, processos e prioridades do início ao fim.",
-    cor: "bg-[linear-gradient(180deg,#3D1188_0%,#5B14B8_100%)]",
-    iconeBg: "bg-[#7A3CF0]",
+    href: "https://www.pmi.org/certifications/project-management-pmp",
+    fundo: "bg-[#1F0942]",
+    sigla_cor: "text-[#B465FF]",
+    gem: assets.certificacoes.gemPmp,
+    gemLargura: 440,
+    gemAltura: 379,
   },
   {
+    grupo: "especializada",
+    id: "acp",
     sigla: "PMI-ACP®",
-    subtitulo: "2+ anos em times ágeis",
-    titulo: "PMI Agile Certified Practitioner",
+    titulo: "PMI Agile Certified Practitioner (PMI-ACP)®",
+    experiencia: "2+ anos em times ágeis",
     descricao:
       "Para quem atua com Scrum, Kanban e outras abordagens ágeis e quer comprovar domínio prático além de um framework só.",
-    cor: "bg-[linear-gradient(180deg,#5313A0_0%,#6D1CD6_100%)]",
-    iconeBg: "bg-[#1AC7FF]",
+    href: "https://www.pmi.org/certifications/agile-acp",
+    fundo: "bg-[#F8F5F0]",
+    sigla_cor: "text-[#200F3B]",
+    gem: assets.certificacoes.gemEspecializacao,
+    gemLargura: 440,
+    gemAltura: 420,
   },
   {
+    grupo: "especializada",
+    id: "pmocp",
     sigla: "PMI-PMOCP™",
-    subtitulo: "3+ anos em PMO",
-    titulo: "PMI PMO Certified Professional",
+    titulo: "PMI PMO Certified Professional (PMI-PMOCP)™",
+    experiencia: "3+ anos em PMO",
     descricao:
       "Para quem estrutura, avalia e evolui escritórios de projetos, com foco em entrega de valor e não apenas em controle.",
-    cor: "bg-[linear-gradient(180deg,#B53C08_0%,#FF610F_100%)]",
-    iconeBg: "bg-[#FF8E57]",
+    href: "https://www.pmi.org/certifications/pmo-certified-professional-pmocp",
+    fundo: "bg-[#F8F5F0]",
+    sigla_cor: "text-[#200F3B]",
+    gem: assets.certificacoes.gemEspecializacao,
+    gemLargura: 440,
+    gemAltura: 420,
   },
 ];
 

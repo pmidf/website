@@ -296,6 +296,34 @@ export type Depoimento = {
   lado: "esquerda" | "direita";
 };
 
+/* --- Página Certificações -------------------------------------------------- */
+
+/**
+ * Credencial exibida nos cards de certificação.
+ *
+ * A anatomia vem do site do PMI Global, inclusive a forma geométrica: o
+ * `grupo` decide se o card é escuro (principais) ou claro (especializadas), e
+ * `forma` é o gem que identifica a família da credencial.
+ */
+export type CertificacaoPMI = {
+  grupo: "principal" | "especializada";
+  /** Sufixo do id do gradiente do gem — precisa ser único na página. */
+  id: string;
+  sigla: string;
+  titulo: string;
+  experiencia: string;
+  descricao: string;
+  href: string;
+  /** Classe Tailwind de fundo do card. */
+  fundo: string;
+  /** Classe Tailwind da cor da sigla. */
+  sigla_cor: string;
+  /** Peça geométrica do PMI. As três têm proporções diferentes. */
+  gem: string;
+  gemLargura: number;
+  gemAltura: number;
+};
+
 /* --- Página Student Club --------------------------------------------------- */
 
 /**
