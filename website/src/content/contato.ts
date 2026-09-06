@@ -5,7 +5,8 @@ import { site } from "@/content/site";
  *
  * Os assuntos não são decorativos: vários CTAs do site já apontam para
  * `/contato?assunto=<slug>` (certificação, PDU, palestra, patrocínio, Student
- * Club, cupom Jump). O slug da URL seleciona a opção correspondente no
+ * Club, cupom de curso preparatório). O slug da URL seleciona a opção
+ * correspondente no
  * formulário — por isso a lista abaixo é a fonte da verdade dos dois lados.
  * Criar um CTA novo com um slug fora daqui não quebra nada: o formulário cai
  * no assunto padrão.
@@ -29,7 +30,7 @@ export const ASSUNTOS: OpcaoAssunto[] = [
   { valor: "filiacao", label: "Filiação e anuidade" },
   { valor: "certificacao", label: "Certificações PMI" },
   { valor: "pdu", label: "PDUs e recertificação" },
-  { valor: "cupom-jump", label: "Cupom de desconto Jump" },
+  { valor: "cupom-atp", label: "Cupom de desconto em curso preparatório" },
   { valor: "eventos", label: "Eventos e programas" },
   { valor: "palestra", label: "Quero palestrar em um evento" },
   { valor: "patrocinio", label: "Patrocínio e mantenedores" },
@@ -51,8 +52,9 @@ export const EMAIL_DESTINO = site.contact.email;
 export const FORMULARIO = {
   titulo: "Envie sua mensagem",
   descricao:
-    "Preencha os campos e o e-mail abre pronto no seu aplicativo de e-mail, já endereçado ao capítulo.",
-  enviarLabel: "Abrir e-mail",
+    "Preencha os campos e a mensagem chega direto na caixa de entrada do capítulo.",
+  enviarLabel: "Enviar mensagem",
+  enviandoLabel: "Enviando…",
 };
 
 /**

@@ -20,22 +20,6 @@ export function Catalogo() {
           podem ser ajustados na proposta.
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-3">
-          {["Todos", "Online", "Presencial", "Híbrido"].map((item, index) => (
-            <button
-              key={item}
-              type="button"
-              className={`rounded-full px-5 py-2 text-[13px] font-semibold ${
-                index === 0
-                  ? "bg-[#210040] text-white"
-                  : "border border-[#200F3B]/20 bg-white text-[#200F3B]"
-              }`}
-            >
-              {item}
-            </button>
-          ))}
-        </div>
-
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {TREINAMENTOS.map((item) => (
             <article
