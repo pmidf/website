@@ -5,6 +5,7 @@ import nodemailer from "nodemailer";
 
 import { ASSUNTOS, ASSUNTO_PADRAO } from "@/content/contato";
 import { site } from "@/content/site";
+import { emailValido } from "@/lib/email";
 
 /**
  * Envio do formulário de contato por SMTP.
@@ -146,13 +147,9 @@ export async function enviarContato(
   // Conta só os dígitos: o formato varia demais ((61) 9…, +55 61 9…, 61 9…)
   // para valer a pena uma máscara. Oito é o menor telefone plausível.
   if ((telefone.match(/\d/g) ?? []).length < 8) invalidos.push("telefone");
-  // Conjunto de caracteres conservador, não a gramática completa do RFC: um
-  // endereço válido de verdade só se prova entregando. O que importa aqui é
-  // recusar aspas, colchetes angulares e vírgulas, que são o material de
-  // injeção de cabeçalho.
-  if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
-    invalidos.push("email");
-  }
+  // Mesma função que o formulário usa no cliente, para as duas pontas não
+  // discordarem sobre o que é um endereço aceitável. Ver `lib/email.ts`.
+  if (!emailValido(email)) invalidos.push("email");
   if (mensagem.length < 10) invalidos.push("mensagem");
 
   if (invalidos.length > 0) {

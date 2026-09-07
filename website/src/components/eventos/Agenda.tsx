@@ -228,13 +228,14 @@ export function Agenda({ eventosIniciais, total, status }: AgendaProps) {
                 </p>
               )}
 
-              {/* Aria-live: o número muda por ação do usuário, e quem usa leitor
-                  de tela não tem como perceber cards novos aparecendo. */}
-              <p aria-live="polite" className="text-center text-[14px] text-[#5C546E]">
+              {/* A contagem saiu da tela mas continua sendo anunciada: "Carregar
+                  mais" acrescenta cards sem nenhum sinal para quem usa leitor de
+                  tela, e sem este aviso a ação parece não ter feito nada.
+                  `sr-only` esconde visualmente sem tirar do fluxo acessível —
+                  `display: none` seria ignorado pelo leitor. */}
+              <p aria-live="polite" className="sr-only">
                 Mostrando {listaVisivel.length} de {filtroAtivo ? filtrados.length : total}{" "}
-                {(filtroAtivo ? filtrados.length : total) === 1 ? "evento" : "eventos"}. Agenda
-                sincronizada automaticamente com o Sympla — inscrições e pagamentos são concluídos
-                na plataforma.
+                {(filtroAtivo ? filtrados.length : total) === 1 ? "evento" : "eventos"}.
               </p>
             </div>
           </>

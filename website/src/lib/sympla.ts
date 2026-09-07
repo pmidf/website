@@ -1,9 +1,10 @@
 import { cache } from "react";
 
+import { EVENTOS_OCULTOS } from "@/content/eventos";
 import type { EventoAgenda, FormatoEvento } from "@/types";
 
 /**
- * Integração com a API pública do Sympla (v1.6.0).
+ * Integração com a API pública do Sympla (v1.5.1).
  *
  * Esta é a única porta de entrada dos eventos no site. Ela resolve três
  * problemas de uma vez:
@@ -40,8 +41,12 @@ import type { EventoAgenda, FormatoEvento } from "@/types";
 
 /* --- Configuração --------------------------------------------------------- */
 
-const API_BASE =
-  process.env.SYMPLA_API_BASE ?? "https://api.sympla.com.br/public/v1.6.0";
+/**
+ * Versão da API. Fixa no código de propósito: trocar de versão exige revisar
+ * `FIELDS` e o mapeamento de `SymplaEvent` logo abaixo, então não é um botão
+ * que se gira por variável de ambiente sem olhar o resto do arquivo.
+ */
+const API_BASE = "https://api.sympla.com.br/public/v1.5.1";
 
 const TIMEZONE = "America/Sao_Paulo";
 
@@ -54,11 +59,19 @@ const PAGE_SIZE = 100;
  */
 const MAX_PAGINAS = 10;
 
-/** Janela de revalidação em segundos (padrão: 15 min). */
-const REVALIDATE_SECONDS = Number(process.env.SYMPLA_REVALIDATE_SECONDS ?? 900);
+/**
+ * Janela de revalidação, em segundos.
+ *
+ * Os 15 minutos precisam bater com o `revalidate` das páginas que exibem a
+ * agenda (`(site)/page.tsx` e `(site)/eventos/page.tsx`) — de nada adianta a
+ * página revalidar numa cadência se o dado por baixo estiver preso noutra.
+ * Como o valor vive em três arquivos, deixá-lo configurável por ambiente só
+ * criava a chance de os três discordarem.
+ */
+const REVALIDATE_SECONDS = 900;
 
 /** Corta uma Sympla lenta antes que ela segure o render da página. */
-const TIMEOUT_MS = Number(process.env.SYMPLA_TIMEOUT_MS ?? 8000);
+const TIMEOUT_MS = 8000;
 
 /** Tag do Data Cache — alvo do `revalidateTag` no webhook de invalidação. */
 export const TAG_EVENTOS = "sympla-eventos";
@@ -355,6 +368,29 @@ function estaCancelado(evento: SymplaEvent) {
 }
 
 /**
+ * Normaliza uma URL da Sympla para comparação: sem query string, sem barra
+ * final e em minúsculas. É o que permite colar o endereço do navegador em
+ * `EVENTOS_OCULTOS` sem limpá-lo antes.
+ */
+function chaveUrl(url: string) {
+  return url.trim().toLowerCase().split("?")[0].replace(/\/+$/, "");
+}
+
+/** Índice montado uma vez, para a checagem não varrer a lista por evento. */
+const OCULTOS = new Set(EVENTOS_OCULTOS.map(chaveUrl));
+
+/**
+ * Item na lista de exclusão manual (ver `content/eventos.ts`).
+ *
+ * A API não distingue uma edição antiga de uma vigente — as duas respondem
+ * `published: 1` e `cancelled: 0` —, então essa é uma decisão editorial, e o
+ * lugar dela é o conteúdo, não a camada de dados.
+ */
+function estaOculto(evento: SymplaEvent) {
+  return typeof evento.url === "string" && OCULTOS.has(chaveUrl(evento.url));
+}
+
+/**
  * `id` estável é requisito, não detalhe: ele vira `key` no React e precisa
  * sobreviver a re-renders e a revalidações do cache. Por isso nada de UUID
  * aleatório — sem `id` da Sympla, derivamos um slug do título e da data.
@@ -517,7 +553,7 @@ export const getEventosSympla = cache(
       const crus = await buscarTodasAsPaginas(token);
 
       const eventos = removerDuplicados(crus)
-        .filter((evento) => !estaCancelado(evento))
+        .filter((evento) => !estaCancelado(evento) && !estaOculto(evento))
         .sort((a, b) => {
           const inicioA = parseSymplaDate(a.start_date)?.getTime() ?? 0;
           const inicioB = parseSymplaDate(b.start_date)?.getTime() ?? 0;

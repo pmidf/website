@@ -17,7 +17,12 @@ import { getPaginaEventos } from "@/lib/sympla";
 const LIMIT_MAXIMO = 100;
 const LIMIT_PADRAO = 6;
 
-const REVALIDATE_SECONDS = Number(process.env.SYMPLA_REVALIDATE_SECONDS ?? 900);
+/**
+ * Mesma janela de `lib/sympla`. Importar de lá acoplaria o handler ao módulo
+ * só por uma constante; o que não pode é os dois discordarem — se um mudar, o
+ * outro muda junto.
+ */
+const REVALIDATE_SECONDS = 900;
 
 /**
  * Lê um inteiro não-negativo da query string, ignorando lixo (`abc`, `-3`,

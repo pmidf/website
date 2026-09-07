@@ -49,6 +49,33 @@ export const ESTILO_FORMATO: Record<FormatoEvento, { card: string; chip: string 
  * para a home do Sympla e tinha um botão "Ver programação" para
  * `/eventos/summit-2026`, rota que não existe — o clique caía no 404.
  */
+/**
+ * Eventos da Sympla que não devem aparecer na agenda.
+ *
+ * Existe porque a API não tem como dizer que um item está fora do ar: uma
+ * edição antiga republicada continua respondendo `published: 1` e
+ * `cancelled: 0`, igual à edição vigente. Conferimos os dois registros do
+ * "Workshop para Certificação CAPM®" campo a campo — não há diferença
+ * nenhuma no dado. Só quem cuida do Sympla sabe qual é qual.
+ *
+ * Vale principalmente para os cursos gravados (Sympla Play, categoria
+ * `ONDEMAND`), que ficam publicados por tempo indeterminado e acumulam
+ * versões, mas funciona para qualquer evento.
+ *
+ * ## Como usar
+ *
+ * Cole a URL da página do evento, exatamente como aparece no navegador. A
+ * comparação ignora barra final, maiúsculas e query string, então não é
+ * preciso limpar o endereço antes.
+ *
+ * A alternativa definitiva é despublicar o item no próprio Sympla — aí ele
+ * some da API e esta lista nem precisa saber que ele existiu.
+ */
+export const EVENTOS_OCULTOS: string[] = [
+  // Edição antiga do workshop de CAPM; a que vale é a /3430962.
+  "https://www.sympla.com.br/play/workshop-para-certificacao-capm-r/1875615",
+];
+
 export const EVENTO_DESTAQUE = {
   chip: "Evento em destaque",
   titulo: "PMI-DF Summit 2026",

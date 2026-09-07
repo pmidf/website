@@ -1,8 +1,12 @@
 "use client";
 
-import { useActionState, useEffect, useRef } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 
 import { enviarContato, type EstadoEnvio } from "@/app/(site)/contato/enviar";
+import {
+  verificarEmail,
+  type ResultadoVerificacao,
+} from "@/app/(site)/contato/verificar";
 import { ASSUNTOS, FORMULARIO } from "@/content/contato";
 
 /**
@@ -25,11 +29,45 @@ import { ASSUNTOS, FORMULARIO } from "@/content/contato";
  */
 const ESTADO_INICIAL: EstadoEnvio = { status: "inicial" };
 
+/**
+ * "Você quis dizer …?" — aparece junto de qualquer resultado quando o domínio
+ * se parece com um dos comuns. Vale inclusive no caso `ok`: `@gmail.com.br`
+ * existe e recebe e-mail, mas quem digitou quase certamente queria `@gmail.com`.
+ *
+ * É `<button>` e não link porque corrige o campo, não navega — e `type` é
+ * obrigatório: dentro de um `<form>`, o padrão de um `<button>` é "submit", e
+ * clicar enviaria a mensagem.
+ */
+function Sugestao({
+  valor,
+  aoAplicar,
+}: {
+  valor?: string;
+  aoAplicar: (valor: string) => void;
+}) {
+  if (!valor) return null;
+
+  return (
+    <span className="text-[#5C546E]">
+      Você quis dizer{" "}
+      <button
+        type="button"
+        onClick={() => aoAplicar(valor)}
+        className="font-semibold text-[#4F17A8] underline underline-offset-2 hover:text-[#FF610F] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#4F17A8]"
+      >
+        {valor}
+      </button>
+      ?
+    </span>
+  );
+}
+
 export function Formulario({ assuntoInicial }: { assuntoInicial: string }) {
   const [estado, acao, enviando] = useActionState(enviarContato, ESTADO_INICIAL);
   const formulario = useRef<HTMLFormElement>(null);
   const retorno = useRef<HTMLDivElement>(null);
   const carimbo = useRef<HTMLInputElement>(null);
+  const emailInput = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (carimbo.current) carimbo.current.value = String(Date.now());
@@ -50,7 +88,61 @@ export function Formulario({ assuntoInicial }: { assuntoInicial: string }) {
     }
   }, [estado]);
 
-  const invalido = (nome: string) => estado.invalidos?.includes(nome) ?? false;
+  /**
+   * Verificação do e-mail ao sair do campo.
+   *
+   * No `blur`, e não a cada tecla: além de acusar erro num endereço que só
+   * está incompleto, seria uma consulta de DNS por tecla digitada. Some assim
+   * que a pessoa volta a editar, para o aviso não contradizer a tela.
+   *
+   * `sequencia` descarta respostas atrasadas: quem corrige o e-mail duas vezes
+   * seguidas dispara duas consultas, e a primeira pode chegar depois — sem
+   * este contador, o resultado do endereço antigo sobrescreveria o novo.
+   */
+  const [verificacao, setVerificacao] = useState<ResultadoVerificacao | null>(null);
+  const [verificando, setVerificando] = useState(false);
+  const sequencia = useRef(0);
+
+  async function conferirEmail(valor: string) {
+    const limpo = valor.trim();
+    sequencia.current += 1;
+    const minha = sequencia.current;
+
+    if (limpo === "") {
+      setVerificacao(null);
+      return;
+    }
+
+    setVerificando(true);
+
+    try {
+      const resultado = await verificarEmail(limpo);
+      if (minha === sequencia.current) setVerificacao(resultado);
+    } catch {
+      if (minha === sequencia.current) setVerificacao({ estado: "indisponivel" });
+    } finally {
+      if (minha === sequencia.current) setVerificando(false);
+    }
+  }
+
+  function limparVerificacao() {
+    sequencia.current += 1;
+    setVerificacao(null);
+    setVerificando(false);
+  }
+
+  function aplicarSugestao(valor: string) {
+    if (!emailInput.current) return;
+    emailInput.current.value = valor;
+    emailInput.current.focus();
+    void conferirEmail(valor);
+  }
+
+  const emailComProblema =
+    verificacao?.estado === "formato" || verificacao?.estado === "sem-servidor";
+
+  const invalido = (nome: string) =>
+    (estado.invalidos?.includes(nome) ?? false) || (nome === "email" && emailComProblema);
 
   const campo = (nome: string) =>
     "w-full rounded-[10px] border bg-white px-4 py-3 text-[15px] text-[#200F3B] " +
@@ -140,6 +232,7 @@ export function Formulario({ assuntoInicial }: { assuntoInicial: string }) {
             E-mail <span aria-hidden>*</span>
           </label>
           <input
+            ref={emailInput}
             id="email"
             name="email"
             type="email"
@@ -147,8 +240,53 @@ export function Formulario({ assuntoInicial }: { assuntoInicial: string }) {
             maxLength={200}
             autoComplete="email"
             aria-invalid={invalido("email") || undefined}
+            aria-describedby={verificando || verificacao ? "email-aviso" : undefined}
+            onBlur={(evento) => void conferirEmail(evento.target.value)}
+            onChange={limparVerificacao}
             className={`mt-2 ${campo("email")}`}
           />
+
+          {/* `aria-live="polite"`: o aviso aparece sem que a pessoa tenha
+              pedido, então precisa ser anunciado — mas sem interromper, já que
+              ela pode já estar preenchendo o campo seguinte. */}
+          {(verificando || verificacao) && (
+            <p
+              id="email-aviso"
+              aria-live="polite"
+              className="mt-2 flex items-start gap-2 text-[13px] leading-relaxed"
+            >
+              {verificando ? (
+                <>
+                  <span
+                    aria-hidden
+                    className="mt-[3px] h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-[#5C546E]/30 border-t-[#5C546E]"
+                  />
+                  <span className="text-[#5C546E]">Verificando o endereço…</span>
+                </>
+              ) : verificacao?.estado === "formato" ? (
+                <span className="text-[#B3261E]">
+                  Endereço incompleto ou com caractere inválido.{" "}
+                  <Sugestao valor={verificacao.sugestao} aoAplicar={aplicarSugestao} />
+                </span>
+              ) : verificacao?.estado === "sem-servidor" ? (
+                <span className="text-[#B3261E]">
+                  Não encontramos servidor de e-mail para este domínio — ele não recebe
+                  mensagens.{" "}
+                  <Sugestao valor={verificacao.sugestao} aoAplicar={aplicarSugestao} />
+                </span>
+              ) : verificacao?.estado === "ok" ? (
+                /* Com sugestão, o "válido" some: o domínio até recebe e-mail
+                   (`gmial.com` tem registro A), mas afirmar que está certo ao
+                   lado de "você quis dizer gmail.com?" só confunde. Sem
+                   sugestão, o verde confirma e encerra o assunto. */
+                verificacao.sugestao ? (
+                  <Sugestao valor={verificacao.sugestao} aoAplicar={aplicarSugestao} />
+                ) : (
+                  <span className="text-[#1B7A3D]">Endereço válido.</span>
+                )
+              ) : null}
+            </p>
+          )}
         </div>
 
         <div>
