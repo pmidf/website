@@ -1,0 +1,9 @@
+export { Hero } from "@/components/eleicoes/Hero";
+export { Contexto } from "@/components/eleicoes/Contexto";
+export { Processo } from "@/components/eleicoes/Processo";
+export { Cronograma } from "@/components/eleicoes/Cronograma";
+export { Requisitos } from "@/components/eleicoes/Requisitos";
+export { Ficha } from "@/components/eleicoes/Ficha";
+export { Documentos } from "@/components/eleicoes/Documentos";
+export { Comite } from "@/components/eleicoes/Comite";
+export { ComoCandidatar } from "@/components/eleicoes/ComoCandidatar";

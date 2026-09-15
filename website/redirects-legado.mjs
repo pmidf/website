@@ -60,9 +60,11 @@ const redirectsLegado = [
   { source: '/envolva-se/publicacao', destination: '/quem-somos/' },
 
   // Eleições (processo institucional — sem página equivalente no site novo)
-  { source: '/eleicoes', destination: '/quem-somos/' },
-  { source: '/eleicoes-2024', destination: '/quem-somos/' },
-  { source: '/eleicao-fiscal', destination: '/quem-somos/' },
+  // `/eleicoes` saiu deste mapa: virou página de verdade, na mesma rota do
+  // site antigo. As duas abaixo continuam como 301, agora para ela — é o
+  // destino equivalente, bem melhor que a página institucional.
+  { source: '/eleicoes-2024', destination: '/eleicoes/' },
+  { source: '/eleicao-fiscal', destination: '/eleicoes/' },
 
   // ─────────────────────────────────────────────────────────────
   // Parcerias e patrocinadores  →  /quem-somos/

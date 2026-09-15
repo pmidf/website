@@ -27,6 +27,7 @@ const MENU_ITEMS: MenuItem[] = [
       { label: "Filiação", href: "/filiacao" },
       { label: "Voluntariado", href: "/voluntariado" },
       { label: "Student Club", href: "/student-club" },
+      { label: "Eleições", href: "/eleicoes" },
       { label: "Transparência", href: "/transparencia" },
     ],
   },

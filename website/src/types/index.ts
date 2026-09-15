@@ -324,6 +324,48 @@ export type CertificacaoPMI = {
   gemAltura: number;
 };
 
+/* --- Página Eleições ------------------------------------------------------ */
+
+/** Cargo em disputa. `cor` é a barra que identifica o card. */
+export type CargoEleicao = {
+  titulo: string;
+  descricao: string;
+  cor: string;
+};
+
+/** Etapa do processo eleitoral. O número vem da ordem da lista. */
+export type EtapaEleicao = {
+  titulo: string;
+  descricao: string;
+};
+
+/**
+ * Data do cronograma.
+ *
+ * `marco` destaca o que a pessoa não pode perder (abertura e encerramento da
+ * votação, posse) — o resto é informativo.
+ */
+export type MarcoCronograma = {
+  data: string;
+  descricao: string;
+  marco?: string;
+};
+
+/** Documento oficial. Sem `href`, o card fica desabilitado como "em breve". */
+export type DocumentoEleicao = {
+  titulo: string;
+  descricao: string;
+  acao: string;
+  href?: string;
+};
+
+/** Membro do Comitê Eleitoral. `preside` destaca quem o preside. */
+export type MembroComite = {
+  nome: string;
+  papel: string;
+  preside?: boolean;
+};
+
 /* --- Página Student Club --------------------------------------------------- */
 
 /**

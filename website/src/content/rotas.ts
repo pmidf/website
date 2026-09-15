@@ -40,6 +40,7 @@ export const ROTAS: Rota[] = [
   { href: "/filiacao", label: "Filiação" },
   { href: "/voluntariado", label: "Voluntariado" },
   { href: "/student-club", label: "Student Club" },
+  { href: "/eleicoes", label: "Eleições" },
   { href: "/transparencia", label: "Transparência" },
   { href: "/eventos", label: "Eventos e Programas" },
   { href: "/mentoring", label: "Mentoring" },
