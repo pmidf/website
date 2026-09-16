@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CabecalhoSecao } from "@/components/eleicoes/CabecalhoSecao";
 import { REQUISITOS } from "@/content/eleicoes";
 
 /** Requisitos por cargo, em duas colunas. */
@@ -7,15 +7,11 @@ export function Requisitos() {
   return (
     <section id="requisitos" className="bg-white py-16 lg:py-20">
       <Container>
-        <Eyebrow>{REQUISITOS.eyebrow}</Eyebrow>
-
-        <h2 className="mt-3 text-[30px] font-extrabold leading-tight text-[#200F3B] lg:text-[42px]">
-          {REQUISITOS.titulo}
-        </h2>
-
-        <p className="mt-4 max-w-[820px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
-          {REQUISITOS.descricao}
-        </p>
+        <CabecalhoSecao
+          eyebrow={REQUISITOS.eyebrow}
+          titulo={REQUISITOS.titulo}
+          descricao={REQUISITOS.descricao}
+        />
 
         <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-12">
           {REQUISITOS.grupos.map((grupo) => (

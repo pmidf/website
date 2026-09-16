@@ -1,7 +1,7 @@
 import { FaFileLines } from "react-icons/fa6";
 
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CabecalhoSecao } from "@/components/eleicoes/CabecalhoSecao";
 import { DOCUMENTOS, DOCUMENTOS_TEXTO } from "@/content/eleicoes";
 
 /**
@@ -15,15 +15,11 @@ export function Documentos() {
   return (
     <section id="documentos" className="bg-white py-16 lg:py-20">
       <Container>
-        <Eyebrow>{DOCUMENTOS_TEXTO.eyebrow}</Eyebrow>
-
-        <h2 className="mt-3 text-[30px] font-extrabold leading-tight text-[#200F3B] lg:text-[42px]">
-          {DOCUMENTOS_TEXTO.titulo}
-        </h2>
-
-        <p className="mt-4 max-w-[820px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
-          {DOCUMENTOS_TEXTO.descricao}
-        </p>
+        <CabecalhoSecao
+          eyebrow={DOCUMENTOS_TEXTO.eyebrow}
+          titulo={DOCUMENTOS_TEXTO.titulo}
+          descricao={DOCUMENTOS_TEXTO.descricao}
+        />
 
         <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {DOCUMENTOS.map((documento) => {

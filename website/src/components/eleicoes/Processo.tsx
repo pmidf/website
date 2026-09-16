@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CabecalhoSecao } from "@/components/eleicoes/CabecalhoSecao";
 import { ETAPAS, PROCESSO } from "@/content/eleicoes";
 
 /** As quatro etapas, mais a regra de conduta. */
@@ -7,15 +7,11 @@ export function Processo() {
   return (
     <section id="processo" className="bg-white py-16 lg:py-20">
       <Container>
-        <Eyebrow>{PROCESSO.eyebrow}</Eyebrow>
-
-        <h2 className="mt-3 text-[30px] font-extrabold leading-tight text-[#200F3B] lg:text-[42px]">
-          {PROCESSO.titulo}
-        </h2>
-
-        <p className="mt-4 max-w-[820px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
-          {PROCESSO.descricao}
-        </p>
+        <CabecalhoSecao
+          eyebrow={PROCESSO.eyebrow}
+          titulo={PROCESSO.titulo}
+          descricao={PROCESSO.descricao}
+        />
 
         {/* `<ol>`: a ordem das etapas é informação, não estilo — o leitor de
             tela anuncia "item 3 de 4" sem depender do número desenhado. */}
@@ -23,7 +19,7 @@ export function Processo() {
           {ETAPAS.map((etapa, indice) => (
             <li
               key={etapa.titulo}
-              className="rounded-[16px] border border-[#200F3B]/10 bg-[#F8F5F0] p-6"
+              className="rounded-[16px] border border-[#200F3B]/10 bg-[#F8F5F0] p-7"
             >
               <span
                 aria-hidden

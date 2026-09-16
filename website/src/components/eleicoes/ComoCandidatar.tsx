@@ -1,6 +1,6 @@
 import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { CabecalhoSecao } from "@/components/eleicoes/CabecalhoSecao";
 import { CANDIDATAR } from "@/content/eleicoes";
 
 /** Fechamento: os três passos e o canal de envio. */
@@ -8,11 +8,10 @@ export function ComoCandidatar() {
   return (
     <section id="candidatar" className="bg-white py-16 lg:py-20">
       <Container>
-        <Eyebrow>{CANDIDATAR.eyebrow}</Eyebrow>
-
-        <h2 className="mt-3 text-[30px] font-extrabold leading-tight text-[#200F3B] lg:text-[42px]">
-          {CANDIDATAR.titulo}
-        </h2>
+        <CabecalhoSecao
+          eyebrow={CANDIDATAR.eyebrow}
+          titulo={CANDIDATAR.titulo}
+        />
 
         <div className="mt-8 rounded-[32px] bg-[linear-gradient(110deg,#210040_0%,#4F17A8_52%,#012F44_100%)] px-8 py-10 text-white lg:rounded-[40px] lg:px-12 lg:py-12">
           <h3 className="text-[22px] font-extrabold lg:text-[26px]">Inscrição em 3 passos</h3>

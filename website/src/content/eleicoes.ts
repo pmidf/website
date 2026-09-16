@@ -152,21 +152,21 @@ export const REQUISITOS = {
     "Os requisitos são cumulativos e verificados pelo Comitê Eleitoral. O filiado pode concorrer a apenas um cargo e deve estar adimplente com o PMI® e o PMI-DF.",
   grupos: [
     {
+      titulo: "Presidência",
+      nota: "Todos os requisitos das Vice-Presidências, e mais:",
+      itens: [
+        "4 anos de trabalho voluntário junto ao PMI®.",
+        "Ter exercido integralmente um mandato de cargo eletivo em gestões anteriores.",
+        "Ter exercido cargo de Diretor ou Diretor Adjunto no PMI-DF.",
+      ],
+    },
+    {
       titulo: "Vice-Presidências",
       itens: [
         "Filiação regular e adimplente junto ao PMI®, com no mínimo 2 anos ininterruptos de filiação ao capítulo até um dia antes do início da eleição online.",
         "3 anos de trabalho voluntário junto ao PMI®.",
         "2 anos de trabalho voluntário junto ao PMI-DF.",
         "Ter exercido cargo de Diretor ou Diretor Adjunto.",
-      ],
-    },
-    {
-      titulo: "Presidência",
-      nota: "Além de todos os requisitos das Vice-Presidências:",
-      itens: [
-        "4 anos de trabalho voluntário junto ao PMI®.",
-        "Ter exercido integralmente um mandato de cargo eletivo em gestões anteriores.",
-        "Ter exercido cargo de Diretor ou Diretor Adjunto no PMI-DF.",
       ],
     },
   ],
@@ -224,7 +224,8 @@ export const DOCUMENTOS: DocumentoEleicao[] = [
   {
     titulo: "Estatuto do PMI-DF",
     descricao: "Estatuto Social vigente do capítulo, base de todo o processo eleitoral.",
-    acao: "Em breve",
+    acao: "Baixar PDF",
+    href: "https://drive.google.com/file/d/12piJOd4h_dSr9kAkJX7mUAjy_01AiST9/view",
   },
 ];
 
