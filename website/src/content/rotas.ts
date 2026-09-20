@@ -43,6 +43,7 @@ export const ROTAS: Rota[] = [
   { href: "/eleicoes", label: "Eleições" },
   { href: "/transparencia", label: "Transparência" },
   { href: "/eventos", label: "Eventos e Programas" },
+  { href: "/eventos/dgpis-2026", label: "5º DGPIS 2026", pai: "/eventos" },
   { href: "/mentoring", label: "Mentoring" },
   { href: "/certificacoes", label: "Certificação" },
   { href: "/incompany", label: "InCompany" },

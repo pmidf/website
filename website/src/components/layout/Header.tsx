@@ -19,6 +19,15 @@ type MenuItem = {
   children?: MenuLink[];
 };
 
+/**
+ * O Summit tem site próprio, fora do domínio do PMI-DF — mesmo motivo de
+ * `Botao`/`external` usarem `<a target="_blank">` em vez de `<Link>`: navegar
+ * para fora do site em uma nova aba evita perder a navegação atual.
+ */
+function ehExterno(href: string) {
+  return href.startsWith("http");
+}
+
 const MENU_ITEMS: MenuItem[] = [
   {
     label: "Sobre",
@@ -35,6 +44,8 @@ const MENU_ITEMS: MenuItem[] = [
     label: "Eventos e Programas",
     children: [
       { label: "Eventos", href: "/eventos" },
+      { label: "5º DGPIS 2026", href: "/eventos/dgpis-2026" },
+      { label: "Summit", href: "https://summit.pmidf.org/" },
       // Maximize sai do menu até o lançamento do programa. A página continua
       // em `(site)/maximize/` (com noindex) para revisão interna — basta
       // descomentar esta linha quando for ao ar.
@@ -171,17 +182,31 @@ export function Header() {
                       className="absolute -top-[6px] left-6 h-[11px] w-[11px] rotate-45 rounded-tl-[2px] border-l border-t border-[#200F3B]/10 bg-white"
                     />
 
-                    {item.children?.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        role="menuitem"
-                        onClick={() => setSubmenuDesktop(null)}
-                        className="block rounded-[10px] px-4 py-3 text-[15px] font-medium text-[#200F3B] transition hover:bg-[#F6F1FA] hover:text-[#FF610F]"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                    {item.children?.map((child) =>
+                      ehExterno(child.href) ? (
+                        <a
+                          key={child.href}
+                          href={child.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          role="menuitem"
+                          onClick={() => setSubmenuDesktop(null)}
+                          className="block rounded-[10px] px-4 py-3 text-[15px] font-medium text-[#200F3B] transition hover:bg-[#F6F1FA] hover:text-[#FF610F]"
+                        >
+                          {child.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          role="menuitem"
+                          onClick={() => setSubmenuDesktop(null)}
+                          className="block rounded-[10px] px-4 py-3 text-[15px] font-medium text-[#200F3B] transition hover:bg-[#F6F1FA] hover:text-[#FF610F]"
+                        >
+                          {child.label}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 )}
               </div>
@@ -266,19 +291,35 @@ export function Header() {
 
                 {estaAberto && (
                   <div className="flex flex-col pb-2 pl-4">
-                    {item.children?.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        onClick={() => {
-                          setAberto(false);
-                          setSubmenuMobile(null);
-                        }}
-                        className="rounded-[8px] px-3 py-2 text-[15px] text-[#5C546E] transition hover:bg-white hover:text-[#FF610F]"
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
+                    {item.children?.map((child) =>
+                      ehExterno(child.href) ? (
+                        <a
+                          key={child.href}
+                          href={child.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => {
+                            setAberto(false);
+                            setSubmenuMobile(null);
+                          }}
+                          className="rounded-[8px] px-3 py-2 text-[15px] text-[#5C546E] transition hover:bg-white hover:text-[#FF610F]"
+                        >
+                          {child.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          onClick={() => {
+                            setAberto(false);
+                            setSubmenuMobile(null);
+                          }}
+                          className="rounded-[8px] px-3 py-2 text-[15px] text-[#5C546E] transition hover:bg-white hover:text-[#FF610F]"
+                        >
+                          {child.label}
+                        </Link>
+                      ),
+                    )}
                   </div>
                 )}
               </div>
