@@ -42,7 +42,7 @@ const SYMPLA_HREF =
 export const metadata: Metadata = {
   title: "5º DGPIS 2026 — Caminhos para o Impacto",
   description:
-    "5º Dia de Gestão de Projetos de Impacto Social (DGPIS), promovido pelo PMI-DF. 18 de dezembro de 2026, em Brasília/DF. Evento presencial e gratuito, com inscrição prévia.",
+    "5º Dia de Gestão de Projetos de Impacto Social (DGPIS), promovido pelo PMI-DF. 15 de dezembro de 2026, em Brasília/DF. Evento presencial e gratuito, com inscrição prévia.",
   alternates: { canonical: "/eventos/dgpis-2026" },
 };
 
@@ -173,7 +173,7 @@ export default function Dgpis2026Page() {
           </p>
 
           <p className="mt-9 text-[17px] font-semibold text-white lg:text-[19px]">
-            18 de dezembro de 2026 · 08h às 16h30 · Brasília/DF
+            15 de dezembro de 2026 · 08h às 16h30 · Brasília/DF
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
@@ -269,7 +269,7 @@ export default function Dgpis2026Page() {
         <Container gutter="amplo">
           <Eyebrow>Programação</Eyebrow>
           <TituloSecao className="mt-4 font-[family-name:var(--font-titulo)] font-extrabold leading-[1.18] text-[#200F3B]">
-            18 de dezembro de 2026 · sexta-feira
+            15 de dezembro de 2026 · terça-feira
           </TituloSecao>
           <p className="mt-4 max-w-[680px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
             Café da manhã, almoço e café da tarde estão incluídos para todos os participantes.
@@ -346,7 +346,7 @@ export default function Dgpis2026Page() {
         <Container gutter="amplo">
           <Eyebrow>Ingressos</Eyebrow>
           <TituloSecao className="mt-4 font-[family-name:var(--font-titulo)] font-extrabold leading-[1.18] text-[#200F3B]">
-            Inscrições até 18/12/2026
+            Inscrições até 15/12/2026
           </TituloSecao>
           <p className="mt-4 max-w-[680px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
             100 vagas. Café da manhã, almoço e café da tarde inclusos.
@@ -372,7 +372,7 @@ export default function Dgpis2026Page() {
                 {ingresso.parcela && (
                   <p className="mt-1 text-[13px] text-[#5C546E]">{ingresso.parcela}</p>
                 )}
-                <p className="mt-3 text-[13px] text-[#5C546E]">Inscrições até 18/12/2026</p>
+                <p className="mt-3 text-[13px] text-[#5C546E]">Inscrições até 15/12/2026</p>
                 <Botao
                   href={SYMPLA_HREF}
                   external
@@ -505,7 +505,7 @@ export default function Dgpis2026Page() {
             Garanta sua vaga no 5º DGPIS
           </h2>
           <p className="mx-auto mt-4 max-w-[520px] text-[16px] text-white/75">
-            18 de dezembro de 2026 · Brasília/DF · Presencial e gratuito
+            15 de dezembro de 2026 · Brasília/DF · Presencial e gratuito
           </p>
           <Botao href={SYMPLA_HREF} external variante="branco" className="mt-8">
             Quero me inscrever
