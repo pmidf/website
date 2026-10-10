@@ -79,11 +79,11 @@ export const GALERIA_PRESIDENTES: Presidente[] = [
     bioOriginal: "pt",
     bio: {
       pt: [
-        "Matheus Rocha é Presidente do PMI-DF, onde lidera iniciativas de alinhamento estratégico e fortalece a integração de projetos junto ao PMI Global. Integra também o PMO Corporativo da Eletrobras, contribuindo para transformar dados em insights estratégicos, impulsionar a adoção das melhores práticas de gerenciamento de projetos e promover a evolução tecnológica.",
+        "Matheus Rocha é Presidente do PMI-DF, onde lidera iniciativas de alinhamento estratégico e fortalece a integração de projetos junto ao PMI. Integra também o PMO Corporativo da Eletrobras, contribuindo para transformar dados em insights estratégicos, impulsionar a adoção das melhores práticas de gerenciamento de projetos e promover a evolução tecnológica.",
         "Pós-graduado em Gestão de Projetos e em Gestão de Pessoas e Recursos Humanos, possui certificações como PMP, PMI-PMOCP, Scrum, Six Sigma e Management 3.0. É dedicado à educação, à tecnologia e a causas sociais, buscando continuamente inovação para gerar valor e impacto positivo.",
       ],
       en: [
-        "Matheus Rocha is President of PMI-DF, where he leads strategic alignment initiatives and strengthens project integration with PMI Global. He is also part of the Corporate PMO at Eletrobras, helping turn data into strategic insight, drive the adoption of project management best practices and promote technological development.",
+        "Matheus Rocha is President of PMI-DF, where he leads strategic alignment initiatives and strengthens project integration with PMI. He is also part of the Corporate PMO at Eletrobras, helping turn data into strategic insight, drive the adoption of project management best practices and promote technological development.",
         "With postgraduate degrees in Project Management and in People and Human Resources Management, he holds certifications such as PMP, PMI-PMOCP, Scrum, Six Sigma and Management 3.0. He is committed to education, technology and social causes, continuously seeking innovation to generate value and positive impact.",
       ],
     },

@@ -116,7 +116,7 @@ export const FAQ_CERTIFICACOES = [
   {
     pergunta: "O PMI-DF aplica a prova?",
     resposta:
-      "Não. A inscrição e a realização do exame são feitas pelos canais oficiais do PMI Global.",
+      "Não. A inscrição e a realização do exame são feitas pelos canais oficiais do PMI.",
   },
   {
     pergunta: "Qual a diferença entre um curso ATP e um curso comum?",

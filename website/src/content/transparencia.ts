@@ -22,7 +22,7 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
       {
         tipo: "PDF",
         titulo: "Charter Agreement Distrito Federal",
-        descricao: "Acordo de capítulo com o PMI Global",
+        descricao: "Acordo de capítulo com o PMI",
         href: "https://pmidf.org/wp-content/uploads/PMI_2021_Charter_Agreement_Distrito_Federal_Brazil_PT.pdf",
       },
       {
@@ -40,7 +40,7 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
       {
         tipo: "LINK",
         titulo: "Código de Ética e Conduta Profissional do PMI",
-        descricao: "Portal do PMI Global",
+        descricao: "Portal do PMI",
         // Sem `?rev=…&sc_lang_temp=pt-PT`: com esses parâmetros o PMI responde
         // 200 com um arquivo de 0 byte — o download abria vazio. A URL limpa
         // entrega o PDF de verdade (1,7 MB).
@@ -141,7 +141,7 @@ export const CTAS_TRANSPARENCIA = [
   },
   {
     titulo: "Canal de ética do PMI",
-    descricao: "Denúncias de conduta são tratadas diretamente pelo PMI Global, em canal próprio.",
+    descricao: "Denúncias de conduta são tratadas diretamente pelo PMI, em canal próprio.",
     cta: "Acessar canal ↗",
     href: "https://www.pmi.org/about/ethics",
     variante: "azul",

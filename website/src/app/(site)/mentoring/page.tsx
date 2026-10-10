@@ -138,7 +138,7 @@ export default function MentoringPage() {
             <h2 className="mtr-titulo-secao">Mentores e mentorados</h2>
             <p className="mtr-cabecalho__apoio">
               As inscrições acontecem por canais diferentes: mentores pelo VEP, o
-              portal de voluntariado do PMI Global, e mentorados por formulário.
+              portal de voluntariado do PMI, e mentorados por formulário.
             </p>
           </header>
 

@@ -27,7 +27,7 @@ export function CertificacoesPrincipais() {
           </h2>
 
           <p className="mt-4 max-w-[760px] text-[16px] leading-relaxed text-[#5C546E] lg:text-[18px]">
-            A emissão, o exame e o pagamento são feitos pelo PMI Global. O PMI-DF ajuda você a se
+            A emissão, o exame e o pagamento são feitos pelo PMI. O PMI-DF ajuda você a se
             preparar e a conseguir desconto com nossos parceiros autorizados.
           </p>
 

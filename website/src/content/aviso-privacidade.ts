@@ -37,7 +37,7 @@ export const HERO = {
 };
 
 export const INTRODUCAO = [
-  "O PMI Distrito Federal tem o compromisso de oferecer excelência, segurança e salvaguardas equivalentes às do PMI Global no tratamento de dados pessoais.",
+  "O PMI Distrito Federal tem o compromisso de oferecer excelência, segurança e salvaguardas equivalentes às do PMI no tratamento de dados pessoais.",
   "Este aviso explica, em linguagem direta, quais dados coletamos, para que os usamos, com quem eventualmente os compartilhamos e quais são os seus direitos como titular.",
 ];
 
@@ -186,7 +186,7 @@ export const SECOES: SecaoAviso[] = [
     titulo: "Links para outros sites",
     paragrafos: [
       "Este aviso não se aplica a sites de terceiros acessados a partir de links publicados aqui, que têm políticas de privacidade próprias.",
-      "O PMI-DF e o PMI Global não são responsáveis pelo conteúdo nem pelas práticas de privacidade desses sites.",
+      "O PMI-DF e o PMI não são responsáveis pelo conteúdo nem pelas práticas de privacidade desses sites.",
     ],
   },
   {

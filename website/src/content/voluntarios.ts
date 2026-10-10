@@ -72,7 +72,7 @@ export const VOLUNTARIOS: Voluntario[] = [
 export const CTA_FINAL = {
   titulo: "Quer aparecer nesta página?",
   descricao:
-    "As vagas de voluntariado do capítulo são publicadas no VEP, o portal de engajamento do PMI Global. Escolha uma área, candidate-se e venha construir o PMI-DF com a gente.",
+    "As vagas de voluntariado do capítulo são publicadas no VEP, o portal de engajamento do PMI. Escolha uma área, candidate-se e venha construir o PMI-DF com a gente.",
   ctaLabel: "Ver vagas abertas",
   ctaSecundarioLabel: "Como funciona o voluntariado",
   ctaSecundarioHref: "/voluntariado",

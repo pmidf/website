@@ -12,13 +12,13 @@ export function CtaFinal() {
           </h2>
 
           <p className="mx-auto mt-5 max-w-[650px] text-[16px] leading-relaxed text-white/85 lg:text-[18px]">
-            A inscrição acontece no portal do PMI Global. Se quiser desconto no curso
+            A inscrição acontece no portal do PMI. Se quiser desconto no curso
             preparatório ou ajuda para escolher a credencial, fale com o capítulo.
           </p>
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Botao href="https://www.pmi.org/certifications" external variante="branco">
-              Ir para o PMI Global
+              Ir para o PMI
             </Botao>
 
             <Botao href="/contato?assunto=certificacao" variante="contorno-claro">

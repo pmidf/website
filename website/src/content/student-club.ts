@@ -166,7 +166,7 @@ export const FAQ_STUDENT = [
       'Sim. O clube é aberto a estudantes de diferentes áreas que queiram aprender sobre gestão, liderança e projetos.',
   },
   {
-    pergunta: 'Como o clube se relaciona com o PMI-DF e com o PMI Global?',
+    pergunta: 'Como o clube se relaciona com o PMI-DF e com o PMI?',
     resposta:
       'O Student Club é uma iniciativa local conectada ao capítulo PMI-DF, aproximando estudantes da comunidade profissional e da rede global do PMI.',
   },
