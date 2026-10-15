@@ -39,10 +39,20 @@ const inter = Inter({
 const SYMPLA_HREF =
   "https://www.sympla.com.br/evento/5-dgpis-dia-de-gestao-de-projetos-de-impacto-social/3586270";
 
+const LOCAL = {
+  nome: "Instituto Bancorbrás",
+  endereco: "SCN Quadra 2, Bloco C, nº 900, Térreo — Asa Norte, Brasília/DF, 70712-030",
+  mapsHref: "https://maps.app.goo.gl/dW9fhVEgrx9PGc2W7",
+  // `output=embed` dispensa chave de API — é o mesmo embed do "Compartilhar
+  // › Incorporar mapa" do Google Maps, montado a partir do endereço.
+  embedSrc:
+    "https://maps.google.com/maps?q=Instituto+Bancorbr%C3%A1s,+SCN+Q+2+BL+C+900,+Asa+Norte,+Bras%C3%ADlia+-+DF,+70712-030&z=16&output=embed",
+};
+
 export const metadata: Metadata = {
   title: "5º DGPIS 2026 — Caminhos para o Impacto",
   description:
-    "5º Dia de Gestão de Projetos de Impacto Social (DGPIS), promovido pelo PMI-DF. 15 de dezembro de 2026, em Brasília/DF. Evento presencial e gratuito, com inscrição prévia.",
+    "5º Dia de Gestão de Projetos de Impacto Social (DGPIS), promovido pelo PMI-DF. 15 de dezembro de 2026, no Instituto Bancorbrás (Asa Norte, Brasília/DF). Evento presencial e gratuito, com inscrição prévia.",
   alternates: { canonical: "/eventos/dgpis-2026" },
 };
 
@@ -448,23 +458,37 @@ export default function Dgpis2026Page() {
         <Container gutter="amplo">
           <Eyebrow>Local</Eyebrow>
           <TituloSecao className="mt-4 mb-8 font-[family-name:var(--font-titulo)] font-extrabold leading-[1.18] text-[#200F3B]">
-            Brasília, DF
+            Asa Norte, Brasília/DF
           </TituloSecao>
 
-          <div className="flex flex-col items-start gap-5 rounded-[16px] bg-white p-8 shadow-[0_3px_12px_rgba(32,15,59,0.1)] sm:flex-row sm:items-center">
-            <span
-              aria-hidden
-              className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#F8F5F0] text-[24px]"
-            >
-              📍
-            </span>
-            <div>
-              <h3 className="text-[18px] font-semibold text-[#200F3B]">Local a definir</h3>
-              <p className="mt-1 text-[14.5px] leading-relaxed text-[#5C546E]">
-                O endereço completo será divulgado em breve nas comunicações oficiais do PMI-DF e
-                na página do evento no Sympla.
-              </p>
+          <div className="overflow-hidden rounded-[16px] bg-white shadow-[0_3px_12px_rgba(32,15,59,0.1)]">
+            <div className="flex flex-col items-start gap-5 p-8 sm:flex-row sm:items-center">
+              <span
+                aria-hidden
+                className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#F8F5F0] text-[24px]"
+              >
+                📍
+              </span>
+              <div className="flex-1">
+                <h3 className="text-[18px] font-semibold text-[#200F3B]">{LOCAL.nome}</h3>
+                <p className="mt-1 text-[14.5px] leading-relaxed text-[#5C546E]">
+                  {LOCAL.endereco}
+                </p>
+              </div>
+              <Botao href={LOCAL.mapsHref} external variante="contorno-escuro">
+                Abrir no Google Maps
+              </Botao>
             </div>
+
+            {/* `title` é obrigatório: sem ele o leitor de tela anuncia só
+                "quadro", sem dizer o que há dentro. */}
+            <iframe
+              src={LOCAL.embedSrc}
+              title={`Mapa: ${LOCAL.nome}`}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="block aspect-[4/3] w-full border-0 sm:aspect-[21/9]"
+            />
           </div>
         </Container>
       </section>
