@@ -49,3 +49,9 @@ public/assets/**/*.HEIC
 public/assets/**/*.heic
 public/assets/**/*.jpg
 public/assets/**/*.jpeg
+
+# Exceção: imagens de compartilhamento (Open Graph) das matérias, sempre com
+# o sufixo `-og.jpg`. Precisam ser JPEG — WhatsApp e LinkedIn nem sempre leem
+# webp — e já saem comprimidas (~100 KB). Sem esta linha a imagem não sobe e
+# a prévia do link sai sem foto.
+!public/assets/**/*-og.jpg

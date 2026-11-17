@@ -1,5 +1,4 @@
 import { Header } from "@/components/layout/Header";
-import { PopupSummit } from "@/components/layout/PopupSummit";
 import { Rodape } from "@/components/layout/Rodape";
 import { Trilha } from "@/components/layout/Trilha";
 
@@ -13,10 +12,6 @@ import { Trilha } from "@/components/layout/Trilha";
  * acessibilidade do site inteiro (WCAG 2.4.8): uma página nova nasce com ela
  * bastando ganhar uma linha em `content/rotas.ts`. Ela se esconde sozinha na
  * home e em rotas desconhecidas.
- *
- * O `PopupSummit` também mora aqui, e não numa página específica: a ideia é
- * que quem entra pelo site — em qualquer página — veja o aviso do Summit uma
- * vez. Ele mesmo decide quando aparecer (ver o componente).
  */
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
@@ -27,7 +22,6 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
         {children}
       </main>
       <Rodape />
-      <PopupSummit />
     </>
   );
 }
