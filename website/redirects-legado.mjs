@@ -7,21 +7,22 @@
  *
  * Origem das URLs: https://pmidf.org/page-sitemap.xml (lido em 07/09/2026)
  *
- * DESTINOS VÁLIDOS (as 14 rotas do site novo — nenhuma outra pode ser usada):
+ * DESTINOS VÁLIDOS (as 15 rotas do site novo — nenhuma outra pode ser usada):
  *   /                          /eventos/
  *   /quem-somos/               /mentoring/
  *   /quem-somos/presidentes/   /certificacoes/
  *   /quem-somos/voluntarios/   /incompany/
  *   /filiacao/                 /contato/
  *   /voluntariado/             /aviso-de-privacidade/
- *   /student-club/
+ *   /student-club/             /noticias/
  *   /transparencia/
  *
  * REGRAS APLICADAS
  * 1. `source` escrito SEM barra final. Com `trailingSlash: true` no next.config.js,
  *    o Next normaliza o caminho antes de casar a regra, e `/conheca/` bate em `/conheca`.
- * 2. Nenhuma regra aponta para a home, exceto o índice do blog (`/blog`), que é
- *    uma página de listagem — 301 em massa para a home é tratado como soft 404.
+ * 2. Nenhuma regra aponta para a home — 301 em massa para a home é tratado como
+ *    soft 404. O índice do blog (`/blog`), que era a exceção, agora vai para
+ *    /noticias/.
  * 3. URLs idênticas nos dois sites NÃO entram aqui. São seis e devem responder 200
  *    direto, sem hop nenhum:
  *      /certificacoes/  /contato/  /mentoring/
@@ -190,11 +191,11 @@ const redirectsLegado = [
   { source: '/politica-de-privacidade', destination: '/aviso-de-privacidade/' },
 
   // ─────────────────────────────────────────────────────────────
-  // Índice do blog
-  // Página de listagem: a home é substituto legítimo.
+  // Índice do blog  →  /noticias/
+  // O blog virou o agregador de Notícias, que é a listagem equivalente.
   // Os POSTS (na raiz) NÃO entram aqui — ver middleware.ts.
   // ─────────────────────────────────────────────────────────────
-  { source: '/blog', destination: '/' },
+  { source: '/blog', destination: '/noticias/' },
 ];
 
 // Todos permanentes (301). `permanent: true` no Next emite 308, que o Google

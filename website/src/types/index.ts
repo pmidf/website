@@ -399,3 +399,120 @@ export type Voluntario = {
   foto?: string;
   linkedin?: string;
 };
+
+/* --- Notícias ------------------------------------------------------------- */
+
+/**
+ * Editoria da notícia. Decide o chip do card e o gradiente da capa quando a
+ * notícia não tem imagem (ver `ESTILO_CATEGORIA` em `content/noticias.ts`).
+ */
+export type CategoriaNoticia = "PMI-DF na mídia" | "Comunicado" | "Comunidade PMI" | "Artigo";
+
+/**
+ * O que todo item de `/noticias` tem, venha de onde vier.
+ *
+ * `data` vem em ISO (`AAAA-MM-DD`) para ordenar por comparação de texto e
+ * alimentar o `<time dateTime>`; o texto exibido sai de `formatarData`.
+ * `imagem` é opcional: sem ela, o card ganha uma capa gerada com as cores da
+ * marca em vez de abrir um buraco na grade.
+ */
+type NoticiaBase = {
+  /** Slug estável — chave de lista e, nas internas, o fim da URL. */
+  id: string;
+  titulo: string;
+  /** Uma ou duas frases, até ~200 caracteres. */
+  resumo: string;
+  data: string;
+  categoria: CategoriaNoticia;
+  /** Imagem do card (16:9), sempre via `assets.noticias.*`. */
+  imagem?: string;
+  /** Fixa o item no card grande, mesmo que haja notícias mais novas. */
+  destaque?: boolean;
+};
+
+/**
+ * Matéria publicada fora do site (imprensa, PMI.org, LinkedIn…).
+ *
+ * `veiculo` é quem publicou — é o que o card mostra para a pessoa saber para
+ * onde vai antes de clicar.
+ */
+export type NoticiaExterna = NoticiaBase & {
+  tipo: "externa";
+  /** URL externa absoluta. */
+  href: string;
+  veiculo: string;
+};
+
+/** Matéria publicada no próprio site, em `/noticias/<id>`. */
+export type NoticiaInterna = NoticiaBase & {
+  tipo: "interna";
+  materia: Materia;
+};
+
+export type Noticia = NoticiaExterna | NoticiaInterna;
+
+/**
+ * Foto de matéria. `largura`/`altura` são as dimensões do arquivo — o
+ * `next/image` precisa delas para reservar o espaço antes de a imagem chegar.
+ */
+export type FotoMateria = {
+  src: string;
+  largura: number;
+  altura: number;
+  alt: string;
+  /** Texto da legenda, como veio do release. */
+  legenda: string;
+  /** "Foto: Divulgação/PMI-DF". */
+  credito: string;
+};
+
+/**
+ * Número do painel "em números". `prefixo` é parte da frase ("mais de",
+ * "quase"), não decoração: lido em sequência, o tile diz "mais de 650
+ * participantes" — sem `+` ou `~`, que o leitor de tela soletraria.
+ */
+export type NumeroMateria = {
+  prefixo?: string;
+  valor: string;
+  rotulo: string;
+};
+
+export type CitacaoMateria = {
+  texto: string;
+  autor: string;
+  cargo: string;
+  foto?: string;
+};
+
+/**
+ * Pedaço do corpo da matéria, na ordem de leitura.
+ *
+ * O texto vem em blocos tipados, e não em HTML ou Markdown, pelo mesmo motivo
+ * do resto de `content/`: o componente decide o visual e o conteúdo não carrega
+ * markup. Os blocos especiais (números, foto com citação) são os que quebram a
+ * coluna de texto.
+ */
+export type BlocoMateria =
+  | { tipo: "paragrafo"; texto: string; lead?: boolean }
+  | { tipo: "secao"; id: string; titulo: string }
+  | { tipo: "numeros"; titulo: string; itens: NumeroMateria[] }
+  | { tipo: "fotoCitacao"; foto: FotoMateria; citacao: CitacaoMateria };
+
+export type Materia = {
+  /** Linha acima do título ("Release · PMI-DF Summit 2026"). */
+  chapeu: string;
+  /** Rótulo curto da trilha de navegação. */
+  tituloCurto: string;
+  /** Subtítulo que resume a matéria logo abaixo do título. */
+  linhaFina: string;
+  local: string;
+  autoria: string;
+  capa: FotoMateria;
+  /** Imagem de compartilhamento, 1200 × 630 em JPEG. */
+  og: string;
+  corpo: BlocoMateria[];
+  /** Texto institucional do fim do release ("Sobre o PMI-DF"). */
+  sobre: { titulo: string; texto: string; link?: { rotulo: string; href: string } };
+  /** Arquivo original para download (o release em PDF). */
+  anexo?: { rotulo: string; href: string; tamanho: string };
+};

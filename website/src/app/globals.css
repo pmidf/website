@@ -110,3 +110,38 @@
     outline-offset: 2px;
   }
 }
+
+/* ===========================================================================
+ * BARRA DE LEITURA (matérias em /noticias/<slug>)
+ *
+ * Progresso de rolagem feito só com CSS: a animação anda junto com a rolagem
+ * da página (`animation-timeline: scroll(root)`), sem JavaScript. Revela o
+ * gradiente da esquerda para a direita com `clip-path` — com `scaleX`, o
+ * gradiente inteiro apareceria espremido no começo da barra.
+ *
+ * O `animation-timeline` vem depois do atalho `animation`, que o zeraria.
+ * Navegador sem suporte simplesmente não mostra a barra.
+ * ======================================================================== */
+
+@keyframes progresso-leitura {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@layer components {
+  .barra-leitura {
+    display: none;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .barra-leitura {
+      display: block;
+      animation: progresso-leitura linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+}

@@ -23,8 +23,7 @@ export const NAV_LINKS: NavLink[] = [
   { label: "Eventos e Programas", href: "/eventos" },
   { label: "Certificação", href: "/certificacoes" },
   { label: "InCompany", href: "/incompany" },
-  // Blog ainda não desenvolvido — descomentar junto com a rota `(site)/blog/`.
-  // { label: "Blog", href: "/blog" },
+  { label: "Notícias", href: "/noticias" },
   { label: "Contato", href: "/contato" },
 ];
 

@@ -35,6 +35,8 @@ const DEVE_SER_200 = [
   '/incompany/',
   '/contato/',
   '/aviso-de-privacidade/',
+  '/noticias/',
+  '/noticias/pmi-df-summit-2026/',
   // Mídia legada preservada
   '/wp-content/uploads/POLITICA-DE-PRIVACIDADE-E-PROTECAO-DE-DADOS-PESSOAIS.pdf',
   // SEO

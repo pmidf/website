@@ -47,6 +47,15 @@ export const ROTAS: Rota[] = [
   { href: "/mentoring", label: "Mentoring" },
   { href: "/certificacoes", label: "Certificação" },
   { href: "/incompany", label: "InCompany" },
+  { href: "/noticias", label: "Notícias" },
+  // Matérias publicadas no site. Uma linha por matéria, escrita à mão: derivar
+  // de `content/noticias.ts` levaria o texto delas para o bundle desta trilha,
+  // que roda no navegador.
+  {
+    href: "/noticias/pmi-df-summit-2026",
+    label: "PMI-DF Summit 2026",
+    pai: "/noticias",
+  },
   { href: "/contato", label: "Contato" },
   { href: "/aviso-de-privacidade", label: "Aviso de privacidade" },
   // Sem link no menu e com `robots: noindex` até o lançamento do programa.

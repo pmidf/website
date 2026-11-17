@@ -61,12 +61,10 @@ const MENU_ITEMS: MenuItem[] = [
     label: "InCompany",
     href: "/incompany",
   },
-  // O blog ainda não foi desenvolvido — sem página em `(site)/blog/`, o item
-  // levava direto ao 404. Descomentar junto com a criação da rota.
-  // {
-  //   label: "Blog",
-  //   href: "/blog",
-  // },
+  {
+    label: "Notícias",
+    href: "/noticias",
+  },
   {
     label: "Contato",
     href: "/contato",

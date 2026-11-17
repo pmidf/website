@@ -150,6 +150,37 @@ export const assets = {
     voluntarios: "/assets/paginas/voluntariado/time-summit.webp",
   },
 
+  /**
+   * Imagens das notícias em `/noticias`, uma chave por item (o nome do
+   * arquivo é o `id` da notícia). 1200 × 675, 16:9, já comprimidas.
+   *
+   * Sempre baixadas para o repositório, nunca apontando para o site de
+   * origem: pelo mesmo motivo das fotos do LinkedIn acima, URLs de terceiros
+   * mudam ou expiram, e o card ficaria sem imagem sozinho. Notícia sem chave
+   * aqui usa a capa gerada pela categoria.
+   */
+  noticias: {
+    /*
+     * Release do PMI-DF Summit 2026 (novembro de 2026). Fotos tiradas do .docx
+     * original, em 2000 px no lado maior — o PDF do release trazia versões
+     * reduzidas. Card e OG são recortes da foto das lideranças, puxados para
+     * cima para o painel "PMI-DF SUMMIT 2026" entrar inteiro.
+     */
+    summit2026Lideranca: "/assets/paginas/noticias/summit-2026-lideranca.webp",
+    summit2026TrilhaGoverno: "/assets/paginas/noticias/summit-2026-trilha-governo.webp",
+    /** 1200 × 675, para os cards da listagem. */
+    summit2026Card: "/assets/paginas/noticias/summit-2026-card.webp",
+    /** 1200 × 630 em JPEG: WhatsApp e LinkedIn nem sempre leem webp. */
+    summit2026Og: "/assets/paginas/noticias/summit-2026-og.jpg",
+    summit2026Release: "/assets/paginas/noticias/release-pmi-df-summit-2026.pdf",
+    /**
+     * Retrato de Ana Lima (vice-presidente) para a assinatura da citação.
+     * Recorte de 340 × 340 da foto das lideranças, sem ampliação — ela ainda
+     * não tem foto própria no site. Trocar quando houver um retrato oficial.
+     */
+    summit2026AnaLima: "/assets/paginas/noticias/summit-2026-ana-lima.webp",
+  },
+
   /** Artes exclusivas do Student Club. */
   studentClub: {
     /** Estudantes do clube em um encontro presencial. Foto inteira, 16:9. */
