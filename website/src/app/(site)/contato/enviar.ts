@@ -186,7 +186,15 @@ export async function enviarContato(
   const destino = process.env.CONTACT_TO;
 
   if (!usuario || !senha || !destino) {
-    console.error("[contato] SMTP_USER, SMTP_PASS ou CONTACT_TO não configurados");
+    // Só os nomes, nunca os valores: o log diz qual variável falta neste
+    // ambiente sem vazar credencial nenhuma.
+    const faltando = Object.entries({ SMTP_USER: usuario, SMTP_PASS: senha, CONTACT_TO: destino })
+      .filter(([, valor]) => !valor)
+      .map(([nome]) => nome);
+    console.error(
+      `[contato] não configurado: faltam ${faltando.join(", ")} neste ambiente ` +
+        `(variável criada no painel só vale depois de um novo deploy)`,
+    );
     return {
       status: "erro",
       mensagem: `Tente de novo em instantes ou escreva direto para ${site.contact.email}.`,
@@ -228,8 +236,18 @@ export async function enviarContato(
     };
   } catch (erro) {
     // O erro do SMTP pode trazer host e usuário; fica no log do servidor, não
-    // na tela de quem enviou.
-    console.error("[contato] falha ao enviar:", erro);
+    // na tela de quem enviou. A primeira linha resume o que importa para o
+    // diagnóstico (`EAUTH 535 AUTH` = senha recusada; no Gmail, falta usar
+    // uma senha de app), e o objeto completo vem logo abaixo.
+    const { code, responseCode, command } = (erro ?? {}) as {
+      code?: string;
+      responseCode?: number;
+      command?: string;
+    };
+    console.error(
+      `[contato] falha ao enviar: ${[code, responseCode, command].filter(Boolean).join(" ") || "erro desconhecido"}`,
+    );
+    console.error(erro);
     return {
       status: "erro",
       mensagem: `Tente de novo em instantes ou escreva direto para ${site.contact.email}.`,

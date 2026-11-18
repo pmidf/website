@@ -162,6 +162,29 @@ redes, nunca conteúdo de exemplo.
 
 ## Formulário de contato
 
-Com runtime disponível, a futura página de contato pode usar Server Actions ou um
-route handler (veja `src/app/api/eventos/` como referência) — ou continuar
-apontando para um serviço externo (Formspree, Basin) ou para o widget do CRM.
+O formulário de `/contato` envia por SMTP, numa Server Action
+([`src/app/(site)/contato/enviar.ts`](<src/app/(site)/contato/enviar.ts>)) que usa o
+nodemailer. Precisa de três variáveis, descritas no [`.env.example`](.env.example):
+
+| Variável | O que é |
+|---|---|
+| `SMTP_USER` | Conta que envia, e também o remetente |
+| `SMTP_PASS` | No Gmail ou Google Workspace, uma **senha de app**, não a senha da conta |
+| `CONTACT_TO` | Caixa que recebe as mensagens |
+
+`SMTP_HOST` e `SMTP_PORT` são opcionais; o padrão é `smtp.gmail.com:465`.
+
+Cadastre as três em Vercel → Settings → Environment Variables, com o ambiente
+**Production** marcado, no projeto que serve `pmidf.org` (o que tem o domínio em
+Settings → Domains). Variável criada ou alterada no painel só vale a partir do
+próximo deploy, então clique em **Redeploy** depois de mexer.
+
+**Quando o envio falha,** a pessoa vê "Tente de novo em instantes ou escreva direto
+para…". O motivo fica nos Runtime Logs da Vercel; filtre por `[contato]`:
+
+- `não configurado: faltam …`: a variável listada não existe naquele ambiente, ou
+  foi criada depois do último deploy.
+- `falha ao enviar: EAUTH 535 AUTH`: senha recusada. No Gmail, gere uma senha de app.
+- Nenhuma linha `[contato]`: o envio nem chegou ao servidor. Confira o Firewall da
+  Vercel, porque o modo de desafio (Attack Challenge Mode ou Bot Protection em
+  *Challenge*) pode barrar o POST do formulário.

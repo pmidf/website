@@ -6,7 +6,12 @@ export type DocumentoTransparencia = {
   tipo: TipoDocumento;
   titulo: string;
   descricao: string;
-  href: string;
+  /**
+   * Onde o documento abre. Sem `href`, o item aparece como "Em atualização",
+   * sem link — melhor do que levar a uma página de erro.
+   */
+  href?: string;
+  /** Link para fora do site (Google Drive, portais oficiais). */
   externo?: boolean;
 };
 
@@ -15,6 +20,24 @@ export type GrupoDocumentos = {
   documentos: DocumentoTransparencia[];
 };
 
+/**
+ * Documentos do capítulo.
+ *
+ * ## Por que vários itens estão sem link
+ *
+ * Os PDFs moravam em `pmidf.org/wp-content/uploads/`, no servidor do
+ * WordPress, que saiu do ar quando o domínio passou para a Vercel. Na
+ * migração só a Política de Privacidade foi copiada para
+ * `public/wp-content/uploads/`; os demais nunca vieram, e o link respondia
+ * erro. Também não há cópia no Wayback Machine.
+ *
+ * Cada item volta a ter `href` quando o capítulo enviar o link — em geral do
+ * Google Drive, compartilhado como "Qualquer pessoa com o link → Leitor"
+ * (sem isso, o Drive pede login a quem clica). Link do Drive entra com
+ * `externo: true`. PDF hospedado aqui vai em `public/wp-content/uploads/`, com
+ * caminho relativo (`/wp-content/uploads/arquivo.pdf`): é a pasta que o
+ * middleware deixa passar como mídia legada.
+ */
 export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
   {
     titulo: "Documentos institucionais",
@@ -23,19 +46,16 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
         tipo: "PDF",
         titulo: "Charter Agreement Distrito Federal",
         descricao: "Acordo de capítulo com o PMI",
-        href: "https://pmidf.org/wp-content/uploads/PMI_2021_Charter_Agreement_Distrito_Federal_Brazil_PT.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Estatuto Social da Seção Distrito Federal — Brasil",
         descricao: "Project Management Institute",
-        href: "https://pmidf.org/wp-content/uploads/LEGAL_DOC_Bylaw_PMI_Distrito_Federal_30-08-24-registrado.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Ata de nomeação da diretoria",
         descricao: "Gestão 2025-2026",
-        href: "https://pmidf.org/wp-content/uploads/Ata-PMI-DF-Diretoria-Executiva-Bienio-2025-2026.pdf",
       },
       {
         tipo: "LINK",
@@ -56,20 +76,16 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
         tipo: "LINK",
         titulo: "Cadastro Nacional de Pessoa Jurídica (CNPJ)",
         descricao: "Receita Federal",
-        href: "https://pmidf.org/wp-content/uploads/3-Cadastro-Nacional-de-Pessoa-Juridica.pdf",
-        externo: true,
       },
       {
         tipo: "PDF",
         titulo: "Cadastro Fiscal do Distrito Federal",
         descricao: "Emissão: 07 de fevereiro de 2024",
-        href: "https://pmidf.org/wp-content/uploads/COMPROVANTE-DE-INSCRICAO-E-DE-SITUACAO-NO-CADASTRO-FISCAL-DO-DISTRITO-FEDERAL-DIF.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Licenciamento — Autorização de Funcionamento",
         descricao: "PMI-DF 2023",
-        href: "https://pmidf.org/wp-content/uploads/5-Licenciamento-Autorizacao-de-Funcionamento-PMI-DF-2023.pdf",
       },
     ],
   },
@@ -80,51 +96,42 @@ export const GRUPOS_DOCUMENTOS: GrupoDocumentos[] = [
         tipo: "PDF",
         titulo: "Certidão de Dívida Ativa Negativa",
         descricao: "Junto aos órgãos públicos",
-        href: "https://pmidf.org/wp-content/uploads/Certidao-Negativa-de-Debitos-junto-a-Orgaos-Publicos.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Certidão de Dívida Ativa Negativa",
         descricao: "Junto ao GDF",
-        href: "https://pmidf.org/wp-content/uploads/Certidao-de-Divida-Ativa-Negativa-Junto-ao-GDF-1.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Certidão Negativa de Débitos",
         descricao: "Junto aos órgãos públicos",
-        href: "https://pmidf.org/wp-content/uploads/Certidao-Negativa-de-Debitos-Junto-aos-Orgaos-Publicos-1.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Certidão Negativa de Débitos Trabalhistas",
         descricao: "Justiça do Trabalho",
-        href: "https://pmidf.org/wp-content/uploads/5-Certidao-Negativa-de-Debitos-Trabalhistas.pdf",
       },
       {
         tipo: "PDF",
         titulo:
           "Certidão Negativa de Débitos Relativos aos Tributos Federais e à Dívida Ativa da União",
         descricao: "Receita Federal / PGFN",
-        href: "https://pmidf.org/wp-content/uploads/6-Certidao-Negativa-de-Debitos-Relativos-aos-Tributos-Federais-e-a-Divida-Ativa-da-Uniao.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Certidão Negativa de Distribuição",
         descricao: "Ações de falências e recuperações judiciais — 1ª e 2ª instâncias",
-        href: "https://pmidf.org/wp-content/uploads/Certidao-Negativa-de-Distribuicao-Acoes-de-Falencias-e-Recuperacoes-Judiciais-1a-e-2a-Instancias-2-1.pdf",
       },
       {
         tipo: "PDF",
         titulo: "Certidão de Regularidade do FGTS (CRF)",
         descricao: "Caixa Econômica Federal",
-        href: "https://pmidf.org/wp-content/uploads/Consulta-Regularidade-do-Empregador.pdf",
       },
       {
         tipo: "LINK",
         titulo: "Certidão negativa correccional",
         descricao: "ePAD, CGU-PJ, CEIS, CNEP e CEPIM",
-        href: "https://pmidf.org/wp-content/uploads/Certidao-negativa-correcional-ePAD-CGU-PJ-CEIS-CNEP-e-CEPIM.pdf",
-        externo: true,
       },
     ],
   },
