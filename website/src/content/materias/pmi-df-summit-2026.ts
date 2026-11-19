@@ -4,15 +4,14 @@ import type { FotoMateria, Materia } from "@/types";
 /**
  * Release de balanço do PMI-DF Summit 2026 (novembro de 2026).
  *
- * O texto é o do release, sem edição: parágrafos, intertítulos e legendas.
- * A citação virou um bloco com assinatura e foto, e por decisão editorial é
- * atribuída a Ana Lima, vice-presidente do PMI-DF. No PDF original do release
- * a mesma fala é atribuída a Matheus Rocha. O painel de números é um resumo a
- * mais, com dados que os parágrafos já trazem.
+ * O texto é o do release, sem edição: parágrafos, intertítulos, legendas e a
+ * fala do presidente. Mudou só a forma da citação, cuja atribuição ("afirma
+ * Matheus Rocha, presidente do PMI Distrito Federal") virou a assinatura com
+ * foto do bloco. O painel de números é um resumo a mais, com dados que os
+ * parágrafos já trazem.
  *
  * As fotos vieram do .docx original (2000 px no lado maior); o PDF trazia
- * versões reduzidas. O retrato da Ana é um recorte da foto principal: ela
- * ainda não tem foto própria no site.
+ * versões reduzidas.
  */
 
 const CREDITO = "Foto: Divulgação/PMI-DF";
@@ -107,9 +106,9 @@ export const MATERIA_SUMMIT_2026: Materia = {
       citacao: {
         texto:
           "Brasília concentra os centros de decisão do país, e boa parte dos grandes projetos públicos brasileiros é concebida ou acompanhada daqui. Quando reunimos mais de 650 profissionais para discutir como esses projetos saem do papel, o resultado aparece em duas frentes: na capacidade de entrega das organizações e na economia da cidade, que recebe visitantes, contrata fornecedores e gera negócios",
-        autor: "Ana Lima",
-        cargo: "vice-presidente do PMI Distrito Federal",
-        foto: assets.noticias.summit2026AnaLima,
+        autor: "Matheus Rocha",
+        cargo: "presidente do PMI Distrito Federal",
+        foto: assets.quemSomos.presidenteMatheus,
       },
     },
     {

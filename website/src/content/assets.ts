@@ -173,12 +173,6 @@ export const assets = {
     /** 1200 × 630 em JPEG: WhatsApp e LinkedIn nem sempre leem webp. */
     summit2026Og: "/assets/paginas/noticias/summit-2026-og.jpg",
     summit2026Release: "/assets/paginas/noticias/release-pmi-df-summit-2026.pdf",
-    /**
-     * Retrato de Ana Lima (vice-presidente) para a assinatura da citação.
-     * Recorte de 340 × 340 da foto das lideranças, sem ampliação — ela ainda
-     * não tem foto própria no site. Trocar quando houver um retrato oficial.
-     */
-    summit2026AnaLima: "/assets/paginas/noticias/summit-2026-ana-lima.webp",
   },
 
   /** Artes exclusivas do Student Club. */
