@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 
+import { Palestrantes } from "@/components/dgpis/Palestrantes";
 import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TituloSecao } from "@/components/ui/TituloSecao";
 import { EVENTO_DESTAQUE } from "@/content/eventos";
+import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
 /**
  * Página do 5º DGPIS 2026.
@@ -22,20 +23,6 @@ import { EVENTO_DESTAQUE } from "@/content/eventos";
  * cria mais um link interno por evento: este arquivo é publicado de propósito,
  * não um placeholder — o link para ele deve ser sempre válido.
  */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-titulo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-corpo",
-  display: "swap",
-});
-
 const SYMPLA_HREF =
   "https://www.sympla.com.br/evento/5-dgpis-dia-de-gestao-de-projetos-de-impacto-social/3586270";
 
@@ -350,6 +337,10 @@ export default function Dgpis2026Page() {
           </div>
         </Container>
       </section>
+
+      {/* Palestrantes — Client Component à parte (abas com estado); os dados
+          ficam em `content/dgpis-2026.ts`. */}
+      <Palestrantes />
 
       {/* Ingressos */}
       <section id="ingressos" className="scroll-mt-24 bg-[#F8F5F0] py-16 lg:py-20">

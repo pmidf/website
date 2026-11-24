@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties } from "react";
@@ -23,6 +22,7 @@ import {
 } from "@/content/quem-somos";
 import { iniciais } from "@/lib/utils";
 import type { Segmento } from "@/types";
+import { archivo, inter } from "@/styles/fontes";
 import "@/styles/quem-somos.css";
 
 /**
@@ -30,20 +30,6 @@ import "@/styles/quem-somos.css";
  * lido via MCP (não transcrito à mão). As medidas vivem em
  * `src/styles/quem-somos.css`; os textos, em `src/content/quem-somos.ts`.
  */
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "Quem Somos",

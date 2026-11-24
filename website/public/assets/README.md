@@ -34,6 +34,12 @@ public/assets/
     │   └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
     ├── eventos/
     │   └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
+    ├── dgpis-2026/            retratos dos palestrantes do 5º DGPIS (LinkedIn)
+    │   ├── nathalia-tatagiba.webp       200 × 200 · original já era 200px
+    │   ├── dani-estevam.webp            400 × 400
+    │   ├── lucas-ramalho-maciel.webp    400 × 400
+    │   ├── erik-ferraz.webp             200 × 200 · original já era 200px
+    │   └── flavio-almeida-batista.webp  400 × 400 · fundo transparente
     ├── filiacao/
     │   └── foto-evento.webp    572 × 572 · foto recortada em círculo, repetida em 3 seções
     └── voluntariado/

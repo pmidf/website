@@ -1,23 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Archivo, Inter } from "next/font/google";
 
 import { Container } from "@/components/ui/Container";
 import { Botao } from "@/components/ui/Botao";
-
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-titulo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-corpo",
-  display: "swap",
-});
+import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
 /**
  * Página fora do ar até o lançamento do programa.

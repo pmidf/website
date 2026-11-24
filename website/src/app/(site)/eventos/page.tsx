@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 
 import {
   Agenda,
@@ -10,31 +9,18 @@ import {
 } from "@/components/eventos";
 import { EVENTOS_POR_PAGINA } from "@/content/eventos";
 import { getPaginaEventos } from "@/lib/sympla";
+import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
-/**
- * Archivo e Inter vêm do Google Fonts via `next/font`, que baixa e serve os
- * arquivos do nosso domínio no build — mesma política self-hosted do resto do
- * site. Os nomes das variáveis são semânticos (título / corpo) para que os
- * componentes não precisem saber qual família está por trás.
+/*
+ * Archivo e Inter vêm de `@/styles/fontes`, com os arquivos no próprio
+ * repositório (lá está por que não `next/font/google`). Os nomes das variáveis
+ * são semânticos (título / corpo) para que os componentes não precisem saber
+ * qual família está por trás.
  *
  * A página Mentoring carrega as mesmas duas famílias; a home usa Aeonik e
  * Aptos. Essa divergência veio dos protótipos e vale unificar quando o design
  * system fechar.
  */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-titulo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-corpo",
-  display: "swap",
-});
-
 /**
  * ISR: o HTML sai do CDN e só é regerado a cada janela. Alinhado ao
  * `revalidate` do `fetch` em `lib/sympla` — de nada adianta a página revalidar

@@ -1,26 +1,11 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 import { notFound } from "next/navigation";
 
 import { BarraLeitura, Cabecalho, Corpo, Encerramento } from "@/components/materia";
 import { assets } from "@/content/assets";
 import { MATERIAS, materiaPorSlug, tempoDeLeitura } from "@/content/noticias";
 import { site } from "@/content/site";
-
-/** Mesmas famílias e variáveis da listagem de Notícias, de Eventos e do DGPIS. */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-titulo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-corpo",
-  display: "swap",
-});
+import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
 type Props = { params: Promise<{ slug: string }> };
 

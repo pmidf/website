@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 import type { CSSProperties } from "react";
 
 import {
@@ -14,6 +13,7 @@ import {
   PERFIS,
   SELECIONADOS,
 } from "@/content/mentoring";
+import { archivo, inter } from "@/styles/fontes";
 import "@/styles/mentoring.css";
 
 /**
@@ -28,24 +28,9 @@ import "@/styles/mentoring.css";
  * como funciona → quem foi selecionado → com quem falo.
  */
 
-/* Archivo e Inter vêm do Google Fonts via `next/font`, que baixa e serve os
- * arquivos do nosso domínio no build — mesma política self-hosted das demais
- * famílias. Aeonik e Agrandir são licenciadas: ficam em `src/styles/fonts.css`
- * com fallback para Inter e Archivo, respectivamente. */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
+/* Archivo e Inter vêm de `@/styles/fontes`, com os arquivos no próprio
+ * repositório. Aeonik e Agrandir são licenciadas: ficam em
+ * `src/styles/fonts.css` com fallback para Inter e Archivo, respectivamente. */
 export const metadata: Metadata = {
   title: "Programa de Mentoring",
   description:

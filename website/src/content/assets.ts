@@ -81,6 +81,25 @@ export const assets = {
   },
 
   /**
+   * Palestrantes do 5º DGPIS (`/eventos/dgpis-2026`), usados em
+   * `content/dgpis-2026.ts`.
+   *
+   * Mesma política dos retratos de presidentes: fotos de perfil do LinkedIn,
+   * baixadas e convertidas para .webp com 400px de lado, ou no tamanho
+   * original quando menor — Nathalia e Erik vieram com 200px e não foram
+   * ampliados. Versionadas aqui porque as URLs do `media.licdn.com` são
+   * assinadas e expiram. A do Flávio tem fundo transparente (recorte),
+   * preservado: o roxo da seção aparece atrás.
+   */
+  dgpis2026: {
+    nathaliaTatagiba: "/assets/paginas/dgpis-2026/nathalia-tatagiba.webp",
+    daniEstevam: "/assets/paginas/dgpis-2026/dani-estevam.webp",
+    lucasRamalhoMaciel: "/assets/paginas/dgpis-2026/lucas-ramalho-maciel.webp",
+    erikFerraz: "/assets/paginas/dgpis-2026/erik-ferraz.webp",
+    flavioAlmeidaBatista: "/assets/paginas/dgpis-2026/flavio-almeida-batista.webp",
+  },
+
+  /**
    * Fotos da página Filiação — uma por seção, todas 4:3.
    *
    * Antes as três seções repetiam a mesma arte quadrada recortada em círculo.

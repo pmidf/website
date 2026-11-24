@@ -132,6 +132,26 @@
   }
 }
 
+/* ===========================================================================
+ * ENTRADA DO PALCO (palestrantes do DGPIS)
+ *
+ * Usada por `components/dgpis/Palestrantes.tsx` via
+ * `motion-safe:animate-[palco-entrada_…]`. O painel sai de `hidden` a cada
+ * troca de palestrante, e sair de `display: none` reinicia a animação — não
+ * precisa de JavaScript para "retocar" a entrada.
+ * ======================================================================== */
+
+@keyframes palco-entrada {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @layer components {
   .barra-leitura {
     display: none;

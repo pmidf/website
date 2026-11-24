@@ -1,26 +1,8 @@
 import type { Metadata } from "next";
-import { Archivo, Inter } from "next/font/google";
 
 import { Arquivo, Hero, ParaImprensa, Vitrine } from "@/components/noticias";
 import { organizarNoticias } from "@/content/noticias";
-
-/**
- * Mesmas famílias e nomes de variável de Eventos e DGPIS (título / corpo):
- * Notícias é da mesma família visual das páginas de listagem.
- */
-const archivo = Archivo({
-  subsets: ["latin"],
-  weight: ["800"],
-  variable: "--font-titulo",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-corpo",
-  display: "swap",
-});
+import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
 export const metadata: Metadata = {
   title: "Notícias",

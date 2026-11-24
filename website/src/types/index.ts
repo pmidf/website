@@ -400,6 +400,25 @@ export type Voluntario = {
   linkedin?: string;
 };
 
+/* --- Palestrantes de evento ----------------------------------------------- */
+
+/**
+ * Pessoa que fala num evento com landing própria (hoje, o 5º DGPIS).
+ *
+ * `id` é um slug estável: monta os `id`s das abas e painéis da seção e é o
+ * nome do arquivo da foto em `public/assets/paginas/`. `foto` e `linkedin` são
+ * opcionais pelo mesmo motivo da galeria de voluntários — sem foto, o card
+ * cai no avatar de iniciais; sem LinkedIn, o botão some.
+ */
+export type Palestrante = {
+  id: string;
+  nome: string;
+  cargo: string;
+  bio: string;
+  linkedin?: string;
+  foto?: string;
+};
+
 /* --- Notícias ------------------------------------------------------------- */
 
 /**
