@@ -134,38 +134,36 @@ const APOIO = [
 ];
 
 /**
- * Logos do bloco "Realização", linha a linha e na ordem de exibição. `w`/`h`
- * são as dimensões do arquivo; a altura renderizada vem de `classe`.
+ * Marcas do evento, grupo a grupo e na ordem de exibição. `w`/`h` são as
+ * dimensões do arquivo; a altura renderizada vem de `classe`.
+ *
+ * As margens negativas descontam a moldura transparente que alguns arquivos
+ * trazem (PMI-DF, Brisk e SmartKanvas, usados também em outras páginas), para
+ * as logos do grupo ficarem com a mesma altura visível e alinhadas entre si.
  */
-const REALIZACAO = [
+const MARCAS = [
   {
-    id: "capitulo",
-    // Sem `flex-wrap`: as duas ficam lado a lado também no celular.
-    classe: "gap-8 md:gap-14",
+    titulo: "Realização",
+    // Duas a duas no celular, as quatro em linha a partir de `md`.
+    classe: "grid grid-cols-2 justify-items-center gap-x-6 gap-y-8 md:flex md:gap-x-14",
     logos: [
       {
         nome: "PMI Distrito Federal",
         src: assets.marca.logo,
         w: 193,
         h: 75,
-        // O arquivo traz 15px de margem transparente em volta da marca. A
-        // margem negativa a desconta, para a altura visível bater com a do PMI.
-        classe: "-m-3 h-[60px] md:-m-4 md:h-[80px]",
+        classe: "-m-[11px] h-[54px] md:-m-3 md:h-[61px]",
       },
       {
         nome: "Project Management Institute",
         src: assets.dgpis2026.logoPmi,
         w: 481,
         h: 144,
-        classe: "h-[35px] md:h-[47px]",
+        classe: "h-8 md:h-9",
       },
-    ],
-  },
-  {
-    id: "parceiros",
-    classe: "flex-wrap gap-x-6 gap-y-8 md:gap-x-14",
-    logos: [
       {
+        // O arquivo tem só 29px de altura: é ele que limita o tamanho do grupo.
+        // Com uma versão maior, dá para aumentar as quatro.
         nome: "Project Managers Without Borders",
         src: assets.dgpis2026.logoPmwb,
         w: 108,
@@ -179,12 +177,47 @@ const REALIZACAO = [
         h: 108,
         classe: "h-8 md:h-9",
       },
+    ],
+  },
+  {
+    titulo: "Parceiros institucionais",
+    classe: "flex flex-wrap gap-x-6 gap-y-8 md:gap-x-14",
+    logos: [
+      {
+        nome: "Instituto Bancorbrás",
+        src: assets.dgpis2026.logoInstitutoBancorbras,
+        w: 649,
+        h: 192,
+        classe: "h-10 md:h-12",
+      },
       {
         nome: "Abrace",
         src: assets.dgpis2026.logoAbrace,
         w: 403,
         h: 108,
-        classe: "h-8 md:h-9",
+        classe: "h-8 md:h-10",
+      },
+    ],
+  },
+  {
+    titulo: "Apoio",
+    classe: "flex flex-wrap gap-x-6 gap-y-8 md:gap-x-14",
+    logos: [
+      {
+        nome: "Brisk PPM",
+        src: assets.mantenedores.brisk,
+        w: 236,
+        h: 80,
+        classe:
+          "-mb-[11px] -ml-[16px] -mr-[21px] -mt-[16px] h-[55px] md:-mb-[13px] md:-ml-[19px] md:-mr-[25px] md:-mt-[19px] md:h-[66px]",
+      },
+      {
+        nome: "SmartKanvas",
+        src: assets.mantenedores.smartkanvas,
+        w: 314,
+        h: 89,
+        classe:
+          "-mb-[13px] -mt-[9px] -mx-[18px] h-[52px] md:-mb-[16px] md:-mt-[11px] md:-mx-[21px] md:h-[63px]",
       },
     ],
   },
@@ -542,27 +575,34 @@ export default function Dgpis2026Page() {
         </Container>
       </section>
 
-      {/* Realização */}
+      {/* Realização, parceiros institucionais e apoio */}
       <section className="bg-white py-16 lg:py-20">
-        <Container gutter="amplo" className="flex flex-col items-center gap-10 lg:gap-12">
-          {/* O rótulo é o único título da seção, daí o `as="h2"`. */}
-          <Eyebrow as="h2">Realização</Eyebrow>
+        <Container gutter="amplo">
+          <div className="divide-y divide-[#200F3B]/10">
+            {MARCAS.map((grupo) => (
+              <div
+                key={grupo.titulo}
+                className="flex flex-col items-center gap-8 py-10 first:pt-0 last:pb-0 lg:gap-9 lg:py-12"
+              >
+                {/* O rótulo é o único título do grupo, daí o `as="h2"`. */}
+                <Eyebrow as="h2">{grupo.titulo}</Eyebrow>
 
-          {REALIZACAO.map((linha) => (
-            <ul key={linha.id} className={`flex items-center justify-center ${linha.classe}`}>
-              {linha.logos.map((logo) => (
-                <li key={logo.nome} className="shrink-0">
-                  <Image
-                    src={logo.src}
-                    alt={logo.nome}
-                    width={logo.w}
-                    height={logo.h}
-                    className={`w-auto max-w-none ${logo.classe}`}
-                  />
-                </li>
-              ))}
-            </ul>
-          ))}
+                <ul className={`items-center justify-center ${grupo.classe}`}>
+                  {grupo.logos.map((logo) => (
+                    <li key={logo.nome} className="shrink-0">
+                      <Image
+                        src={logo.src}
+                        alt={logo.nome}
+                        width={logo.w}
+                        height={logo.h}
+                        className={`w-auto max-w-none ${logo.classe}`}
+                      />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </Container>
       </section>
 

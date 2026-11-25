@@ -35,10 +35,11 @@ public/assets/
     ├── eventos/
     │   └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
     ├── dgpis-2026/            retratos dos palestrantes (LinkedIn) e logos do 5º DGPIS
-    │   ├── logo-pmi.webp                481 × 144 · bloco "Realização"
-    │   ├── logo-pmwb.webp               108 × 29 · bloco "Realização", falta versão maior
-    │   ├── logo-pmief.webp              398 × 108 · bloco "Realização"
-    │   ├── logo-abrace.webp             403 × 108 · bloco "Realização"
+    │   ├── logo-pmi.webp                481 × 144 · Realização
+    │   ├── logo-pmwb.webp               108 × 29 · Realização, falta versão maior
+    │   ├── logo-pmief.webp              398 × 108 · Realização
+    │   ├── logo-instituto-bancorbras.webp 649 × 192 · Parceiros institucionais (site do instituto)
+    │   ├── logo-abrace.webp             403 × 108 · Parceiros institucionais
     │   ├── matheus-rocha.webp           400 × 400
     │   ├── ana-lima.webp                400 × 400 · borda transparente aparada
     │   ├── cristina-duarte.webp         400 × 400

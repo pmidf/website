@@ -82,7 +82,8 @@ export const assets = {
 
   /**
    * Artes do 5º DGPIS (`/eventos/dgpis-2026`): retratos dos palestrantes, usados
-   * em `content/dgpis-2026.ts`, e logos do bloco "Realização" da página.
+   * em `content/dgpis-2026.ts`, e logos do bloco de marcas da página (realização,
+   * parceiros institucionais e apoio).
    *
    * Retratos: mesma política dos presidentes — fotos de perfil do LinkedIn,
    * baixadas e convertidas para .webp com 400px de lado, ou no tamanho
@@ -93,8 +94,9 @@ export const assets = {
    * foram aparadas em alguns pixels, para tirar uma borda que vazava no recorte
    * circular.
    *
-   * Logos: fundo transparente e texto preto, só funcionam sobre fundo claro. A
-   * do PMI-DF não está aqui — é `marca.logo`.
+   * Logos: fundo transparente e texto escuro, só funcionam sobre fundo claro. A
+   * do PMI-DF não está aqui — é `marca.logo` —, nem as de apoio, que são
+   * mantenedores. A do Instituto Bancorbrás veio do SVG do site do instituto.
    */
   dgpis2026: {
     matheusRocha: "/assets/paginas/dgpis-2026/matheus-rocha.webp",
@@ -114,6 +116,7 @@ export const assets = {
     /** TODO: pedir versão maior. Só recebemos esta, de 108 × 29px. */
     logoPmwb: "/assets/paginas/dgpis-2026/logo-pmwb.webp",
     logoPmief: "/assets/paginas/dgpis-2026/logo-pmief.webp",
+    logoInstitutoBancorbras: "/assets/paginas/dgpis-2026/logo-instituto-bancorbras.webp",
     logoAbrace: "/assets/paginas/dgpis-2026/logo-abrace.webp",
   },
 
