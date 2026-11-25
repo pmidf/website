@@ -15,11 +15,33 @@ import type { BannerDestaque, Evento, Iniciativa, Mantenedor } from "@/types";
  * A ordem é a ordem de exibição, e o primeiro é o que aparece antes de o
  * carrossel começar a girar — quem chega e não espera vê este.
  *
+ * ## Como tirar um slide do ar sem apagar
+ *
+ * `oculto: true` esconde o slide e guarda o conteúdo. É o caso de evento já
+ * realizado que volta no ano seguinte: para reativar, atualize título, data,
+ * local e link da nova edição e apague a linha `oculto`.
+ *
  * Os dados do Summit vieram da própria página do evento no Sympla
  * (09/11/2026 09h às 11/11/2026 13h, Monumental Eventos). Conferir a cada
  * edição: a data e o link são de um evento específico, não de uma série.
  */
-export const BANNERS: BannerDestaque[] = [
+const TODOS_OS_BANNERS: BannerDestaque[] = [
+  {
+    id: "dgpis-2026",
+    // Ocultar depois de 15/12/2026.
+    titulo: "5º DGPIS 2026: Caminhos para o Impacto",
+    descricao:
+      "Dia de Gestão de Projetos de Impacto Social: como organizações sociais transformam causa em projeto e projeto em resultado. Um dia de palestras e rodas de conversa, com inscrição prévia.",
+    destaque: "15 de dezembro · Instituto Bancorbrás, Brasília/DF",
+    ctaLabel: "Saiba mais",
+    // A página do evento, e não o Sympla: é lá que estão programação,
+    // palestrantes e os botões de inscrição.
+    ctaHref: "/eventos/dgpis-2026",
+    ctaVariante: "claro",
+    // Os dois roxos do hero da página do DGPIS.
+    fundo: "bg-[linear-gradient(110deg,#1F0942_0%,#5B2B82_100%)]",
+    deco: { src: assets.formas.circuloCiano, classe: "w-[190px] xl:w-[230px]" },
+  },
   {
     id: "certificacoes",
     titulo: "Nossas certificações",
@@ -34,6 +56,8 @@ export const BANNERS: BannerDestaque[] = [
   },
   {
     id: "summit-2026",
+    // Edição realizada. Guardado para o Summit 2027.
+    oculto: true,
     titulo: "PMI-DF Summit 2026",
     descricao:
       "Três dias de palestras, painéis e networking com a comunidade de projetos do Distrito Federal. Certificado de participação com carga horária de até 20 horas e elegibilidade para PDUs.",
@@ -48,6 +72,9 @@ export const BANNERS: BannerDestaque[] = [
     deco: { src: assets.formas.circuloCiano, classe: "w-[190px] xl:w-[230px]" },
   },
 ];
+
+/** Os slides no ar — é o que o carrossel recebe. */
+export const BANNERS: BannerDestaque[] = TODOS_OS_BANNERS.filter((banner) => !banner.oculto);
 
 /**
  * Cada iniciativa recebe a forma da própria família cromática: triângulo roxo

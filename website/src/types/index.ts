@@ -53,6 +53,8 @@ export type Deco = {
  */
 export type BannerDestaque = {
   id: string;
+  /** Fora do carrossel, mas guardado para reaproveitar (evento já realizado). */
+  oculto?: boolean;
   titulo: string;
   descricao: string;
   destaque: string;

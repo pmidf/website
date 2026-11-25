@@ -10,14 +10,15 @@ import { BANNERS } from "@/content/home";
 import type { BannerDestaque } from "@/types";
 
 /**
- * Carrossel de destaques da home — certificações e PMI-DF Summit.
+ * Carrossel de destaques da home. Os slides vêm de `content/home.ts`; com um só
+ * no ar, ele vira um banner fixo, sem rotação nem controles.
  *
  * A margem negativa e o `rounded-t` fazem a seção subir sobre o Hero, criando
  * a "aba" arredondada do topo — por isso o `z-10`.
  *
  * ## Como os slides são escondidos
  *
- * Os dois ficam sempre no DOM, empilhados na mesma célula de um grid: assim a
+ * Todos ficam sempre no DOM, empilhados na mesma célula de um grid: assim a
  * seção tem a altura do slide mais alto e não pula ao trocar. O inativo sai
  * com `invisible`, e não com `opacity-0`, porque `visibility: hidden` também
  * tira os descendentes da ordem de tabulação — só `opacity-0` deixaria o link
@@ -39,6 +40,9 @@ import type { BannerDestaque } from "@/types";
 
 /** Tempo de cada slide. Longo o suficiente para ler o parágrafo inteiro. */
 const INTERVALO_MS = 7000;
+
+/** Com um slide só não há o que girar nem o que navegar. */
+const TEM_VARIOS = BANNERS.length > 1;
 
 function Slide({ banner, ativo }: { banner: BannerDestaque; ativo: boolean }) {
   const indice = BANNERS.indexOf(banner);
@@ -108,7 +112,7 @@ export function Destaques() {
   const [interagindo, setInteragindo] = useState(false);
   const [movimentoReduzido, setMovimentoReduzido] = useState(false);
 
-  const girando = !pausado && !interagindo && !movimentoReduzido;
+  const girando = TEM_VARIOS && !pausado && !interagindo && !movimentoReduzido;
 
   useEffect(() => {
     const consulta = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -150,61 +154,63 @@ export function Destaques() {
           ))}
         </div>
 
-        <div className="mt-4 flex items-center justify-between gap-4">
-          <ol className="flex items-center gap-2">
-            {BANNERS.map((banner, i) => {
-              const ativo = i === indice;
-              return (
-                <li key={banner.id}>
-                  <button
-                    type="button"
-                    onClick={() => setIndice(i)}
-                    aria-label={`Ver ${banner.titulo}`}
-                    aria-current={ativo ? "true" : undefined}
-                    className={`block h-2.5 rounded-full transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#371075] ${
-                      ativo ? "w-8 bg-[#FF610F]" : "w-2.5 bg-[#200F3B]/25 hover:bg-[#200F3B]/45"
-                    }`}
-                  />
-                </li>
-              );
-            })}
-          </ol>
+        {TEM_VARIOS && (
+          <div className="mt-4 flex items-center justify-between gap-4">
+            <ol className="flex items-center gap-2">
+              {BANNERS.map((banner, i) => {
+                const ativo = i === indice;
+                return (
+                  <li key={banner.id}>
+                    <button
+                      type="button"
+                      onClick={() => setIndice(i)}
+                      aria-label={`Ver ${banner.titulo}`}
+                      aria-current={ativo ? "true" : undefined}
+                      className={`block h-2.5 rounded-full transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#371075] ${
+                        ativo ? "w-8 bg-[#FF610F]" : "w-2.5 bg-[#200F3B]/25 hover:bg-[#200F3B]/45"
+                      }`}
+                    />
+                  </li>
+                );
+              })}
+            </ol>
 
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => irPara(indice - 1)}
-              aria-label="Destaque anterior"
-              className={botaoControle}
-            >
-              <FaChevronLeft aria-hidden className="h-[13px] w-[13px]" />
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => irPara(indice - 1)}
+                aria-label="Destaque anterior"
+                className={botaoControle}
+              >
+                <FaChevronLeft aria-hidden className="h-[13px] w-[13px]" />
+              </button>
 
-            {/* Exigido pelo WCAG 2.2.2: conteúdo que se move sozinho por mais
-                de cinco segundos precisa de um controle para parar. */}
-            <button
-              type="button"
-              onClick={() => setPausado((v) => !v)}
-              aria-label={pausado ? "Retomar rotação dos destaques" : "Pausar rotação dos destaques"}
-              className={botaoControle}
-            >
-              {pausado ? (
-                <FaPlay aria-hidden className="h-[13px] w-[13px]" />
-              ) : (
-                <FaPause aria-hidden className="h-[13px] w-[13px]" />
-              )}
-            </button>
+              {/* Exigido pelo WCAG 2.2.2: conteúdo que se move sozinho por mais
+                  de cinco segundos precisa de um controle para parar. */}
+              <button
+                type="button"
+                onClick={() => setPausado((v) => !v)}
+                aria-label={pausado ? "Retomar rotação dos destaques" : "Pausar rotação dos destaques"}
+                className={botaoControle}
+              >
+                {pausado ? (
+                  <FaPlay aria-hidden className="h-[13px] w-[13px]" />
+                ) : (
+                  <FaPause aria-hidden className="h-[13px] w-[13px]" />
+                )}
+              </button>
 
-            <button
-              type="button"
-              onClick={() => irPara(indice + 1)}
-              aria-label="Próximo destaque"
-              className={botaoControle}
-            >
-              <FaChevronRight aria-hidden className="h-[13px] w-[13px]" />
-            </button>
+              <button
+                type="button"
+                onClick={() => irPara(indice + 1)}
+                aria-label="Próximo destaque"
+                className={botaoControle}
+              >
+                <FaChevronRight aria-hidden className="h-[13px] w-[13px]" />
+              </button>
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </section>
   );

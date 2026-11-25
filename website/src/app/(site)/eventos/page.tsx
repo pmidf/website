@@ -7,7 +7,7 @@ import {
   FacaParte,
   Hero,
 } from "@/components/eventos";
-import { EVENTOS_POR_PAGINA } from "@/content/eventos";
+import { EVENTO_DESTAQUE, EVENTOS_POR_PAGINA } from "@/content/eventos";
 import { getPaginaEventos } from "@/lib/sympla";
 import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
@@ -52,8 +52,13 @@ export default async function EventosPage() {
       className={`${archivo.variable} ${inter.variable} min-h-screen bg-[#F8F5F0] font-[family-name:var(--font-corpo)]`}
     >
       <Hero />
-      <EventoDestaque />
-      <Agenda eventosIniciais={eventos} total={total} status={status} />
+      {!EVENTO_DESTAQUE.oculto && <EventoDestaque />}
+      <Agenda
+        eventosIniciais={eventos}
+        total={total}
+        status={status}
+        comoAba={EVENTO_DESTAQUE.oculto}
+      />
       <ComoSeInscrever />
       <FacaParte />
     </div>

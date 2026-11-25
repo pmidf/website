@@ -76,14 +76,30 @@ export const EVENTOS_OCULTOS: string[] = [
   "https://www.sympla.com.br/play/workshop-para-certificacao-capm-r/1875615",
 ];
 
-export const EVENTO_DESTAQUE = {
+/**
+ * Banner "Evento em destaque" no topo de `/eventos`.
+ *
+ * `oculto: true` tira o banner do ar e guarda o conteúdo: a agenda sobe para o
+ * lugar dele. Para reativar (Summit 2027), atualize título, data, local,
+ * descrição e link e apague a linha `oculto`, ou troque para `false`.
+ */
+export const EVENTO_DESTAQUE: {
+  oculto?: boolean;
+  chip: string;
+  titulo: string;
+  meta: string;
+  descricao: string;
+  inscricaoHref: string;
+} = {
+  // Edição realizada. Guardado para o Summit 2027.
+  oculto: true,
   chip: "Evento em destaque",
   titulo: "PMI-DF Summit 2026",
   meta: "09 a 11 de novembro de 2026 · Monumental Eventos, Brasília — DF",
   descricao:
     "O maior encontro de gerenciamento de projetos do Distrito Federal. Três dias de palestras, painéis e networking com profissionais, estudantes e empresas.",
   inscricaoHref: "https://www.sympla.com.br/evento/pmi-df-summit-2026/3199543",
-} as const;
+};
 
 export const PASSOS: PassoInscricao[] = [
   {

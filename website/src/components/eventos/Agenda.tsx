@@ -9,6 +9,7 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TituloSecao } from "@/components/ui/TituloSecao";
 import { EVENTOS_POR_PAGINA, TODAS_CATEGORIAS } from "@/content/eventos";
 import type { PaginaEventos } from "@/lib/sympla";
+import { cn } from "@/lib/utils";
 import type { EventoAgenda, FormatoEvento } from "@/types";
 
 /**
@@ -33,12 +34,17 @@ type AgendaProps = {
   /** Tamanho da agenda inteira, para saber quando parar de pedir mais. */
   total: number;
   status: PaginaEventos["status"];
+  /**
+   * Sobe sobre o hero com o topo arredondado. Só quando o banner "Evento em
+   * destaque", que normalmente faz essa transição, está oculto.
+   */
+  comoAba?: boolean;
 };
 
 /** Uma página maior que a da UI: puxar "o resto" não precisa ir de 6 em 6. */
 const LOTE_COMPLETO = 100;
 
-export function Agenda({ eventosIniciais, total, status }: AgendaProps) {
+export function Agenda({ eventosIniciais, total, status, comoAba = false }: AgendaProps) {
   const [eventos, setEventos] = useState(eventosIniciais);
   const [visiveis, setVisiveis] = useState(EVENTOS_POR_PAGINA);
   const [carregando, setCarregando] = useState(false);
@@ -166,7 +172,13 @@ export function Agenda({ eventosIniciais, total, status }: AgendaProps) {
   }
 
   return (
-    <section id="agenda" className="scroll-mt-24 bg-[#F8F5F0] py-14 lg:py-20">
+    <section
+      id="agenda"
+      className={cn(
+        "scroll-mt-24 bg-[#F8F5F0] py-14 lg:py-20",
+        comoAba && "relative z-10 -mt-12 rounded-t-[32px] lg:-mt-16 lg:rounded-t-[50px]",
+      )}
+    >
       <Container gutter="amplo">
         <div className="flex max-w-[760px] flex-col gap-[14px]">
           <Eyebrow>Agenda do capítulo</Eyebrow>
