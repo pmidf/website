@@ -7,7 +7,6 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TituloSecao } from "@/components/ui/TituloSecao";
 import { assets } from "@/content/assets";
-import { EVENTO_DESTAQUE } from "@/content/eventos";
 import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
 /**
@@ -543,37 +542,8 @@ export default function Dgpis2026Page() {
         </Container>
       </section>
 
-      {/* Cross-promo Summit — reaproveita o gradiente já usado no banner do
-          Summit na home, para o mesmo evento sempre ler com a mesma cor. */}
-      <section className="bg-white py-16 lg:py-20">
-        <Container gutter="amplo">
-          <div className="flex flex-wrap items-center justify-between gap-6 rounded-[20px] bg-[linear-gradient(110deg,#210040_0%,#4F17A8_55%,#012F44_100%)] p-8 lg:p-10">
-            <div className="max-w-[560px]">
-              <Eyebrow className="text-[#05BFE0]">{EVENTO_DESTAQUE.chip}</Eyebrow>
-              <h3 className="mt-2 text-[20px] font-bold text-white lg:text-[22px]">
-                {EVENTO_DESTAQUE.titulo}
-              </h3>
-              <p className="mt-1 text-[14px] font-medium text-white/80">
-                {EVENTO_DESTAQUE.meta}
-              </p>
-              <p className="mt-3 text-[14px] leading-relaxed text-white/75">
-                {EVENTO_DESTAQUE.descricao}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <Botao href={EVENTO_DESTAQUE.inscricaoHref} external variante="branco">
-                Inscreva-se no Sympla
-              </Botao>
-              <Botao href="/eventos" variante="contorno-claro">
-                Ver agenda completa
-              </Botao>
-            </div>
-          </div>
-        </Container>
-      </section>
-
       {/* Realização */}
-      <section className="bg-[#F8F5F0] py-16 lg:py-20">
+      <section className="bg-white py-16 lg:py-20">
         <Container gutter="amplo" className="flex flex-col items-center gap-10 lg:gap-12">
           {/* O rótulo é o único título da seção, daí o `as="h2"`. */}
           <Eyebrow as="h2">Realização</Eyebrow>
