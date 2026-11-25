@@ -15,8 +15,8 @@ import { cn } from "@/lib/utils";
  *
  * ## Por que abas e não uma grade
  *
- * São cinco pessoas com bios de duas a quatro linhas. Numa grade, as cinco
- * bios disputam a atenção ao mesmo tempo e a seção vira um paredão de texto.
+ * São várias pessoas com bios de duas a quatro linhas. Numa grade, as bios
+ * disputam a atenção ao mesmo tempo e a seção vira um paredão de texto.
  * Aqui os retratos são o índice, e uma pessoa por vez ocupa o palco — o
  * painel grande dá a cada uma o destaque de um card de palestrante de evento.
  *
@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
  * ativa entra na ordem do Tab), setas ← →, Home e End. A seta já seleciona a
  * aba — os painéis são leves, não há o que carregar.
  *
- * Os cinco painéis são sempre renderizados, com `hidden` nos inativos: todas
+ * Todos os painéis são sempre renderizados, com `hidden` nos inativos: todas
  * as bios saem no HTML do servidor (buscadores e leitura sem JS), e só uma
  * aparece por vez.
  *
@@ -57,7 +57,7 @@ export function Palestrantes() {
 
   const total = PALESTRANTES.length;
 
-  /** No celular a fileira de retratos rola: mantém a aba ativa no centro. */
+  /** Abaixo de `lg` a fileira de retratos rola: mantém a aba ativa no centro. */
   const centralizar = (indice: number) => {
     const trilho = lista.current;
     const aba = abas.current[indice];
@@ -158,14 +158,18 @@ export function Palestrantes() {
         </p>
 
         {/* `relative` faz deste trilho o `offsetParent` das abas — é a
-            referência do `offsetLeft` usado em `centralizar`. A margem
-            negativa no celular deixa a rolagem encostar nas bordas da tela. */}
+            referência do `offsetLeft` usado em `centralizar`.
+
+            Abaixo de `lg` a fileira rola, e a margem negativa repete o gutter
+            do `Container` para a rolagem encostar nas bordas da tela. De `lg`
+            em diante ela quebra em linhas centralizadas de até sete retratos
+            (o `max-w`), com todos à vista. */}
         <div
           ref={lista}
           role="tablist"
           aria-label="Palestrantes do 5º DGPIS"
           onKeyDown={aoTeclar}
-          className="relative -mx-5 mt-10 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 py-3 [scrollbar-width:none] md:mx-0 md:gap-5 md:overflow-visible md:px-0 lg:mt-12 [&::-webkit-scrollbar]:hidden"
+          className="relative -mx-5 mt-10 flex snap-x snap-mandatory gap-2 overflow-x-auto px-5 py-3 [scrollbar-width:none] md:-mx-8 md:gap-5 md:px-8 lg:mx-auto lg:mt-12 lg:max-w-[860px] lg:flex-wrap lg:justify-center lg:overflow-visible lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
           {PALESTRANTES.map((palestrante, indice) => {
             const selecionado = indice === ativo;
@@ -257,14 +261,20 @@ export function Palestrantes() {
 
                   {/* Só borda, sem fundo tingido: o laranja sobre o vidro fica
                       em ~5:1 de contraste; com tinta de fundo cairia para o
-                      limite de 4,5:1. */}
-                  <p className="mt-4 inline-flex rounded-full border border-[#FF610F]/50 px-4 py-1.5 text-[14px] font-semibold text-[#FF610F]">
-                    {palestrante.cargo}
-                  </p>
+                      limite de 4,5:1. `flex w-fit`, e não `inline-flex`: sem
+                      bio entre os dois, a pílula dividiria a linha com o botão
+                      do LinkedIn. */}
+                  {palestrante.cargo && (
+                    <p className="mt-4 flex w-fit rounded-full border border-[#FF610F]/50 px-4 py-1.5 text-[14px] font-semibold text-[#FF610F]">
+                      {palestrante.cargo}
+                    </p>
+                  )}
 
-                  <p className="mt-5 max-w-[700px] text-[16px] leading-relaxed text-white/80 lg:text-[17px]">
-                    {palestrante.bio}
-                  </p>
+                  {palestrante.bio && (
+                    <p className="mt-5 max-w-[700px] text-[16px] leading-relaxed text-white/80 lg:text-[17px]">
+                      {palestrante.bio}
+                    </p>
+                  )}
 
                   {palestrante.linkedin && (
                     <a

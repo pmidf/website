@@ -34,12 +34,24 @@ public/assets/
     │   └── hero-brasilia.webp  471 × 450 · foto de Brasília, recorte arredondado
     ├── eventos/
     │   └── banner.webp        1115 × 396 · fundo do "Evento em destaque"
-    ├── dgpis-2026/            retratos dos palestrantes do 5º DGPIS (LinkedIn)
+    ├── dgpis-2026/            retratos dos palestrantes (LinkedIn) e logos do 5º DGPIS
+    │   ├── logo-pmi.webp                481 × 144 · bloco "Realização"
+    │   ├── logo-pmwb.webp               108 × 29 · bloco "Realização", falta versão maior
+    │   ├── logo-pmief.webp              398 × 108 · bloco "Realização"
+    │   ├── logo-abrace.webp             403 × 108 · bloco "Realização"
+    │   ├── matheus-rocha.webp           400 × 400
+    │   ├── ana-lima.webp                400 × 400 · borda transparente aparada
+    │   ├── cristina-duarte.webp         400 × 400
+    │   ├── claudio-roberto.webp         400 × 400 · faixa clara da base aparada
     │   ├── nathalia-tatagiba.webp       200 × 200 · original já era 200px
     │   ├── dani-estevam.webp            400 × 400
     │   ├── lucas-ramalho-maciel.webp    400 × 400
     │   ├── erik-ferraz.webp             200 × 200 · original já era 200px
-    │   └── flavio-almeida-batista.webp  400 × 400 · fundo transparente
+    │   ├── flavio-almeida-batista.webp  400 × 400 · fundo transparente
+    │   ├── ricardo-assis.webp           400 × 400
+    │   ├── thalyta-cabral.webp          400 × 400 · borda transparente aparada
+    │   ├── larissa-sampaio.webp         400 × 400
+    │   └── dalton-leca.webp             400 × 400
     ├── filiacao/
     │   └── foto-evento.webp    572 × 572 · foto recortada em círculo, repetida em 3 seções
     └── voluntariado/

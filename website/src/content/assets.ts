@@ -81,22 +81,40 @@ export const assets = {
   },
 
   /**
-   * Palestrantes do 5º DGPIS (`/eventos/dgpis-2026`), usados em
-   * `content/dgpis-2026.ts`.
+   * Artes do 5º DGPIS (`/eventos/dgpis-2026`): retratos dos palestrantes, usados
+   * em `content/dgpis-2026.ts`, e logos do bloco "Realização" da página.
    *
-   * Mesma política dos retratos de presidentes: fotos de perfil do LinkedIn,
+   * Retratos: mesma política dos presidentes — fotos de perfil do LinkedIn,
    * baixadas e convertidas para .webp com 400px de lado, ou no tamanho
    * original quando menor — Nathalia e Erik vieram com 200px e não foram
    * ampliados. Versionadas aqui porque as URLs do `media.licdn.com` são
    * assinadas e expiram. A do Flávio tem fundo transparente (recorte),
-   * preservado: o roxo da seção aparece atrás.
+   * preservado: o roxo da seção aparece atrás. As de Ana, Claudio e Thalyta
+   * foram aparadas em alguns pixels, para tirar uma borda que vazava no recorte
+   * circular.
+   *
+   * Logos: fundo transparente e texto preto, só funcionam sobre fundo claro. A
+   * do PMI-DF não está aqui — é `marca.logo`.
    */
   dgpis2026: {
+    matheusRocha: "/assets/paginas/dgpis-2026/matheus-rocha.webp",
+    anaLima: "/assets/paginas/dgpis-2026/ana-lima.webp",
+    cristinaDuarte: "/assets/paginas/dgpis-2026/cristina-duarte.webp",
+    claudioRoberto: "/assets/paginas/dgpis-2026/claudio-roberto.webp",
     nathaliaTatagiba: "/assets/paginas/dgpis-2026/nathalia-tatagiba.webp",
     daniEstevam: "/assets/paginas/dgpis-2026/dani-estevam.webp",
     lucasRamalhoMaciel: "/assets/paginas/dgpis-2026/lucas-ramalho-maciel.webp",
     erikFerraz: "/assets/paginas/dgpis-2026/erik-ferraz.webp",
     flavioAlmeidaBatista: "/assets/paginas/dgpis-2026/flavio-almeida-batista.webp",
+    ricardoAssis: "/assets/paginas/dgpis-2026/ricardo-assis.webp",
+    thalytaCabral: "/assets/paginas/dgpis-2026/thalyta-cabral.webp",
+    larissaSampaio: "/assets/paginas/dgpis-2026/larissa-sampaio.webp",
+    daltonLeca: "/assets/paginas/dgpis-2026/dalton-leca.webp",
+    logoPmi: "/assets/paginas/dgpis-2026/logo-pmi.webp",
+    /** TODO: pedir versão maior. Só recebemos esta, de 108 × 29px. */
+    logoPmwb: "/assets/paginas/dgpis-2026/logo-pmwb.webp",
+    logoPmief: "/assets/paginas/dgpis-2026/logo-pmief.webp",
+    logoAbrace: "/assets/paginas/dgpis-2026/logo-abrace.webp",
   },
 
   /**

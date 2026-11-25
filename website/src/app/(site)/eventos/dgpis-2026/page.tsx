@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Palestrantes } from "@/components/dgpis/Palestrantes";
 import { Botao } from "@/components/ui/Botao";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { TituloSecao } from "@/components/ui/TituloSecao";
+import { assets } from "@/content/assets";
 import { EVENTO_DESTAQUE } from "@/content/eventos";
 import { archivoTitulo as archivo, interCorpo as inter } from "@/styles/fontes";
 
@@ -129,6 +131,63 @@ const APOIO = [
     titulo: "Parceria por permuta",
     descricao:
       "A empresa custeia diretamente um item de despesa do evento, como alimentação, material gráfico ou os kits dos participantes.",
+  },
+];
+
+/**
+ * Logos do bloco "Realização", linha a linha e na ordem de exibição. `w`/`h`
+ * são as dimensões do arquivo; a altura renderizada vem de `classe`.
+ */
+const REALIZACAO = [
+  {
+    id: "capitulo",
+    // Sem `flex-wrap`: as duas ficam lado a lado também no celular.
+    classe: "gap-8 md:gap-14",
+    logos: [
+      {
+        nome: "PMI Distrito Federal",
+        src: assets.marca.logo,
+        w: 193,
+        h: 75,
+        // O arquivo traz 15px de margem transparente em volta da marca. A
+        // margem negativa a desconta, para a altura visível bater com a do PMI.
+        classe: "-m-3 h-[60px] md:-m-4 md:h-[80px]",
+      },
+      {
+        nome: "Project Management Institute",
+        src: assets.dgpis2026.logoPmi,
+        w: 481,
+        h: 144,
+        classe: "h-[35px] md:h-[47px]",
+      },
+    ],
+  },
+  {
+    id: "parceiros",
+    classe: "flex-wrap gap-x-6 gap-y-8 md:gap-x-14",
+    logos: [
+      {
+        nome: "Project Managers Without Borders",
+        src: assets.dgpis2026.logoPmwb,
+        w: 108,
+        h: 29,
+        classe: "h-8 md:h-9",
+      },
+      {
+        nome: "PMI Educational Foundation",
+        src: assets.dgpis2026.logoPmief,
+        w: 398,
+        h: 108,
+        classe: "h-8 md:h-9",
+      },
+      {
+        nome: "Abrace",
+        src: assets.dgpis2026.logoAbrace,
+        w: 403,
+        h: 108,
+        classe: "h-8 md:h-9",
+      },
+    ],
   },
 ];
 
@@ -510,6 +569,30 @@ export default function Dgpis2026Page() {
               </Botao>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Realização */}
+      <section className="bg-[#F8F5F0] py-16 lg:py-20">
+        <Container gutter="amplo" className="flex flex-col items-center gap-10 lg:gap-12">
+          {/* O rótulo é o único título da seção, daí o `as="h2"`. */}
+          <Eyebrow as="h2">Realização</Eyebrow>
+
+          {REALIZACAO.map((linha) => (
+            <ul key={linha.id} className={`flex items-center justify-center ${linha.classe}`}>
+              {linha.logos.map((logo) => (
+                <li key={logo.nome} className="shrink-0">
+                  <Image
+                    src={logo.src}
+                    alt={logo.nome}
+                    width={logo.w}
+                    height={logo.h}
+                    className={`w-auto max-w-none ${logo.classe}`}
+                  />
+                </li>
+              ))}
+            </ul>
+          ))}
         </Container>
       </section>
 

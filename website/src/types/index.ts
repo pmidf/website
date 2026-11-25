@@ -406,15 +406,16 @@ export type Voluntario = {
  * Pessoa que fala num evento com landing própria (hoje, o 5º DGPIS).
  *
  * `id` é um slug estável: monta os `id`s das abas e painéis da seção e é o
- * nome do arquivo da foto em `public/assets/paginas/`. `foto` e `linkedin` são
- * opcionais pelo mesmo motivo da galeria de voluntários — sem foto, o card
- * cai no avatar de iniciais; sem LinkedIn, o botão some.
+ * nome do arquivo da foto em `public/assets/paginas/`. Os demais campos são
+ * opcionais pelo mesmo motivo da galeria de voluntários — a lista é publicada
+ * antes de todo o material chegar. Sem foto, o card cai no avatar de iniciais;
+ * sem cargo, bio ou LinkedIn, aquele item some do painel.
  */
 export type Palestrante = {
   id: string;
   nome: string;
-  cargo: string;
-  bio: string;
+  cargo?: string;
+  bio?: string;
   linkedin?: string;
   foto?: string;
 };
